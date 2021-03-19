@@ -1,0 +1,202 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: Authentification
+#------------------------------------------------------------
+
+CREATE TABLE Authentification(
+        ID_login     Int  Auto_increment  NOT NULL ,
+        Login        Varchar (20) NOT NULL ,
+        Mot_de_passe Varchar (30) NOT NULL
+	,CONSTRAINT Authentification_PK PRIMARY KEY (ID_login)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: UTILISATEUR
+#------------------------------------------------------------
+
+CREATE TABLE UTILISATEUR(
+        ID_Utilisateur    Int  Auto_increment  NOT NULL ,
+        Nom               Char (30) NOT NULL ,
+        Prenom            Char (30) NOT NULL ,
+        Photo_Utilisateur Varchar (50) NOT NULL ,
+        ID_login          Int NOT NULL
+	,CONSTRAINT UTILISATEUR_PK PRIMARY KEY (ID_Utilisateur)
+
+	,CONSTRAINT UTILISATEUR_Authentification_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
+	,CONSTRAINT UTILISATEUR_Authentification_AK UNIQUE (ID_login)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Entreprise
+#------------------------------------------------------------
+
+CREATE TABLE Entreprise(
+        ID_Entreprise                                    Int  Auto_increment  NOT NULL ,
+        Nom_entreprise                                   Varchar (30) NOT NULL ,
+        Secteur_activite                                 Varchar (30) NOT NULL ,
+        Competences_recherchees_dans_les_stages          Varchar (100) NOT NULL ,
+        Nombre_de_stagiaires_CESI_deja_acceptes_en_stage Int NOT NULL ,
+        Evaluation_des_stagiaires                        Int NOT NULL ,
+        Confiance_du_Pilote_de_promotion                 Int NOT NULL ,
+        Localite_entreprise                              Varchar (20) NOT NULL ,
+        Logo_Entreprise                                  Varchar (50) NOT NULL ,
+        ID_Utilisateur                                   Int NOT NULL
+	,CONSTRAINT Entreprise_PK PRIMARY KEY (ID_Entreprise)
+
+	,CONSTRAINT Entreprise_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT Entreprise_UTILISATEUR_AK UNIQUE (ID_Utilisateur)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Offre
+#------------------------------------------------------------
+
+CREATE TABLE Offre(
+        ID_offre                     Int  Auto_increment  NOT NULL ,
+        Competences_offre            Varchar (100) NOT NULL ,
+        Localite_offre               Varchar (10) NOT NULL ,
+        Entreprise_offre             Varchar (20) NOT NULL ,
+        Type_de_promotion_concernee  Varchar (20) NOT NULL ,
+        Duree_du_stage               Varchar (10) NOT NULL ,
+        Base_de_remuneration         Int NOT NULL ,
+        Date_de_l’offre              Date NOT NULL ,
+        Nombre_de_places_disponible  Int NOT NULL ,
+        ID_Entreprise                Int ,
+        ID_Utilisateur               Int NOT NULL
+	,CONSTRAINT Offre_PK PRIMARY KEY (ID_offre)
+
+	,CONSTRAINT Offre_Entreprise_FK FOREIGN KEY (ID_Entreprise) REFERENCES Entreprise(ID_Entreprise)
+	,CONSTRAINT Offre_UTILISATEUR0_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT Offre_UTILISATEUR_AK UNIQUE (ID_Utilisateur)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: délégué
+#------------------------------------------------------------
+
+CREATE TABLE delegue(
+        ID_Utilisateur                                                Int NOT NULL ,
+        Centre_Delegue                                                Char (10) NOT NULL ,
+        Promotion_delegue                                             Varchar (20) NOT NULL ,
+        Creer_une_offre                                               Bool NOT NULL ,
+        Modifier_une_offre                                            Bool NOT NULL ,
+        Supprimer_une_offre                                           Bool NOT NULL ,
+        Rechercher_un_compte_delegue                                  Bool NOT NULL ,
+        Creer_un_delegue                                              Bool NOT NULL ,
+        Modifier_un_compte_delegue                                    Bool NOT NULL ,
+        Supprimer_un_compte_delegue                                   Bool NOT NULL ,
+        Rechercher_un_compte_etudiant                                 Bool NOT NULL ,
+        Creer_un_etudiant                                             Bool NOT NULL ,
+        Modifier_un_etudiant                                          Bool NOT NULL ,
+        Supprimer_un_etudiant                                         Bool NOT NULL ,
+        Consulter_les_stats_des_etudiants                             Bool NOT NULL ,
+        Informer_le_systeme_de_l_avancement_de_la_candidature_step_3  Bool NOT NULL ,
+        Informer_le_systeme_de_l_avancement_de_la_candidature_step_4  Bool NOT NULL ,
+        Nom                                                           Char (30) NOT NULL ,
+        Prenom                                                        Char (30) NOT NULL ,
+        Photo_Utilisateur                                             Varchar (50) NOT NULL ,
+        ID_Utilisateur__Assigne_DROIT                                 Int ,
+        ID_Utilisateur__CREE                                          Int NOT NULL ,
+        ID_login                                                      Int NOT NULL
+	,CONSTRAINT delegue_PK PRIMARY KEY (ID_Utilisateur)
+
+	,CONSTRAINT delegue_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT delegue_UTILISATEUR0_FK FOREIGN KEY (ID_Utilisateur__Assigne_DROIT) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT delegue_UTILISATEUR1_FK FOREIGN KEY (ID_Utilisateur__CREE) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT delegue_Authentification2_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
+	,CONSTRAINT delegue_Authentification_AK UNIQUE (ID_login)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: étudiants
+#------------------------------------------------------------
+
+CREATE TABLE etudiants(
+        ID_Utilisateur       Int NOT NULL ,
+        Centre_etudiant      Char (10) NOT NULL ,
+        promotion_etudiant   Varchar (20) NOT NULL ,
+        Specialite           Char (20) NOT NULL ,
+        Nom                  Char (30) NOT NULL ,
+        Prenom               Char (30) NOT NULL ,
+        Photo_Utilisateur    Varchar (50) NOT NULL ,
+        ID_Utilisateur__CREE Int NOT NULL ,
+        ID_login             Int NOT NULL
+	,CONSTRAINT etudiants_PK PRIMARY KEY (ID_Utilisateur)
+
+	,CONSTRAINT etudiants_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT etudiants_UTILISATEUR0_FK FOREIGN KEY (ID_Utilisateur__CREE) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT etudiants_Authentification1_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
+	,CONSTRAINT etudiants_Authentification_AK UNIQUE (ID_login)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Administrateur
+#------------------------------------------------------------
+
+CREATE TABLE Administrateur(
+        ID_Utilisateur    Int NOT NULL ,
+        Nom               Char (30) NOT NULL ,
+        Prenom            Char (30) NOT NULL ,
+        Photo_Utilisateur Varchar (50) NOT NULL ,
+        ID_login          Int NOT NULL
+	,CONSTRAINT Administrateur_PK PRIMARY KEY (ID_Utilisateur)
+
+	,CONSTRAINT Administrateur_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT Administrateur_Authentification0_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
+	,CONSTRAINT Administrateur_Authentification_AK UNIQUE (ID_login)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Pilote
+#------------------------------------------------------------
+
+CREATE TABLE Pilote(
+        ID_Utilisateur                Int NOT NULL ,
+        Centre_pilote                 Char (10) NOT NULL ,
+        Promotion_pilote              Varchar (20) NOT NULL ,
+        Nom                           Char (30) NOT NULL ,
+        Prenom                        Char (30) NOT NULL ,
+        Photo_Utilisateur             Varchar (50) NOT NULL ,
+        ID_Utilisateur_Administrateur Int ,
+        ID_login                      Int NOT NULL
+	,CONSTRAINT Pilote_PK PRIMARY KEY (ID_Utilisateur)
+
+	,CONSTRAINT Pilote_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT Pilote_Administrateur0_FK FOREIGN KEY (ID_Utilisateur_Administrateur) REFERENCES Administrateur(ID_Utilisateur)
+	,CONSTRAINT Pilote_Authentification1_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
+	,CONSTRAINT Pilote_Authentification_AK UNIQUE (ID_login)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Candidature
+#------------------------------------------------------------
+
+CREATE TABLE Candidature(
+        ID_candidature                Int  Auto_increment  NOT NULL ,
+        CV_etudiant                   Varchar (30) NOT NULL ,
+        Lettre_de_motivation_etudiant Varchar (30) NOT NULL ,
+        Fiche_de_validation           Varchar (30) NOT NULL ,
+        Convention_de_stage           Varchar (30) NOT NULL ,
+        LIEN_OFFRE                    Varchar (30) NOT NULL ,
+        ID_Utilisateur                Int NOT NULL ,
+        ID_offre                      Int NOT NULL ,
+        ID_Utilisateur_Pilote         Int NOT NULL
+	,CONSTRAINT Candidature_PK PRIMARY KEY (ID_candidature)
+
+	,CONSTRAINT Candidature_etudiants_FK FOREIGN KEY (ID_Utilisateur) REFERENCES etudiants(ID_Utilisateur)
+	,CONSTRAINT Candidature_Offre0_FK FOREIGN KEY (ID_offre) REFERENCES Offre(ID_offre)
+	,CONSTRAINT Candidature_Pilote1_FK FOREIGN KEY (ID_Utilisateur_Pilote) REFERENCES Pilote(ID_Utilisateur)
+)ENGINE=InnoDB;
+
