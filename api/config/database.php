@@ -1,24 +1,26 @@
 <?php
-class Database{
+class Database
+{
     // Connexion à la base de données
     private $host = "localhost";
-    private $db_name = "projetweb";
+    private $db_name = "web";
     private $username = "root";
     private $password = "";
     public $connexion;
 
     // getter pour la connexion
-    public function getConnection(){
+    public function getConnection()
+    {
 
         $this->connexion = null;
-// on essaye de se connecter
-        try{
+        // on essaye de se connecter
+        try {
             $this->connexion = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             $this->connexion->exec("set names utf8");
-        }catch(PDOException $exception){
+        } catch (PDOException $exception) {
             echo "Erreur de connexion : " . $exception->getMessage();
         }
 
         return $this->connexion;
-    }   
+    }
 }

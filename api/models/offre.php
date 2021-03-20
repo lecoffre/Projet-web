@@ -1,20 +1,21 @@
 <?php
-class Entreprise
+class Offre
 {
     // Connexion
     private $connexion;
-    private $table = "entreprise"; //table de la base de données
+    private $table = "offre"; //table de la base de données
 
     // object properties 
+    public $ID_offre;
+    public $Competences_offre;
+    public $Localite_offre;
+    public $Entreprise_offre;
+    public $Type_de_promotion_concernee;
+    public $Duree_du_stage;
+    public $Base_de_remuneration;
+    public $Date_de_l’offre;
+    public $Nombre_de_places_disponible;
     public $ID_Entreprise;
-    public $Nom_entreprise;
-    public $Secteur_activite;
-    public $Competences_recherchees_dans_les_stages;
-    public $Nombre_de_stagiaires_CESI_deja_acceptes_en_stage;
-    public $Evaluation_des_stagiaires;
-    public $Confiance_du_Pilote_de_promotion;
-    public $Localite_entreprise;
-    public $Logo_Entreprise;
     public $ID_Utilisateur;
 
 
@@ -33,7 +34,7 @@ class Entreprise
      *
      * @return void
      */
-    public function lire_entreprises()
+    public function lire_offre()
     {
         // On écrit la requête 
         $sql = "SELECT * FROM " . $this->table;
