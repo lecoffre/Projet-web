@@ -16,15 +16,6 @@ Clonage [lien-master](https://github.com/lecoffre/projet-web/) (actuellement vid
 ```bash
 https://github.com/lecoffre/projet-web.git
 ```
-## Bonnes pratiques
-Afin d'éviter des problèmes de commit/push, de branches et pour rester cohérent dans l'avancement du projet, les bonnes pratiques et l'utilisation de git/GitHub sous visual studio code (ou pas) serons expliquées juste ici. En attendant le fonctionnement est détaillé juste en dessous.
-
--
--
--
--
-
-
 
 ## Utilisation
 Le projet est décomposé en plusieurs branches correspondant à la chronologie du projet.
