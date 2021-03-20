@@ -1,202 +1,315 @@
-#------------------------------------------------------------
-#        Script MySQL.
-#------------------------------------------------------------
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1:3306
+-- Généré le : sam. 20 mars 2021 à 21:33
+-- Version du serveur :  5.7.31
+-- Version de PHP : 7.3.21
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-#------------------------------------------------------------
-# Table: Authentification
-#------------------------------------------------------------
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE Authentification(
-        ID_login     Int  Auto_increment  NOT NULL ,
-        Login        Varchar (20) NOT NULL ,
-        Mot_de_passe Varchar (30) NOT NULL
-	,CONSTRAINT Authentification_PK PRIMARY KEY (ID_login)
-)ENGINE=InnoDB;
+--
+-- Base de données : `web`
+--
 
+-- --------------------------------------------------------
 
-#------------------------------------------------------------
-# Table: UTILISATEUR
-#------------------------------------------------------------
+--
+-- Structure de la table `administrateur`
+--
 
-CREATE TABLE UTILISATEUR(
-        ID_Utilisateur    Int  Auto_increment  NOT NULL ,
-        Nom               Char (30) NOT NULL ,
-        Prenom            Char (30) NOT NULL ,
-        Photo_Utilisateur Varchar (50) NOT NULL ,
-        ID_login          Int NOT NULL
-	,CONSTRAINT UTILISATEUR_PK PRIMARY KEY (ID_Utilisateur)
+DROP TABLE IF EXISTS `administrateur`;
+CREATE TABLE IF NOT EXISTS `administrateur` (
+  `ID_Utilisateur` int(11) NOT NULL,
+  `Nom` char(30) NOT NULL,
+  `Prenom` char(30) NOT NULL,
+  `Photo_Utilisateur` varchar(50) NOT NULL,
+  `ID_login` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Utilisateur`),
+  UNIQUE KEY `Administrateur_Authentification_AK` (`ID_login`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-	,CONSTRAINT UTILISATEUR_Authentification_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
-	,CONSTRAINT UTILISATEUR_Authentification_AK UNIQUE (ID_login)
-)ENGINE=InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Structure de la table `authentification`
+--
 
-#------------------------------------------------------------
-# Table: Entreprise
-#------------------------------------------------------------
+DROP TABLE IF EXISTS `authentification`;
+CREATE TABLE IF NOT EXISTS `authentification` (
+  `ID_login` int(11) NOT NULL AUTO_INCREMENT,
+  `Login` varchar(20) NOT NULL,
+  `Mot_de_passe` varchar(30) NOT NULL,
+  PRIMARY KEY (`ID_login`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE Entreprise(
-        ID_Entreprise                                    Int  Auto_increment  NOT NULL ,
-        Nom_entreprise                                   Varchar (30) NOT NULL ,
-        Secteur_activite                                 Varchar (30) NOT NULL ,
-        Competences_recherchees_dans_les_stages          Varchar (100) NOT NULL ,
-        Nombre_de_stagiaires_CESI_deja_acceptes_en_stage Int NOT NULL ,
-        Evaluation_des_stagiaires                        Int NOT NULL ,
-        Confiance_du_Pilote_de_promotion                 Int NOT NULL ,
-        Localite_entreprise                              Varchar (20) NOT NULL ,
-        Logo_Entreprise                                  Varchar (50) NOT NULL ,
-        ID_Utilisateur                                   Int NOT NULL
-	,CONSTRAINT Entreprise_PK PRIMARY KEY (ID_Entreprise)
+--
+-- Déchargement des données de la table `authentification`
+--
 
-	,CONSTRAINT Entreprise_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
-	,CONSTRAINT Entreprise_UTILISATEUR_AK UNIQUE (ID_Utilisateur)
-)ENGINE=InnoDB;
+INSERT INTO `authentification` (`ID_login`, `Login`, `Mot_de_passe`) VALUES
+(1, 'oue', 'yes'),
+(2, 'DIO', 'test');
 
+-- --------------------------------------------------------
 
-#------------------------------------------------------------
-# Table: Offre
-#------------------------------------------------------------
+--
+-- Structure de la table `candidature`
+--
 
-CREATE TABLE Offre(
-        ID_offre                     Int  Auto_increment  NOT NULL ,
-        Competences_offre            Varchar (100) NOT NULL ,
-        Localite_offre               Varchar (10) NOT NULL ,
-        Entreprise_offre             Varchar (20) NOT NULL ,
-        Type_de_promotion_concernee  Varchar (20) NOT NULL ,
-        Duree_du_stage               Varchar (10) NOT NULL ,
-        Base_de_remuneration         Int NOT NULL ,
-        Date_de_l’offre              Date NOT NULL ,
-        Nombre_de_places_disponible  Int NOT NULL ,
-        ID_Entreprise                Int ,
-        ID_Utilisateur               Int NOT NULL
-	,CONSTRAINT Offre_PK PRIMARY KEY (ID_offre)
+DROP TABLE IF EXISTS `candidature`;
+CREATE TABLE IF NOT EXISTS `candidature` (
+  `ID_candidature` int(11) NOT NULL AUTO_INCREMENT,
+  `CV_etudiant` varchar(30) NOT NULL,
+  `Lettre_de_motivation_etudiant` varchar(30) NOT NULL,
+  `Fiche_de_validation` varchar(30) NOT NULL,
+  `Convention_de_stage` varchar(30) NOT NULL,
+  `LIEN_OFFRE` varchar(30) NOT NULL,
+  `ID_Utilisateur` int(11) NOT NULL,
+  `ID_offre` int(11) NOT NULL,
+  `ID_Utilisateur_Pilote` int(11) NOT NULL,
+  PRIMARY KEY (`ID_candidature`),
+  KEY `Candidature_etudiants_FK` (`ID_Utilisateur`),
+  KEY `Candidature_Offre0_FK` (`ID_offre`),
+  KEY `Candidature_Pilote1_FK` (`ID_Utilisateur_Pilote`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-	,CONSTRAINT Offre_Entreprise_FK FOREIGN KEY (ID_Entreprise) REFERENCES Entreprise(ID_Entreprise)
-	,CONSTRAINT Offre_UTILISATEUR0_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
-	,CONSTRAINT Offre_UTILISATEUR_AK UNIQUE (ID_Utilisateur)
-)ENGINE=InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Structure de la table `delegue`
+--
 
-#------------------------------------------------------------
-# Table: délégué
-#------------------------------------------------------------
+DROP TABLE IF EXISTS `delegue`;
+CREATE TABLE IF NOT EXISTS `delegue` (
+  `ID_Utilisateur` int(11) NOT NULL,
+  `Centre_Delegue` char(10) NOT NULL,
+  `Promotion_delegue` varchar(20) NOT NULL,
+  `Creer_une_offre` tinyint(1) NOT NULL,
+  `Modifier_une_offre` tinyint(1) NOT NULL,
+  `Supprimer_une_offre` tinyint(1) NOT NULL,
+  `Rechercher_un_compte_delegue` tinyint(1) NOT NULL,
+  `Creer_un_delegue` tinyint(1) NOT NULL,
+  `Modifier_un_compte_delegue` tinyint(1) NOT NULL,
+  `Supprimer_un_compte_delegue` tinyint(1) NOT NULL,
+  `Rechercher_un_compte_etudiant` tinyint(1) NOT NULL,
+  `Creer_un_etudiant` tinyint(1) NOT NULL,
+  `Modifier_un_etudiant` tinyint(1) NOT NULL,
+  `Supprimer_un_etudiant` tinyint(1) NOT NULL,
+  `Consulter_les_stats_des_etudiants` tinyint(1) NOT NULL,
+  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_3` tinyint(1) NOT NULL,
+  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_4` tinyint(1) NOT NULL,
+  `Nom` char(30) NOT NULL,
+  `Prenom` char(30) NOT NULL,
+  `Photo_Utilisateur` varchar(50) NOT NULL,
+  `ID_Utilisateur__Assigne_DROIT` int(11) DEFAULT NULL,
+  `ID_Utilisateur__CREE` int(11) NOT NULL,
+  `ID_login` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Utilisateur`),
+  UNIQUE KEY `delegue_Authentification_AK` (`ID_login`),
+  KEY `delegue_UTILISATEUR0_FK` (`ID_Utilisateur__Assigne_DROIT`),
+  KEY `delegue_UTILISATEUR1_FK` (`ID_Utilisateur__CREE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE delegue(
-        ID_Utilisateur                                                Int NOT NULL ,
-        Centre_Delegue                                                Char (10) NOT NULL ,
-        Promotion_delegue                                             Varchar (20) NOT NULL ,
-        Creer_une_offre                                               Bool NOT NULL ,
-        Modifier_une_offre                                            Bool NOT NULL ,
-        Supprimer_une_offre                                           Bool NOT NULL ,
-        Rechercher_un_compte_delegue                                  Bool NOT NULL ,
-        Creer_un_delegue                                              Bool NOT NULL ,
-        Modifier_un_compte_delegue                                    Bool NOT NULL ,
-        Supprimer_un_compte_delegue                                   Bool NOT NULL ,
-        Rechercher_un_compte_etudiant                                 Bool NOT NULL ,
-        Creer_un_etudiant                                             Bool NOT NULL ,
-        Modifier_un_etudiant                                          Bool NOT NULL ,
-        Supprimer_un_etudiant                                         Bool NOT NULL ,
-        Consulter_les_stats_des_etudiants                             Bool NOT NULL ,
-        Informer_le_systeme_de_l_avancement_de_la_candidature_step_3  Bool NOT NULL ,
-        Informer_le_systeme_de_l_avancement_de_la_candidature_step_4  Bool NOT NULL ,
-        Nom                                                           Char (30) NOT NULL ,
-        Prenom                                                        Char (30) NOT NULL ,
-        Photo_Utilisateur                                             Varchar (50) NOT NULL ,
-        ID_Utilisateur__Assigne_DROIT                                 Int ,
-        ID_Utilisateur__CREE                                          Int NOT NULL ,
-        ID_login                                                      Int NOT NULL
-	,CONSTRAINT delegue_PK PRIMARY KEY (ID_Utilisateur)
+-- --------------------------------------------------------
 
-	,CONSTRAINT delegue_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
-	,CONSTRAINT delegue_UTILISATEUR0_FK FOREIGN KEY (ID_Utilisateur__Assigne_DROIT) REFERENCES UTILISATEUR(ID_Utilisateur)
-	,CONSTRAINT delegue_UTILISATEUR1_FK FOREIGN KEY (ID_Utilisateur__CREE) REFERENCES UTILISATEUR(ID_Utilisateur)
-	,CONSTRAINT delegue_Authentification2_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
-	,CONSTRAINT delegue_Authentification_AK UNIQUE (ID_login)
-)ENGINE=InnoDB;
+--
+-- Structure de la table `entreprise`
+--
 
+DROP TABLE IF EXISTS `entreprise`;
+CREATE TABLE IF NOT EXISTS `entreprise` (
+  `ID_Entreprise` int(11) NOT NULL AUTO_INCREMENT,
+  `Nom_entreprise` varchar(30) NOT NULL,
+  `Secteur_activite` varchar(30) NOT NULL,
+  `Competences_recherchees_dans_les_stages` varchar(100) NOT NULL,
+  `Nombre_de_stagiaires_CESI_deja_acceptes_en_stage` int(11) NOT NULL,
+  `Evaluation_des_stagiaires` int(11) NOT NULL,
+  `Confiance_du_Pilote_de_promotion` int(11) NOT NULL,
+  `Localite_entreprise` varchar(20) NOT NULL,
+  `Logo_Entreprise` varchar(50) NOT NULL,
+  `ID_Utilisateur` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_Entreprise`),
+  KEY `Entreprise_UTILISATEUR_AK` (`ID_Utilisateur`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
-#------------------------------------------------------------
-# Table: étudiants
-#------------------------------------------------------------
+--
+-- Déchargement des données de la table `entreprise`
+--
 
-CREATE TABLE etudiants(
-        ID_Utilisateur       Int NOT NULL ,
-        Centre_etudiant      Char (10) NOT NULL ,
-        promotion_etudiant   Varchar (20) NOT NULL ,
-        Specialite           Char (20) NOT NULL ,
-        Nom                  Char (30) NOT NULL ,
-        Prenom               Char (30) NOT NULL ,
-        Photo_Utilisateur    Varchar (50) NOT NULL ,
-        ID_Utilisateur__CREE Int NOT NULL ,
-        ID_login             Int NOT NULL
-	,CONSTRAINT etudiants_PK PRIMARY KEY (ID_Utilisateur)
+INSERT INTO `entreprise` (`ID_Entreprise`, `Nom_entreprise`, `Secteur_activite`, `Competences_recherchees_dans_les_stages`, `Nombre_de_stagiaires_CESI_deja_acceptes_en_stage`, `Evaluation_des_stagiaires`, `Confiance_du_Pilote_de_promotion`, `Localite_entreprise`, `Logo_Entreprise`, `ID_Utilisateur`) VALUES
+(1, 'cesi', 'ingenieurie', 'autonome', 1, 4, 2, 'nanterre', '', 2),
+(2, 'Thales', 'aérospatiale', 'Curiosité', 2, 4, 3, 'La Défense', '', 2),
+(3, 'banane', 'ingenieurie', 'autonome', 1, 4, 2, 'nanterre', 'banane.png', 2),
+(4, 'thomas', 'ingenieurie', 'autonome', 1, 4, 2, 'nanterre', 'banane.png', 2),
+(5, 'thomas', 'ingenieurie', 'autonome', 1, 4, 2, 'nanterre', 'banane.png', 2),
+(7, 'Fred', 'informatique', 'autonome', 1, 2, 3, 'stger', 'ananas.png', 2);
 
-	,CONSTRAINT etudiants_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
-	,CONSTRAINT etudiants_UTILISATEUR0_FK FOREIGN KEY (ID_Utilisateur__CREE) REFERENCES UTILISATEUR(ID_Utilisateur)
-	,CONSTRAINT etudiants_Authentification1_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
-	,CONSTRAINT etudiants_Authentification_AK UNIQUE (ID_login)
-)ENGINE=InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Structure de la table `etudiants`
+--
 
-#------------------------------------------------------------
-# Table: Administrateur
-#------------------------------------------------------------
+DROP TABLE IF EXISTS `etudiants`;
+CREATE TABLE IF NOT EXISTS `etudiants` (
+  `ID_Utilisateur` int(11) NOT NULL,
+  `Centre_etudiant` char(10) NOT NULL,
+  `promotion_etudiant` varchar(20) NOT NULL,
+  `Specialite` char(20) NOT NULL,
+  `Nom` char(30) NOT NULL,
+  `Prenom` char(30) NOT NULL,
+  `Photo_Utilisateur` varchar(50) NOT NULL,
+  `ID_Utilisateur__CREE` int(11) NOT NULL,
+  `ID_login` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Utilisateur`),
+  UNIQUE KEY `etudiants_Authentification_AK` (`ID_login`),
+  KEY `etudiants_UTILISATEUR0_FK` (`ID_Utilisateur__CREE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE Administrateur(
-        ID_Utilisateur    Int NOT NULL ,
-        Nom               Char (30) NOT NULL ,
-        Prenom            Char (30) NOT NULL ,
-        Photo_Utilisateur Varchar (50) NOT NULL ,
-        ID_login          Int NOT NULL
-	,CONSTRAINT Administrateur_PK PRIMARY KEY (ID_Utilisateur)
+-- --------------------------------------------------------
 
-	,CONSTRAINT Administrateur_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
-	,CONSTRAINT Administrateur_Authentification0_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
-	,CONSTRAINT Administrateur_Authentification_AK UNIQUE (ID_login)
-)ENGINE=InnoDB;
+--
+-- Structure de la table `offre`
+--
 
+DROP TABLE IF EXISTS `offre`;
+CREATE TABLE IF NOT EXISTS `offre` (
+  `ID_offre` int(11) NOT NULL AUTO_INCREMENT,
+  `Competences_offre` varchar(100) NOT NULL,
+  `Localite_offre` varchar(10) NOT NULL,
+  `Entreprise_offre` varchar(20) NOT NULL,
+  `Type_de_promotion_concernee` varchar(20) NOT NULL,
+  `Duree_du_stage` varchar(10) NOT NULL,
+  `Base_de_remuneration` int(11) NOT NULL,
+  `Date_de_l’offre` date NOT NULL,
+  `Nombre_de_places_disponible` int(11) NOT NULL,
+  `ID_Entreprise` int(11) DEFAULT NULL,
+  `ID_Utilisateur` int(11) NOT NULL,
+  PRIMARY KEY (`ID_offre`),
+  KEY `Offre_Entreprise_FK` (`ID_Entreprise`),
+  KEY `Offre_UTILISATEUR_AK` (`ID_Utilisateur`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-#------------------------------------------------------------
-# Table: Pilote
-#------------------------------------------------------------
+-- --------------------------------------------------------
 
-CREATE TABLE Pilote(
-        ID_Utilisateur                Int NOT NULL ,
-        Centre_pilote                 Char (10) NOT NULL ,
-        Promotion_pilote              Varchar (20) NOT NULL ,
-        Nom                           Char (30) NOT NULL ,
-        Prenom                        Char (30) NOT NULL ,
-        Photo_Utilisateur             Varchar (50) NOT NULL ,
-        ID_Utilisateur_Administrateur Int ,
-        ID_login                      Int NOT NULL
-	,CONSTRAINT Pilote_PK PRIMARY KEY (ID_Utilisateur)
+--
+-- Structure de la table `pilote`
+--
 
-	,CONSTRAINT Pilote_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
-	,CONSTRAINT Pilote_Administrateur0_FK FOREIGN KEY (ID_Utilisateur_Administrateur) REFERENCES Administrateur(ID_Utilisateur)
-	,CONSTRAINT Pilote_Authentification1_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
-	,CONSTRAINT Pilote_Authentification_AK UNIQUE (ID_login)
-)ENGINE=InnoDB;
+DROP TABLE IF EXISTS `pilote`;
+CREATE TABLE IF NOT EXISTS `pilote` (
+  `ID_Utilisateur` int(11) NOT NULL,
+  `Centre_pilote` char(10) NOT NULL,
+  `Promotion_pilote` varchar(20) NOT NULL,
+  `Nom` char(30) NOT NULL,
+  `Prenom` char(30) NOT NULL,
+  `Photo_Utilisateur` varchar(50) NOT NULL,
+  `ID_Utilisateur_Administrateur` int(11) DEFAULT NULL,
+  `ID_login` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Utilisateur`),
+  UNIQUE KEY `Pilote_Authentification_AK` (`ID_login`),
+  KEY `Pilote_Administrateur0_FK` (`ID_Utilisateur_Administrateur`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
-#------------------------------------------------------------
-# Table: Candidature
-#------------------------------------------------------------
+--
+-- Structure de la table `utilisateur`
+--
 
-CREATE TABLE Candidature(
-        ID_candidature                Int  Auto_increment  NOT NULL ,
-        CV_etudiant                   Varchar (30) NOT NULL ,
-        Lettre_de_motivation_etudiant Varchar (30) NOT NULL ,
-        Fiche_de_validation           Varchar (30) NOT NULL ,
-        Convention_de_stage           Varchar (30) NOT NULL ,
-        LIEN_OFFRE                    Varchar (30) NOT NULL ,
-        ID_Utilisateur                Int NOT NULL ,
-        ID_offre                      Int NOT NULL ,
-        ID_Utilisateur_Pilote         Int NOT NULL
-	,CONSTRAINT Candidature_PK PRIMARY KEY (ID_candidature)
+DROP TABLE IF EXISTS `utilisateur`;
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `ID_Utilisateur` int(11) NOT NULL AUTO_INCREMENT,
+  `Nom` char(30) NOT NULL,
+  `Prenom` char(30) NOT NULL,
+  `Photo_Utilisateur` varchar(50) NOT NULL,
+  `ID_login` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Utilisateur`),
+  UNIQUE KEY `UTILISATEUR_Authentification_AK` (`ID_login`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
-	,CONSTRAINT Candidature_etudiants_FK FOREIGN KEY (ID_Utilisateur) REFERENCES etudiants(ID_Utilisateur)
-	,CONSTRAINT Candidature_Offre0_FK FOREIGN KEY (ID_offre) REFERENCES Offre(ID_offre)
-	,CONSTRAINT Candidature_Pilote1_FK FOREIGN KEY (ID_Utilisateur_Pilote) REFERENCES Pilote(ID_Utilisateur)
-)ENGINE=InnoDB;
+--
+-- Déchargement des données de la table `utilisateur`
+--
 
+INSERT INTO `utilisateur` (`ID_Utilisateur`, `Nom`, `Prenom`, `Photo_Utilisateur`, `ID_login`) VALUES
+(1, 'DIO', 'GOLDEN', '', 2),
+(2, 'jo', 'jo', '', 1);
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `administrateur`
+--
+ALTER TABLE `administrateur`
+  ADD CONSTRAINT `Administrateur_Authentification0_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`),
+  ADD CONSTRAINT `Administrateur_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
+
+--
+-- Contraintes pour la table `candidature`
+--
+ALTER TABLE `candidature`
+  ADD CONSTRAINT `Candidature_Offre0_FK` FOREIGN KEY (`ID_offre`) REFERENCES `offre` (`ID_offre`),
+  ADD CONSTRAINT `Candidature_Pilote1_FK` FOREIGN KEY (`ID_Utilisateur_Pilote`) REFERENCES `pilote` (`ID_Utilisateur`),
+  ADD CONSTRAINT `Candidature_etudiants_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `etudiants` (`ID_Utilisateur`);
+
+--
+-- Contraintes pour la table `delegue`
+--
+ALTER TABLE `delegue`
+  ADD CONSTRAINT `delegue_Authentification2_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`),
+  ADD CONSTRAINT `delegue_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur__Assigne_DROIT`) REFERENCES `utilisateur` (`ID_Utilisateur`),
+  ADD CONSTRAINT `delegue_UTILISATEUR1_FK` FOREIGN KEY (`ID_Utilisateur__CREE`) REFERENCES `utilisateur` (`ID_Utilisateur`),
+  ADD CONSTRAINT `delegue_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
+
+--
+-- Contraintes pour la table `entreprise`
+--
+ALTER TABLE `entreprise`
+  ADD CONSTRAINT `Entreprise_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
+
+--
+-- Contraintes pour la table `etudiants`
+--
+ALTER TABLE `etudiants`
+  ADD CONSTRAINT `etudiants_Authentification1_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`),
+  ADD CONSTRAINT `etudiants_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur__CREE`) REFERENCES `utilisateur` (`ID_Utilisateur`),
+  ADD CONSTRAINT `etudiants_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
+
+--
+-- Contraintes pour la table `offre`
+--
+ALTER TABLE `offre`
+  ADD CONSTRAINT `Offre_Entreprise_FK` FOREIGN KEY (`ID_Entreprise`) REFERENCES `entreprise` (`ID_Entreprise`),
+  ADD CONSTRAINT `Offre_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
+
+--
+-- Contraintes pour la table `pilote`
+--
+ALTER TABLE `pilote`
+  ADD CONSTRAINT `Pilote_Administrateur0_FK` FOREIGN KEY (`ID_Utilisateur_Administrateur`) REFERENCES `administrateur` (`ID_Utilisateur`),
+  ADD CONSTRAINT `Pilote_Authentification1_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`),
+  ADD CONSTRAINT `Pilote_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
+
+--
+-- Contraintes pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD CONSTRAINT `UTILISATEUR_Authentification_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
