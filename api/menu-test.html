@@ -20,7 +20,7 @@
     <div id="js_result"></div>
     <button id="btn_js">GET COMPANY</button>
     <hr>
-    <div id="js_error">e</div>
+    <div id="js_error">Erreur(s):</div>
   
 
 
@@ -53,14 +53,15 @@
                 var response = JSON.parse(xhr.response);
                 
                 var entreprise = response.entreprise;
+                var nbr_entreprises = 0;
               
              
            
-                for(let i=0;i<10;i++)
+                for(let i=0;i<1000;i++){
 					try{
 					{
                         current_company = entreprise[i];
-                        html += '<div class="company">'
+                        html += '<div class="company-'+i+'">';
                         html += '<p>ID_Entreprise : '+current_company.ID_Entreprise+'</p>';
                         html += '<p>Nom_entreprise : '+current_company.Nom_entreprise+'</p>';
                         html += '<p>Secteur_activite : '+current_company.Secteur_activite+'</p>';
@@ -69,12 +70,23 @@
                         html += '<p>Evaluation_des_stagiaires : '+current_company.Evaluation_des_stagiaires+'</p>';
                         html += '<p>Confiance_du_Pilote_de_promotion : '+current_company.Confiance_du_Pilote_de_promotion+'</p>';
                         html += '<p>Localite_entreprise : '+current_company.Localite_entreprise+'</p>';
+                        html += '<p>ID_Utilisateur : '+current_company.ID_Utilisateur+'</p>';
 						html += '<p>image</p><img style="height: auto; width: auto; max-height: 70px" src="'+ current_company.Logo_Entreprise+'">';
-                        html += '</div><hr>'
+                        html += '</div><hr>';
+                        nbr_entreprises ++;
                        
 					}
                 }catch (e){
-                    document.getElementById("js_error").innerHTML = 'error : '+e;
+                    console.log('==>'+e+'<==');
+                    if(e=="TypeError: Cannot read property 'ID_Entreprise' of undefined"){
+                        document.getElementById("js_error").innerHTML = 'FIN, entreprises dispos : ' +nbr_entreprises;
+                        
+                    }
+                    else{
+                        document.getElementById("js_error").innerHTML = 'Erreur(s): '+e;
+
+                    }
+                }
                 }
 
             }
