@@ -168,8 +168,7 @@ class Entreprise
 
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "UPDATE " . $this->table . " SET Nom_entreprise=:Nom_entreprise, Secteur_activite=:Secteur_activite, Competences_recherchees_dans_les_stages=:Competences_recherchees_dans_les_stages, Nombre_de_stagiaires_CESI_deja_acceptes_en_stage=:Nombre_de_stagiaires_CESI_deja_acceptes_en_stage, Evaluation_des_stagiaires=:Evaluation_des_stagiaires, Confiance_du_Pilote_de_promotion=:Confiance_du_Pilote_de_promotion, Localite_entreprise=:Localite_entreprise, Logo_Entreprise=:Logo_Entreprise, ID_Utilisateur=:ID_Utilisateur
-         WHERE ID_Entreprise =:ID_Entreprise";
+        $sql = "UPDATE " . $this->table . " SET Nom_entreprise=:Nom_entreprise, Secteur_activite=:Secteur_activite, Competences_recherchees_dans_les_stages=:Competences_recherchees_dans_les_stages, Nombre_de_stagiaires_CESI_deja_acceptes_en_stage=:Nombre_de_stagiaires_CESI_deja_acceptes_en_stage, Evaluation_des_stagiaires=:Evaluation_des_stagiaires, Confiance_du_Pilote_de_promotion=:Confiance_du_Pilote_de_promotion, Localite_entreprise=:Localite_entreprise, Logo_Entreprise=:Logo_Entreprise, ID_Utilisateur=:ID_Utilisateur WHERE ID_Entreprise= :ID_Entreprise";
 
 
         // Préparation de la requête

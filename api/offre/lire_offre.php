@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../config/database.php';
-    include_once '../models/entreprise.php';
+    include_once '../models/offre.php';
 
 
     // On instancie la base de données
@@ -19,43 +19,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $db = $database->getConnection();
 
     // On instancie les entreprises 
-    $entreprise = new Entreprise($db);
+    $offre = new Offre($db);
 
 
     // On récupère les données
-    $stmt = $entreprise->lire_entreprises();
+    $stmt = $offre->lire_offre();
 
     // On vérifie si on a au moins 1 entreprise
-    if ($stmt->rowCount() > 0) {
+    if ($stmt->rowCount() > 1) {
         // On initialise un tableau associatif
-        $tableauentreprise = [];
-        $tableauentreprise['entreprise'] = [];
+        $tableauoffre= [];
+        $tableauoffre['offre'] = [];
 
         // On parcourt les entreprises
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
 
-            $entre = [
+            $ofr = [
+                "ID_offre" => $ID_offre,
+                "Competences_offre" => $Competences_offre,
+                "Localite_offre" => $Localite_offre,
+                "Entreprise_offre" => $Entreprise_offre,
+                "Type_de_promotion_concernee" => $Type_de_promotion_concernee,
+                "Duree_du_stage" => $Duree_du_stage,
+                "Base_de_remuneration" => $Base_de_remuneration,
+                "Date_de_l’offre" => $Date_de_l’offre,
+                "Nombre_de_places_disponible" => $Nombre_de_places_disponible,
                 "ID_Entreprise" => $ID_Entreprise,
-                "Nom_entreprise" => $Nom_entreprise,
-                "Secteur_activite" => $Secteur_activite,
-                "Competences_recherchees_dans_les_stages" => $Competences_recherchees_dans_les_stages,
-                "Nombre_de_stagiaires_CESI_deja_acceptes_en_stage" => $Nombre_de_stagiaires_CESI_deja_acceptes_en_stage,
-                "Evaluation_des_stagiaires" => $Evaluation_des_stagiaires,
-                "Confiance_du_Pilote_de_promotion" => $Confiance_du_Pilote_de_promotion,
-                "Localite_entreprise" => $Localite_entreprise,
-                "Logo_Entreprise" => $Logo_Entreprise,
                 "ID_Utilisateur" => $ID_Utilisateur
             ];
 
-            $tableauentreprise['entreprise'][] = $entre;
+            $tableauoffre['offre'][] = $ofr;
         }
 
         // On envoie le code réponse 200 OK
         http_response_code(200);
 
         // On encode en json et on envoie
-        echo json_encode($tableauentreprise);
+        echo json_encode($tableauoffre);
     }
 } else {
     // On gère l'erreur
