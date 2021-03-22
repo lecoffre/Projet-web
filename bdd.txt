@@ -53,7 +53,7 @@ INSERT INTO `administrateur` (`ID_Utilisateur`, `Nom`, `Prenom`, `Photo_Utilisat
 
 DROP TABLE IF EXISTS `authentification`;
 CREATE TABLE IF NOT EXISTS `authentification` (
-  `ID_login` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_Login` int(11) NOT NULL AUTO_INCREMENT,
   `Login` varchar(20) NOT NULL,
   `Mot_de_passe` varchar(30) NOT NULL,
   PRIMARY KEY (`ID_login`)
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `authentification` (
 -- Déchargement des données de la table `authentification`
 --
 
-INSERT INTO `authentification` (`ID_login`, `Login`, `Mot_de_passe`) VALUES
+INSERT INTO `authentification` (`ID_Login`, `Login`, `Mot_de_passe`) VALUES
 (1, 'oue', 'yes'),
 (2, 'JO', 'tamere'),
 (6, 'thomas', 'banane'),
@@ -115,36 +115,53 @@ INSERT INTO `candidature` (`ID_Candidature`, `CV_etudiant`, `Lettre_de_motivatio
 -- Structure de la table `delegue`
 --
 
-DROP TABLE IF EXISTS `delegue`;
-CREATE TABLE IF NOT EXISTS `delegue` (
-  `ID_Utilisateur` int(11) NOT NULL,
-  `Centre_Delegue` char(10) NOT NULL,
-  `Promotion_delegue` varchar(20) NOT NULL,
-  `Creer_une_offre` tinyint(1) NOT NULL,
-  `Modifier_une_offre` tinyint(1) NOT NULL,
-  `Supprimer_une_offre` tinyint(1) NOT NULL,
-  `Rechercher_un_compte_delegue` tinyint(1) NOT NULL,
-  `Creer_un_delegue` tinyint(1) NOT NULL,
-  `Modifier_un_compte_delegue` tinyint(1) NOT NULL,
-  `Supprimer_un_compte_delegue` tinyint(1) NOT NULL,
-  `Rechercher_un_compte_etudiant` tinyint(1) NOT NULL,
-  `Creer_un_etudiant` tinyint(1) NOT NULL,
-  `Modifier_un_etudiant` tinyint(1) NOT NULL,
-  `Supprimer_un_etudiant` tinyint(1) NOT NULL,
-  `Consulter_les_stats_des_etudiants` tinyint(1) NOT NULL,
-  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_3` tinyint(1) NOT NULL,
-  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_4` tinyint(1) NOT NULL,
-  `Nom` char(30) NOT NULL,
-  `Prenom` char(30) NOT NULL,
-  `Photo_Utilisateur` varchar(50) NOT NULL,
-  `ID_Utilisateur__Assigne_DROIT` int(11) DEFAULT NULL,
-  `ID_Utilisateur__CREE` int(11) NOT NULL,
-  `ID_login` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Utilisateur`),
-  UNIQUE KEY `delegue_Authentification_AK` (`ID_login`),
-  KEY `delegue_UTILISATEUR0_FK` (`ID_Utilisateur__Assigne_DROIT`),
-  KEY `delegue_UTILISATEUR1_FK` (`ID_Utilisateur__CREE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE delegue(
+        ID_Utilisateur       Int NOT NULL ,
+        Centre_Delegue       Char (30) NOT NULL ,
+        Promotion_delegue    Varchar (20) NOT NULL ,
+        Specialite           Char (20) NOT NULL ,
+        Nom                  Char (30) NOT NULL ,
+        Prenom               Char (30) NOT NULL ,
+        Photo_Utilisateur    Varchar (50) NOT NULL ,
+        ID_Utilisateur__CREE Int NOT NULL ,
+        ID_login             Int NOT NULL
+	,CONSTRAINT delegue_PK PRIMARY KEY (ID_Utilisateur)
+
+	,CONSTRAINT delegue_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT delegue_UTILISATEUR0_FK FOREIGN KEY (ID_Utilisateur__CREE) REFERENCES UTILISATEUR(ID_Utilisateur)
+	,CONSTRAINT delegue_Authentification1_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
+	,CONSTRAINT delegue_Authentification_AK UNIQUE (ID_login)
+)ENGINE=InnoDB;
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `droit delegue`
+--
+
+CREATE TABLE droitdelegue(
+        ID_Utilisateur                                                Int NOT NULL ,
+        ID_Utilisateur__Assigne_DROIT                                 Int NOT NULL ,
+        Creer_une_offre                                               Bool NOT NULL ,
+        Modifier_une_offre                                            Bool NOT NULL ,
+        Supprimer_une_offre                                           Bool NOT NULL ,
+        Rechercher_un_compte_delegue                                  Bool NOT NULL ,
+        Creer_un_delegue                                              Bool NOT NULL ,
+        Modifier_un_compte_delegue                                    Bool NOT NULL ,
+        Supprimer_un_compte_delegue                                   Bool NOT NULL ,
+        Rechercher_un_compte_etudiant                                 Bool NOT NULL ,
+        Creer_un_etudiant                                             Bool NOT NULL ,
+        Modifier_un_etudiant                                          Bool NOT NULL ,
+        Supprimer_un_etudiant                                         Bool NOT NULL ,
+        Consulter_les_stats_des_etudiants                             Bool NOT NULL ,
+        Informer_le_systeme_de_l_avancement_de_la_candidature_step_3  Bool NOT NULL ,
+        Informer_le_systeme_de_l_avancement_de_la_candidature_step_4  Bool NOT NULL
+	,CONSTRAINT _Assigne_DROIT_PK PRIMARY KEY (ID_Utilisateur,ID_Utilisateur__Assigne_DROIT)
+
+	,CONSTRAINT _Assigne_DROIT_delegue_FK FOREIGN KEY (ID_Utilisateur) REFERENCES delegue(ID_Utilisateur)
+	,CONSTRAINT _Assigne_DROIT_UTILISATEUR0_FK FOREIGN KEY (ID_Utilisateur__Assigne_DROIT) REFERENCES UTILISATEUR(ID_Utilisateur)
+)ENGINE=InnoDB;
 
 -- --------------------------------------------------------
 
