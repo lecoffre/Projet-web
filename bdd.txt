@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `authentification` (
   `ID_Login` int(11) NOT NULL AUTO_INCREMENT,
   `Login` varchar(20) NOT NULL,
   `Mot_de_passe` varchar(30) NOT NULL,
-  PRIMARY KEY (`ID_login`)
+  PRIMARY KEY (`ID_Login`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 --
@@ -124,13 +124,13 @@ CREATE TABLE delegue(
         Prenom               Char (30) NOT NULL ,
         Photo_Utilisateur    Varchar (50) NOT NULL ,
         ID_Utilisateur__CREE Int NOT NULL ,
-        ID_login             Int NOT NULL
+        ID_Login             Int NOT NULL
 	,CONSTRAINT delegue_PK PRIMARY KEY (ID_Utilisateur)
 
 	,CONSTRAINT delegue_UTILISATEUR_FK FOREIGN KEY (ID_Utilisateur) REFERENCES UTILISATEUR(ID_Utilisateur)
 	,CONSTRAINT delegue_UTILISATEUR0_FK FOREIGN KEY (ID_Utilisateur__CREE) REFERENCES UTILISATEUR(ID_Utilisateur)
-	,CONSTRAINT delegue_Authentification1_FK FOREIGN KEY (ID_login) REFERENCES Authentification(ID_login)
-	,CONSTRAINT delegue_Authentification_AK UNIQUE (ID_login)
+	,CONSTRAINT delegue_Authentification1_FK FOREIGN KEY (ID_Login) REFERENCES Authentification(ID_Login)
+	,CONSTRAINT delegue_Authentification_AK UNIQUE (ID_Login)
 )ENGINE=InnoDB;
 
 
@@ -213,9 +213,9 @@ CREATE TABLE IF NOT EXISTS `etudiants` (
   `Prenom` char(30) NOT NULL,
   `Photo_Utilisateur` varchar(50) NOT NULL,
   `ID_Utilisateur__CREE` int(11) NOT NULL,
-  `ID_login` int(11) NOT NULL,
+  `ID_Login` int(11) NOT NULL,
   PRIMARY KEY (`ID_Utilisateur`),
-  UNIQUE KEY `etudiants_Authentification_AK` (`ID_login`),
+  UNIQUE KEY `etudiants_Authentification_AK` (`ID_Login`),
   KEY `etudiants_UTILISATEUR0_FK` (`ID_Utilisateur__CREE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `etudiants` (
 -- Déchargement des données de la table `etudiants`
 --
 
-INSERT INTO `etudiants` (`ID_Utilisateur`, `Centre_etudiant`, `promotion_etudiant`, `Specialite`, `Nom`, `Prenom`, `Photo_Utilisateur`, `ID_Utilisateur__CREE`, `ID_login`) VALUES
+INSERT INTO `etudiants` (`ID_Utilisateur`, `Centre_etudiant`, `promotion_etudiant`, `Specialite`, `Nom`, `Prenom`, `Photo_Utilisateur`, `ID_Utilisateur__CREE`, `ID_Login`) VALUES
 (17, 'paris', 'A4', 'info', 'ElevT', 'ElevT', 'ElevT.png', 16, 14);
 
 -- --------------------------------------------------------
@@ -325,7 +325,7 @@ INSERT INTO `utilisateur` (`ID_Utilisateur`, `Nom`, `Prenom`, `Photo_Utilisateur
 -- Contraintes pour la table `administrateur`
 --
 ALTER TABLE `administrateur`
-  ADD CONSTRAINT `Administrateur_Authentification0_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_login`),
+  ADD CONSTRAINT `Administrateur_Authentification0_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_Login`),
   ADD CONSTRAINT `Administrateur_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
 
 --
@@ -340,7 +340,7 @@ ALTER TABLE `candidature`
 -- Contraintes pour la table `delegue`
 --
 ALTER TABLE `delegue`
-  ADD CONSTRAINT `delegue_Authentification2_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`),
+  ADD CONSTRAINT `delegue_Authentification2_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_Login`),
   ADD CONSTRAINT `delegue_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur__Assigne_DROIT`) REFERENCES `utilisateur` (`ID_Utilisateur`),
   ADD CONSTRAINT `delegue_UTILISATEUR1_FK` FOREIGN KEY (`ID_Utilisateur__CREE`) REFERENCES `utilisateur` (`ID_Utilisateur`),
   ADD CONSTRAINT `delegue_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
@@ -355,7 +355,7 @@ ALTER TABLE `entreprise`
 -- Contraintes pour la table `etudiants`
 --
 ALTER TABLE `etudiants`
-  ADD CONSTRAINT `etudiants_Authentification1_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`),
+  ADD CONSTRAINT `etudiants_Authentification1_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_Login`),
   ADD CONSTRAINT `etudiants_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur__CREE`) REFERENCES `utilisateur` (`ID_Utilisateur`),
   ADD CONSTRAINT `etudiants_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
 
@@ -371,14 +371,14 @@ ALTER TABLE `offre`
 --
 ALTER TABLE `pilote`
   ADD CONSTRAINT `Pilote_Administrateur0_FK` FOREIGN KEY (`ID_Utilisateur_Administrateur`) REFERENCES `administrateur` (`ID_Utilisateur`),
-  ADD CONSTRAINT `Pilote_Authentification1_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_login`),
+  ADD CONSTRAINT `Pilote_Authentification1_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_Login`),
   ADD CONSTRAINT `Pilote_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
 
 --
 -- Contraintes pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD CONSTRAINT `UTILISATEUR_Authentification_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_login`);
+  ADD CONSTRAINT `UTILISATEUR_Authentification_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_Login`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
