@@ -177,8 +177,13 @@ class Offre
 
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "UPDATE " . $this->table . " SET Competences_offre=:Competences_offre, Localite_offre=:Localite_offre, Entreprise_offre=:Entreprise_offre, Type_de_promotion_concernee=:Type_de_promotion_concernee, Duree_du_stage=:Duree_du_stage, Base_de_remuneration=:Base_de_remuneration, Date_de_offre=:Date_de_offre, Nombre_de_places_disponible=:Nombre_de_places_disponible, ID_Utilisateur=:ID_Utilisateur
-         WHERE ID_offre =:ID_offre";
+        $sql = "UPDATE " . $this->table . "
+        SET Competences_offre=:Competences_offre, Localite_offre=:Localite_offre,
+        Entreprise_offre=:Entreprise_offre, Type_de_promotion_concernee=:Type_de_promotion_concernee,
+        Duree_du_stage=:Duree_du_stage, Base_de_remuneration=:Base_de_remuneration,
+        Date_de_offre=:Date_de_offre, Nombre_de_places_disponible=:Nombre_de_places_disponible,
+        ID_Entreprise=:ID_Entreprise, ID_Utilisateur=:ID_Utilisateur
+        WHERE ID_offre =:ID_offre";
 
 
         // Préparation de la requête

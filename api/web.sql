@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 15 mars 2021 à 19:04
+-- Généré le : lun. 22 mars 2021 à 22:53
 -- Version du serveur :  10.4.17-MariaDB
--- Version de PHP : 7.4.14
+-- Version de PHP : 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `administrateur` (
   `Nom` char(30) NOT NULL,
   `Prenom` char(30) NOT NULL,
   `Photo_Utilisateur` varchar(50) NOT NULL,
-  `ID_login` int(11) NOT NULL
+  `ID_Login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -43,7 +43,7 @@ CREATE TABLE `administrateur` (
 
 CREATE TABLE `authentification` (
   `ID_login` int(11) NOT NULL,
-  `Login` varchar(20) NOT NULL,
+  `Login` varchar(50) NOT NULL,
   `Mot_de_passe` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -52,8 +52,10 @@ CREATE TABLE `authentification` (
 --
 
 INSERT INTO `authentification` (`ID_login`, `Login`, `Mot_de_passe`) VALUES
-(1, 'oue', 'yes'),
-(2, 'DIO', 'test');
+(1, 'testadmin', 'testmdp123*'),
+(2, 'testpilote', 'testmdp123*'),
+(3, 'testdelegue', 'testmdp123*'),
+(4, 'testeleve', 'testmdp123*');
 
 -- --------------------------------------------------------
 
@@ -62,7 +64,7 @@ INSERT INTO `authentification` (`ID_login`, `Login`, `Mot_de_passe`) VALUES
 --
 
 CREATE TABLE `candidature` (
-  `ID_candidature` int(11) NOT NULL,
+  `ID_Candidature` int(11) NOT NULL,
   `CV_etudiant` varchar(30) NOT NULL,
   `Lettre_de_motivation_etudiant` varchar(30) NOT NULL,
   `Fiche_de_validation` varchar(30) NOT NULL,
@@ -81,8 +83,25 @@ CREATE TABLE `candidature` (
 
 CREATE TABLE `delegue` (
   `ID_Utilisateur` int(11) NOT NULL,
-  `Centre_Delegue` char(10) NOT NULL,
+  `Centre_Delegue` char(30) NOT NULL,
   `Promotion_delegue` varchar(20) NOT NULL,
+  `Specialite` char(20) NOT NULL,
+  `Nom` char(30) NOT NULL,
+  `Prenom` char(30) NOT NULL,
+  `Photo_Utilisateur` varchar(50) NOT NULL,
+  `ID_Utilisateur__CREE` int(11) NOT NULL,
+  `ID_Login` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `droitdelegue`
+--
+
+CREATE TABLE `droitdelegue` (
+  `ID_Utilisateur` int(11) NOT NULL,
+  `ID_Utilisateur_droitdelegue` int(11) NOT NULL,
   `Creer_une_offre` tinyint(1) NOT NULL,
   `Modifier_une_offre` tinyint(1) NOT NULL,
   `Supprimer_une_offre` tinyint(1) NOT NULL,
@@ -96,13 +115,7 @@ CREATE TABLE `delegue` (
   `Supprimer_un_etudiant` tinyint(1) NOT NULL,
   `Consulter_les_stats_des_etudiants` tinyint(1) NOT NULL,
   `Informer_le_systeme_de_l_avancement_de_la_candidature_step_3` tinyint(1) NOT NULL,
-  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_4` tinyint(1) NOT NULL,
-  `Nom` char(30) NOT NULL,
-  `Prenom` char(30) NOT NULL,
-  `Photo_Utilisateur` varchar(50) NOT NULL,
-  `ID_Utilisateur__Assigne_DROIT` int(11) DEFAULT NULL,
-  `ID_Utilisateur__CREE` int(11) NOT NULL,
-  `ID_login` int(11) NOT NULL
+  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_4` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -129,25 +142,24 @@ CREATE TABLE `entreprise` (
 --
 
 INSERT INTO `entreprise` (`ID_Entreprise`, `Nom_entreprise`, `Secteur_activite`, `Competences_recherchees_dans_les_stages`, `Nombre_de_stagiaires_CESI_deja_acceptes_en_stage`, `Evaluation_des_stagiaires`, `Confiance_du_Pilote_de_promotion`, `Localite_entreprise`, `Logo_Entreprise`, `ID_Utilisateur`) VALUES
-(1, 'cesi', 'ingenieurie', 'autonome', 1, 4, 2, 'nanterre', '', 2),
-(2, 'Thales', 'aérospatiale', 'Curiosité', 2, 4, 3, 'La Défense', '', 1);
+(1, 'TEST', 'Formation', 'Développement', 4, 4, 4, 'Nanterre', 'img/entreprises/logobidon.png', 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `etudiants`
+-- Structure de la table `etudiant`
 --
 
-CREATE TABLE `etudiants` (
+CREATE TABLE `etudiant` (
   `ID_Utilisateur` int(11) NOT NULL,
-  `Centre_etudiant` char(10) NOT NULL,
-  `promotion_etudiant` varchar(20) NOT NULL,
+  `Centre_etudiant` char(30) NOT NULL,
+  `Promotion_etudiant` varchar(20) NOT NULL,
   `Specialite` char(20) NOT NULL,
   `Nom` char(30) NOT NULL,
   `Prenom` char(30) NOT NULL,
   `Photo_Utilisateur` varchar(50) NOT NULL,
   `ID_Utilisateur__CREE` int(11) NOT NULL,
-  `ID_login` int(11) NOT NULL
+  `ID_Login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -164,11 +176,19 @@ CREATE TABLE `offre` (
   `Type_de_promotion_concernee` varchar(20) NOT NULL,
   `Duree_du_stage` varchar(10) NOT NULL,
   `Base_de_remuneration` int(11) NOT NULL,
-  `Date_de_l’offre` date NOT NULL,
+  `Date_de_offre` date NOT NULL,
   `Nombre_de_places_disponible` int(11) NOT NULL,
   `ID_Entreprise` int(11) DEFAULT NULL,
   `ID_Utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `offre`
+--
+
+INSERT INTO `offre` (`ID_offre`, `Competences_offre`, `Localite_offre`, `Entreprise_offre`, `Type_de_promotion_concernee`, `Duree_du_stage`, `Base_de_remuneration`, `Date_de_offre`, `Nombre_de_places_disponible`, `ID_Entreprise`, `ID_Utilisateur`) VALUES
+(3, 'comptestbidon', 'localtestb', 'entrtest', '2021', '6', 1000, '2001-01-21', 5, 1, 1),
+(4, 'comptest', 'localtest', 'entrtest', '2021', '6', 1000, '2001-01-21', 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -178,13 +198,13 @@ CREATE TABLE `offre` (
 
 CREATE TABLE `pilote` (
   `ID_Utilisateur` int(11) NOT NULL,
-  `Centre_pilote` char(10) NOT NULL,
+  `Centre_pilote` char(30) NOT NULL,
   `Promotion_pilote` varchar(20) NOT NULL,
   `Nom` char(30) NOT NULL,
   `Prenom` char(30) NOT NULL,
   `Photo_Utilisateur` varchar(50) NOT NULL,
   `ID_Utilisateur_Administrateur` int(11) DEFAULT NULL,
-  `ID_login` int(11) NOT NULL
+  `ID_Login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -198,16 +218,18 @@ CREATE TABLE `utilisateur` (
   `Nom` char(30) NOT NULL,
   `Prenom` char(30) NOT NULL,
   `Photo_Utilisateur` varchar(50) NOT NULL,
-  `ID_login` int(11) NOT NULL
+  `ID_Login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`ID_Utilisateur`, `Nom`, `Prenom`, `Photo_Utilisateur`, `ID_login`) VALUES
-(1, 'DIO', 'GOLDEN', '', 2),
-(2, 'jo', 'jo', '', 1);
+INSERT INTO `utilisateur` (`ID_Utilisateur`, `Nom`, `Prenom`, `Photo_Utilisateur`, `ID_Login`) VALUES
+(1, 'Utilisateur', 'Admin', 'img/users/default_avatar.png', 1),
+(2, 'Utilisateur', 'Pilote', 'img/users/default_avatar.png', 2),
+(3, 'Utilisateur', 'Delegue', 'img/users/default_avatar.png', 3),
+(4, 'Utilisateur', 'Eleve', 'img/users/default_avatar.png', 4);
 
 --
 -- Index pour les tables déchargées
@@ -218,7 +240,7 @@ INSERT INTO `utilisateur` (`ID_Utilisateur`, `Nom`, `Prenom`, `Photo_Utilisateur
 --
 ALTER TABLE `administrateur`
   ADD PRIMARY KEY (`ID_Utilisateur`),
-  ADD UNIQUE KEY `Administrateur_Authentification_AK` (`ID_login`);
+  ADD UNIQUE KEY `Administrateur_Authentification_AK` (`ID_Login`);
 
 --
 -- Index pour la table `authentification`
@@ -230,8 +252,8 @@ ALTER TABLE `authentification`
 -- Index pour la table `candidature`
 --
 ALTER TABLE `candidature`
-  ADD PRIMARY KEY (`ID_candidature`),
-  ADD KEY `Candidature_etudiants_FK` (`ID_Utilisateur`),
+  ADD PRIMARY KEY (`ID_Candidature`),
+  ADD KEY `Candidature_etudiant_FK` (`ID_Utilisateur`),
   ADD KEY `Candidature_Offre0_FK` (`ID_offre`),
   ADD KEY `Candidature_Pilote1_FK` (`ID_Utilisateur_Pilote`);
 
@@ -240,39 +262,45 @@ ALTER TABLE `candidature`
 --
 ALTER TABLE `delegue`
   ADD PRIMARY KEY (`ID_Utilisateur`),
-  ADD UNIQUE KEY `delegue_Authentification_AK` (`ID_login`),
-  ADD KEY `delegue_UTILISATEUR0_FK` (`ID_Utilisateur__Assigne_DROIT`),
-  ADD KEY `delegue_UTILISATEUR1_FK` (`ID_Utilisateur__CREE`);
+  ADD UNIQUE KEY `delegue_Authentification_AK` (`ID_Login`),
+  ADD KEY `delegue_UTILISATEUR0_FK` (`ID_Utilisateur__CREE`);
+
+--
+-- Index pour la table `droitdelegue`
+--
+ALTER TABLE `droitdelegue`
+  ADD PRIMARY KEY (`ID_Utilisateur`,`ID_Utilisateur_droitdelegue`),
+  ADD KEY `droitdelegue_UTILISATEUR0_FK` (`ID_Utilisateur_droitdelegue`);
 
 --
 -- Index pour la table `entreprise`
 --
 ALTER TABLE `entreprise`
   ADD PRIMARY KEY (`ID_Entreprise`),
-  ADD UNIQUE KEY `Entreprise_UTILISATEUR_AK` (`ID_Utilisateur`);
+  ADD KEY `Entreprise_UTILISATEUR_FK` (`ID_Utilisateur`);
 
 --
--- Index pour la table `etudiants`
+-- Index pour la table `etudiant`
 --
-ALTER TABLE `etudiants`
+ALTER TABLE `etudiant`
   ADD PRIMARY KEY (`ID_Utilisateur`),
-  ADD UNIQUE KEY `etudiants_Authentification_AK` (`ID_login`),
-  ADD KEY `etudiants_UTILISATEUR0_FK` (`ID_Utilisateur__CREE`);
+  ADD UNIQUE KEY `etudiant_Authentification_AK` (`ID_Login`),
+  ADD KEY `etudiant_UTILISATEUR0_FK` (`ID_Utilisateur__CREE`);
 
 --
 -- Index pour la table `offre`
 --
 ALTER TABLE `offre`
   ADD PRIMARY KEY (`ID_offre`),
-  ADD UNIQUE KEY `Offre_UTILISATEUR_AK` (`ID_Utilisateur`),
-  ADD KEY `Offre_Entreprise_FK` (`ID_Entreprise`);
+  ADD KEY `Offre_Entreprise_FK` (`ID_Entreprise`),
+  ADD KEY `Offre_UTILISATEUR0_FK` (`ID_Utilisateur`);
 
 --
 -- Index pour la table `pilote`
 --
 ALTER TABLE `pilote`
   ADD PRIMARY KEY (`ID_Utilisateur`),
-  ADD UNIQUE KEY `Pilote_Authentification_AK` (`ID_login`),
+  ADD UNIQUE KEY `Pilote_Authentification_AK` (`ID_Login`),
   ADD KEY `Pilote_Administrateur0_FK` (`ID_Utilisateur_Administrateur`);
 
 --
@@ -280,7 +308,7 @@ ALTER TABLE `pilote`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`ID_Utilisateur`),
-  ADD UNIQUE KEY `UTILISATEUR_Authentification_AK` (`ID_login`);
+  ADD UNIQUE KEY `UTILISATEUR_Authentification_AK` (`ID_Login`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -290,31 +318,31 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `authentification`
 --
 ALTER TABLE `authentification`
-  MODIFY `ID_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `candidature`
 --
 ALTER TABLE `candidature`
-  MODIFY `ID_candidature` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Candidature` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `entreprise`
 --
 ALTER TABLE `entreprise`
-  MODIFY `ID_Entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `offre`
 --
 ALTER TABLE `offre`
-  MODIFY `ID_offre` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `ID_Utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées
@@ -324,7 +352,7 @@ ALTER TABLE `utilisateur`
 -- Contraintes pour la table `administrateur`
 --
 ALTER TABLE `administrateur`
-  ADD CONSTRAINT `Administrateur_Authentification0_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`),
+  ADD CONSTRAINT `Administrateur_Authentification0_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_Login`),
   ADD CONSTRAINT `Administrateur_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
 
 --
@@ -333,16 +361,22 @@ ALTER TABLE `administrateur`
 ALTER TABLE `candidature`
   ADD CONSTRAINT `Candidature_Offre0_FK` FOREIGN KEY (`ID_offre`) REFERENCES `offre` (`ID_offre`),
   ADD CONSTRAINT `Candidature_Pilote1_FK` FOREIGN KEY (`ID_Utilisateur_Pilote`) REFERENCES `pilote` (`ID_Utilisateur`),
-  ADD CONSTRAINT `Candidature_etudiants_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `etudiants` (`ID_Utilisateur`);
+  ADD CONSTRAINT `Candidature_etudiant_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `etudiant` (`ID_Utilisateur`);
 
 --
 -- Contraintes pour la table `delegue`
 --
 ALTER TABLE `delegue`
-  ADD CONSTRAINT `delegue_Authentification2_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`),
-  ADD CONSTRAINT `delegue_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur__Assigne_DROIT`) REFERENCES `utilisateur` (`ID_Utilisateur`),
-  ADD CONSTRAINT `delegue_UTILISATEUR1_FK` FOREIGN KEY (`ID_Utilisateur__CREE`) REFERENCES `utilisateur` (`ID_Utilisateur`),
+  ADD CONSTRAINT `delegue_Authentification1_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_Login`),
+  ADD CONSTRAINT `delegue_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur__CREE`) REFERENCES `utilisateur` (`ID_Utilisateur`),
   ADD CONSTRAINT `delegue_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
+
+--
+-- Contraintes pour la table `droitdelegue`
+--
+ALTER TABLE `droitdelegue`
+  ADD CONSTRAINT `droitdelegue_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur_droitdelegue`) REFERENCES `utilisateur` (`ID_Utilisateur`),
+  ADD CONSTRAINT `droitdelegue_delegue_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `delegue` (`ID_Utilisateur`);
 
 --
 -- Contraintes pour la table `entreprise`
@@ -351,12 +385,12 @@ ALTER TABLE `entreprise`
   ADD CONSTRAINT `Entreprise_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
 
 --
--- Contraintes pour la table `etudiants`
+-- Contraintes pour la table `etudiant`
 --
-ALTER TABLE `etudiants`
-  ADD CONSTRAINT `etudiants_Authentification1_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`),
-  ADD CONSTRAINT `etudiants_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur__CREE`) REFERENCES `utilisateur` (`ID_Utilisateur`),
-  ADD CONSTRAINT `etudiants_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
+ALTER TABLE `etudiant`
+  ADD CONSTRAINT `etudiant_Authentification1_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_Login`),
+  ADD CONSTRAINT `etudiant_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur__CREE`) REFERENCES `utilisateur` (`ID_Utilisateur`),
+  ADD CONSTRAINT `etudiant_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
 
 --
 -- Contraintes pour la table `offre`
@@ -370,14 +404,14 @@ ALTER TABLE `offre`
 --
 ALTER TABLE `pilote`
   ADD CONSTRAINT `Pilote_Administrateur0_FK` FOREIGN KEY (`ID_Utilisateur_Administrateur`) REFERENCES `administrateur` (`ID_Utilisateur`),
-  ADD CONSTRAINT `Pilote_Authentification1_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`),
+  ADD CONSTRAINT `Pilote_Authentification1_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_Login`),
   ADD CONSTRAINT `Pilote_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
 
 --
 -- Contraintes pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD CONSTRAINT `UTILISATEUR_Authentification_FK` FOREIGN KEY (`ID_login`) REFERENCES `authentification` (`ID_login`);
+  ADD CONSTRAINT `UTILISATEUR_Authentification_FK` FOREIGN KEY (`ID_Login`) REFERENCES `authentification` (`ID_Login`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
