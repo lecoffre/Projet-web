@@ -10,34 +10,34 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../config/database.php';
-    include_once '../models/entreprise.php';
+    include_once '../models/etudiant.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
     // On instancie les produits
-    $entreprise = new Entreprise($db);
+    $etudiant = new Etudiant($db);
 
     // On récupère les informations envoyées
     $donnees = json_decode(file_get_contents("php://input"));
 
-
-    if (!empty($donnees->Nom_entreprise) && !empty($donnees->Secteur_activite) && !empty($donnees->Competences_recherchees_dans_les_stages) && !empty($donnees->Nombre_de_stagiaires_CESI_deja_acceptes_en_stage) && !empty($donnees->Evaluation_des_stagiaires) && !empty($donnees->Confiance_du_Pilote_de_promotion) && !empty($donnees->Localite_entreprise) && !empty($donnees->Logo_Entreprise) && !empty($donnees->ID_Utilisateur)) {
+    if (!empty($donnees->ID_Utilisateur) && !empty($donnees->Centre_etudiant) && !empty($donnees->promotion_etudiant) && !empty($donnees->Specialite) && !empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->ID_Utilisateur__CREE) && !empty($donnees->ID_Login)) {
         // Ici on a reçu les données
         // On hydrate notre objet
 
-        $entreprise->Nom_entreprise = $donnees->Nom_entreprise;
-        $entreprise->Secteur_activite = $donnees->Secteur_activite;
-        $entreprise->Competences_recherchees_dans_les_stages = $donnees->Competences_recherchees_dans_les_stages;
-        $entreprise->Nombre_de_stagiaires_CESI_deja_acceptes_en_stage = $donnees->Nombre_de_stagiaires_CESI_deja_acceptes_en_stage;
-        $entreprise->Evaluation_des_stagiaires = $donnees->Evaluation_des_stagiaires;
-        $entreprise->Confiance_du_Pilote_de_promotion = $donnees->Confiance_du_Pilote_de_promotion;
-        $entreprise->Localite_entreprise = $donnees->Localite_entreprise;
-        $entreprise->Logo_Entreprise = $donnees->Logo_Entreprise;
-        $entreprise->ID_Utilisateur = $donnees->ID_Utilisateur;
+        $etudiant->ID_Utilisateur = $donnees->ID_Utilisateur;
+        $etudiant->Centre_etudiant = $donnees->Centre_etudiant;
+        $etudiant->promotion_etudiant = $donnees->promotion_etudiant;
+        $etudiant->Specialite = $donnees->Specialite;
+        $etudiant->Nom = $donnees->Nom;
+        $etudiant->Prenom = $donnees->Prenom;
+        $etudiant->Photo_Utilisateur = $donnees->Photo_Utilisateur;
+        $etudiant->ID_Utilisateur__CREE = $donnees->ID_Utilisateur__CREE;
+        $etudiant->ID_Login = $donnees->ID_Login;
 
-        if ($entreprise->creer_entreprise()) {
+
+        if ($etudiant->creer_etudiant()) {
             // Ici la création a fonctionné
             // On envoie un code 201
             http_response_code(201);

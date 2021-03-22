@@ -11,52 +11,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../config/database.php';
-    include_once '../models/offre.php';
-
+    include_once '../models/etudiant.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les entreprises 
-    $offre = new Offre($db);
+    // On instancie les etudiants 
+    $etudiant = new Etudiant($db);
 
 
     // On récupère les données
-    $stmt = $offre->lire_offre();
+    $stmt = $etudiant->lire_etudiant();
 
-    // On vérifie si on a au moins 1 entreprise
+    // On vérifie si on a au moins 1 etudiant
     if ($stmt->rowCount() > 1) {
         // On initialise un tableau associatif
-        $tableauoffre= [];
-        $tableauoffre['offre'] = [];
+        $tableauEtudiant = [];
+        $tableauEtudiant['etudiant'] = [];
 
-        // On parcourt les entreprises
+        // On parcourt les etudiants
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
 
-            $ofr = [
-                "ID_offre" => $ID_offre,
-                "Competences_offre" => $Competences_offre,
-                "Localite_offre" => $Localite_offre,
-                "Entreprise_offre" => $Entreprise_offre,
-                "Type_de_promotion_concernee" => $Type_de_promotion_concernee,
-                "Duree_du_stage" => $Duree_du_stage,
-                "Base_de_remuneration" => $Base_de_remuneration,
-                "Date_de_offre" => $Date_de_offre,
-                "Nombre_de_places_disponible" => $Nombre_de_places_disponible,
-                "ID_Entreprise" => $ID_Entreprise,
-                "ID_Utilisateur" => $ID_Utilisateur
+            $etud = [
+                "ID_Utilisateur" => $ID_Utilisateur,
+                "Centre_etudiant" => $Centre_etudiant,
+                "Promotion_etudiant" => $promotion_etudiant,
+                "Specialite" => $Specialite,
+                "Nom" => $Nom,
+                "Prenom" => $Prenom,
+                "Photo_Utilisateur" => $Photo_Utilisateur,
+                "ID_Utilisateur__CREE" => $ID_Utilisateur__CREE,
+                "ID_Login" => $ID_Login
             ];
 
-            $tableauoffre['offre'][] = $ofr;
+            $tableauEtudiant['etudiant'][] = $etud;
         }
 
         // On envoie le code réponse 200 OK
         http_response_code(200);
 
         // On encode en json et on envoie
-        echo json_encode($tableauoffre);
+        echo json_encode($tableauEtudiant);
     }
 } else {
     // On gère l'erreur

@@ -13,7 +13,7 @@ class Offre
     public $Type_de_promotion_concernee;
     public $Duree_du_stage;
     public $Base_de_remuneration;
-    public $Date_de_l’offre;
+    public $Date_de_offre;
     public $Nombre_de_places_disponible;
     public $ID_Entreprise;
     public $ID_Utilisateur;
@@ -60,7 +60,12 @@ class Offre
 
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET Competences_offre=:Competences_offre, Localite_offre=:Localite_offre, Entreprise_offre=:Entreprise_offre, Type_de_promotion_concernee=:Type_de_promotion_concernee, Duree_du_stage=:Duree_du_stage, Base_de_remuneration=:Base_de_remuneration, Date_de_l’offre=:Date_de_l’offre, Nombre_de_places_disponible=:Nombre_de_places_disponible, ID_Entreprise:=ID_Entreprise, ID_Utilisateur:=ID_Utilisateur";
+        $sql = "INSERT INTO " . $this->table . "
+         SET Competences_offre=:Competences_offre, Localite_offre=:Localite_offre,
+         Entreprise_offre=:Entreprise_offre, Type_de_promotion_concernee=:Type_de_promotion_concernee,
+         Duree_du_stage=:Duree_du_stage, Base_de_remuneration=:Base_de_remuneration,
+         Date_de_offre=:Date_de_offre, Nombre_de_places_disponible=:Nombre_de_places_disponible,
+         ID_Entreprise=:ID_Entreprise, ID_Utilisateur=:ID_Utilisateur";
 
 
         // Préparation de la requête
@@ -74,7 +79,7 @@ class Offre
         $this->Type_de_promotion_concernee = htmlspecialchars(strip_tags($this->Type_de_promotion_concernee));
         $this->Duree_du_stage = htmlspecialchars(strip_tags($this->Duree_du_stage));
         $this->Base_de_remuneration = htmlspecialchars(strip_tags($this->Base_de_remuneration));
-        $this->Date_de_l’offre = htmlspecialchars(strip_tags($this->Date_de_l’offre));
+        $this->Date_de_offre = htmlspecialchars(strip_tags($this->Date_de_offre));
         $this->Nombre_de_places_disponible = htmlspecialchars(strip_tags($this->Nombre_de_places_disponible));
         $this->ID_Entreprise = htmlspecialchars(strip_tags($this->ID_Entreprise));
         $this->ID_Utilisateur = htmlspecialchars(strip_tags($this->ID_Utilisateur));
@@ -86,7 +91,7 @@ class Offre
         $query->bindParam(":Type_de_promotion_concernee", $this->Type_de_promotion_concernee);
         $query->bindParam(":Duree_du_stage", $this->Duree_du_stage);
         $query->bindParam(":Base_de_remuneration", $this->Base_de_remuneration);
-        $query->bindParam(":Date_de_l’offre", $this->Date_de_l’offre);
+        $query->bindParam(":Date_de_offre", $this->Date_de_offre);
         $query->bindParam(":Nombre_de_places_disponible", $this->Nombre_de_places_disponible);
         $query->bindParam(":ID_Entreprise", $this->ID_Entreprise);
         $query->bindParam(":ID_Utilisateur", $this->ID_Utilisateur);
@@ -129,7 +134,7 @@ class Offre
         $this->Type_de_promotion_concernee = $row['Type_de_promotion_concernee'];
         $this->Duree_du_stage = $row['Duree_du_stage'];
         $this->Base_de_remuneration = $row['Base_de_remuneration'];
-        $this->Date_de_l’offre = $row['Date_de_l’offre'];
+        $this->Date_de_offre = $row['Date_de_offre'];
         $this->Nombre_de_places_disponible = $row['Nombre_de_places_disponible'];
         $this->ID_Entreprise = $row['ID_Entreprise'];
         $this->ID_Utilisateur = $row['ID_Utilisateur'];
@@ -172,7 +177,7 @@ class Offre
 
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "UPDATE " . $this->table . " SET Competences_offre=:Competences_offre, Localite_offre=:Localite_offre, Entreprise_offre=:Entreprise_offre, Type_de_promotion_concernee=:Type_de_promotion_concernee, Duree_du_stage=:Duree_du_stage, Base_de_remuneration=:Base_de_remuneration, Date_de_l’offre=:Date_de_l’offre, Nombre_de_places_disponible=:Nombre_de_places_disponible, ID_Utilisateur=:ID_Utilisateur
+        $sql = "UPDATE " . $this->table . " SET Competences_offre=:Competences_offre, Localite_offre=:Localite_offre, Entreprise_offre=:Entreprise_offre, Type_de_promotion_concernee=:Type_de_promotion_concernee, Duree_du_stage=:Duree_du_stage, Base_de_remuneration=:Base_de_remuneration, Date_de_offre=:Date_de_offre, Nombre_de_places_disponible=:Nombre_de_places_disponible, ID_Utilisateur=:ID_Utilisateur
          WHERE ID_offre =:ID_offre";
 
 
@@ -187,7 +192,7 @@ class Offre
         $this->Type_de_promotion_concernee = htmlspecialchars(strip_tags($this->Type_de_promotion_concernee));
         $this->Duree_du_stage = htmlspecialchars(strip_tags($this->Duree_du_stage));
         $this->Base_de_remuneration = htmlspecialchars(strip_tags($this->Base_de_remuneration));
-        $this->Date_de_l’offre = htmlspecialchars(strip_tags($this->Date_de_l’offre));
+        $this->Date_de_offre = htmlspecialchars(strip_tags($this->Date_de_offre));
         $this->Nombre_de_places_disponible = htmlspecialchars(strip_tags($this->Nombre_de_places_disponible));
         $this->ID_Entreprise = htmlspecialchars(strip_tags($this->ID_Entreprise));
         $this->ID_Utilisateur = htmlspecialchars(strip_tags($this->ID_Utilisateur));
@@ -200,7 +205,7 @@ class Offre
         $query->bindParam(':Type_de_promotion_concernee', $this->Type_de_promotion_concernee);
         $query->bindParam(':Duree_du_stage', $this->Duree_du_stage);
         $query->bindParam(':Base_de_remuneration', $this->Base_de_remuneration);
-        $query->bindParam(':Date_de_l’offre', $this->Date_de_l’offre);
+        $query->bindParam(':Date_de_offre', $this->Date_de_offre);
         $query->bindParam(':Nombre_de_places_disponible', $this->Nombre_de_places_disponible);
         $query->bindParam(':ID_Entreprise', $this->ID_Entreprise);
         $query->bindParam(':ID_Utilisateur', $this->ID_Utilisateur);
