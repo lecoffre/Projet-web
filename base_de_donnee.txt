@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 22 mars 2021 à 21:05
+-- Généré le : lun. 22 mars 2021 à 22:53
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.1
 
@@ -137,6 +137,13 @@ CREATE TABLE `entreprise` (
   `ID_Utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `entreprise`
+--
+
+INSERT INTO `entreprise` (`ID_Entreprise`, `Nom_entreprise`, `Secteur_activite`, `Competences_recherchees_dans_les_stages`, `Nombre_de_stagiaires_CESI_deja_acceptes_en_stage`, `Evaluation_des_stagiaires`, `Confiance_du_Pilote_de_promotion`, `Localite_entreprise`, `Logo_Entreprise`, `ID_Utilisateur`) VALUES
+(1, 'TEST', 'Formation', 'Développement', 4, 4, 4, 'Nanterre', 'img/entreprises/logobidon.png', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -174,6 +181,14 @@ CREATE TABLE `offre` (
   `ID_Entreprise` int(11) DEFAULT NULL,
   `ID_Utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `offre`
+--
+
+INSERT INTO `offre` (`ID_offre`, `Competences_offre`, `Localite_offre`, `Entreprise_offre`, `Type_de_promotion_concernee`, `Duree_du_stage`, `Base_de_remuneration`, `Date_de_offre`, `Nombre_de_places_disponible`, `ID_Entreprise`, `ID_Utilisateur`) VALUES
+(3, 'comptestbidon', 'localtestb', 'entrtest', '2021', '6', 1000, '2001-01-21', 5, 1, 1),
+(4, 'comptest', 'localtest', 'entrtest', '2021', '6', 1000, '2001-01-21', 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -315,13 +330,13 @@ ALTER TABLE `candidature`
 -- AUTO_INCREMENT pour la table `entreprise`
 --
 ALTER TABLE `entreprise`
-  MODIFY `ID_Entreprise` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `offre`
 --
 ALTER TABLE `offre`
-  MODIFY `ID_offre` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
