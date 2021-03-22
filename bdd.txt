@@ -224,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `offre` (
   `Type_de_promotion_concernee` varchar(20) NOT NULL,
   `Duree_du_stage` varchar(10) NOT NULL,
   `Base_de_remuneration` int(11) NOT NULL,
-  `Date_de_l’offre` date NOT NULL,
+  `Date_de_offre` date NOT NULL,
   `Nombre_de_places_disponible` int(11) NOT NULL,
   `ID_Entreprise` int(11) DEFAULT NULL,
   `ID_Utilisateur` int(11) NOT NULL,
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `offre` (
 -- Déchargement des données de la table `offre`
 --
 
-INSERT INTO `offre` (`ID_offre`, `Competences_offre`, `Localite_offre`, `Entreprise_offre`, `Type_de_promotion_concernee`, `Duree_du_stage`, `Base_de_remuneration`, `Date_de_l’offre`, `Nombre_de_places_disponible`, `ID_Entreprise`, `ID_Utilisateur`) VALUES
+INSERT INTO `offre` (`ID_offre`, `Competences_offre`, `Localite_offre`, `Entreprise_offre`, `Type_de_promotion_concernee`, `Duree_du_stage`, `Base_de_remuneration`, `Date_de_offre`, `Nombre_de_places_disponible`, `ID_Entreprise`, `ID_Utilisateur`) VALUES
 (1, 'etre cool', 'paris', 'pascool', 'A2,A3', '2 mois', 560, '2021-03-22', 3, 2, 16);
 
 -- --------------------------------------------------------
