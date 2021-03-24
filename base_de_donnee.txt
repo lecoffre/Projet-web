@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 22 mars 2021 à 22:53
+-- Généré le : mer. 24 mars 2021 à 20:55
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.1
 
@@ -142,7 +142,9 @@ CREATE TABLE `entreprise` (
 --
 
 INSERT INTO `entreprise` (`ID_Entreprise`, `Nom_entreprise`, `Secteur_activite`, `Competences_recherchees_dans_les_stages`, `Nombre_de_stagiaires_CESI_deja_acceptes_en_stage`, `Evaluation_des_stagiaires`, `Confiance_du_Pilote_de_promotion`, `Localite_entreprise`, `Logo_Entreprise`, `ID_Utilisateur`) VALUES
-(1, 'TEST', 'Formation', 'Développement', 4, 4, 4, 'Nanterre', 'img/entreprises/logobidon.png', 1);
+(1, 'TEST', 'Formation', 'Développement', 4, 4, 4, 'Nanterre', 'api/img/entreprises/logobidon.png', 1),
+(2, 'Capgemini', 'developpement', 'WEB, backend Node.js', 8, 5, 4, 'Ile de France', 'api/img/entreprises/capgemini.png', 3),
+(11, 'Renamed', 'SecteurTest', 'CompetenceTest', 0, 4, 4, 'LocaliteTest', 'api/img/entreprises/logotest.png', 1);
 
 -- --------------------------------------------------------
 
@@ -330,7 +332,7 @@ ALTER TABLE `candidature`
 -- AUTO_INCREMENT pour la table `entreprise`
 --
 ALTER TABLE `entreprise`
-  MODIFY `ID_Entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT pour la table `offre`
