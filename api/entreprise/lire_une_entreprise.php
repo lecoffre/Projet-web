@@ -7,7 +7,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // On vérifie que la méthode utilisée est correcte
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../config/database.php';
@@ -30,9 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         // On récupère l'entreprise
         $entreprise->lireUn();
-
         // On vérifie si l'entreprise existe
-        if ($entreprise->Nom_entreprise != null) {
+        if ($entreprise->ID_Entreprise != null) {
 
             $entre = [
                 "ID_Entreprise" => $entreprise->ID_Entreprise,

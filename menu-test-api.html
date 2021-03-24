@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>MENU API</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <!-- Plugin Noah (multi-selection)-->
+    <link
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+
+    
+
+
+<style>
+  p, h1, h2, h3, h4, p{
+    padding: 0;
+    margin: 0;
+  }
+
+  .test-bar{
+
+    padding: 12px;
+    background-color: rgb(243, 243, 243);
+    border-radius: 12px;
+    margin: 20px 0px;
+  }
+
+   .badge-methode{
+    border-radius: 7px;
+    color: rgb(255, 255, 255);
+    padding: 0 25px;
+    display: inline-flex;
+  
+  }
+  .badge-bar-text{
+    color: rgb(148, 148, 148);
+  }
+
+  .badge-methode-text{
+    color: rgb(248, 248, 248);
+    padding: 2px;
+  }
+
+
+  .get{
+    background-color: rgb(96, 180, 75);
+  }
+  .post{
+    background-color: rgb(221, 176, 52);
+  }
+  .delete{
+    background-color: rgb(228, 68, 76);
+  }
+  .put{
+    background-color: rgb(76, 122, 216);
+  }
+  .important{
+    background-color: rgb(255, 230, 221);
+    color: rgb(101, 101, 101);
+    font-weight: bold;
+    border: 2px solid rgb(255, 230, 230);
+  }
+
+
+  .resultat-requete{
+    padding: 22px;
+    background-color: rgb(245, 245, 245);
+    border-radius: 12px;
+    margin: 20px 0px;
+  }
+
+  .test-btn{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .del{
+    background-color: rgb(241, 87, 87);
+    color: white;
+  }
+  .del:hover{
+    background-color: rgb(233, 67, 67);
+    color: rgb(250, 250, 250);
+  }
+
+  .page-chargement{
+    visibility: hidden;
+  }
+
+
+
+.formcontrol{
+width: 40px;
+
+}
+form{
+background-color: rgb(236, 236, 236);
+border: 3px solid rgb(219, 219, 219);
+border-radius: 7px;
+
+
+}
+.col-6{
+  border-left: 1px solid rgb(156, 156, 156);
+  
+}
+
+</style>
+
+  </head>
+  <body>
+
+
+
+
+      <div id="connexion_js">
+        
+        <div class="alert alert-info" role="alert"><div class="spinner-border" role="status" style="height: 20px; width: 20px;">
+          <span class="visually-hidden"></span>
+        </div>    Connexion en cours, n'actualisez pas</div>
+
+      </div>
+    
+<div class="page-chargement">
+<div class="title-api" style="padding: 20px;">
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <h2>API TEST !</h2>
+    </div>
+  <div class="col-9">
+    <button id="del" class='float-right btn del'>supprimer</button>
+  </div>
+
+  </div>
+  <hr>
+
+
+
+<div id="resultat-requete" class="resultat-requete row">
+  <p>Appuyez sur TEST</p>
+</div>
+
+<!--RECUPERER ENTREPRISES-->
+<div class="test-bar row">
+  <div class="col-2">
+    <div class="badge-methode get">
+      <h3 class="badge-methode-text">GET</h3></div>
+  </div>
+<div class="col-7 row">
+  <div class="col-6">  
+    <h3 class="badge-bar-text">Lire entreprises</h3>
+  </div>
+</div>
+<div class="col-3">
+  <button id="test1" class="btn btn-primary test-btn float-right">TEST 1</button>
+</div>
+</div>
+<!--RECUPERER ENTREPRISES-->
+
+
+<!--RECUPERER UNE ENTREPRISE-->
+<div class="test-bar row">
+  <div class="col-2">
+    <div class="badge-methode post">
+      <h3 class="badge-methode-text">POST</h3></div>
+  </div>
+<div class="col-7 row">
+  <div class="col-6">  
+    <h3 class="badge-bar-text">Lire entreprise</h3>
+  </div>
+  <div class="col-6 row"> 
+   <form name="test2" action="">
+    <div class="input-group">
+      <span class="input-group-text">ID</span>
+      <div class="input-test">
+      <input id="ID_Entreprise" value="1" type="text" class="form-control" placeholder="ID_entreprise" aria-label="Username">
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<div class="col-3">
+  <button id="test2" class="btn btn-primary test-btn float-right">TEST 2</button>
+</div>
+</div>
+<!--RECUPERER UNE ENTREPRISE-->
+
+<!--CREER UNE ENTREPRISE-->
+<div class="test-bar row">
+  <div class="col-2">
+    <div class="badge-methode post">
+      <h3 class="badge-methode-text">POST</h3></div>
+  </div>
+<div class="col-7 row">
+  <div class="col-6">  
+    <h3 class="badge-bar-text">Ajouter entreprise</h3>
+  </div>
+  <div class="col-6 row"> 
+   <form name="test3" action="">
+
+    <div class="input-group">
+
+      <div class="input-test">
+      <input id="Nom_entreprise" value="TEST3" type="text" class="form-control" placeholder="ID_entreprise" >
+      </div>
+
+      <div class="input-test">
+      <input id="Secteur_activite" value="SecteurTest" type="text" class="form-control" placeholder="Secteur_activite">
+      </div>
+
+      <div class="input-test">
+      <input id="Competences_recherchees_dans_les_stages" value="CompetenceTest" type="text" class="form-control" placeholder="Competences_recherchees_dans_les_stages" >
+      </div>
+
+      <div class="input-test">
+      <input id="Nombre_de_stagiaires_CESI_deja_acceptes_en_stage" value="NbrTest" type="text" class="form-control" placeholder="Nombre_de_stagiaires_CESI_deja_acceptes_en_stage" >
+      </div>
+
+      <div class="input-test">
+      <input id="Evaluation_des_stagiaires" value="4" type="text" class="form-control" placeholder="Evaluation_des_stagiaires" >
+      </div>
+
+      <div class="input-test">
+      <input id="Confiance_du_Pilote_de_promotion" value="4" type="text" class="form-control" placeholder="Confiance_du_Pilote_de_promotion" >
+      </div>
+
+      <div class="input-test">
+      <input id="Localite_entreprise" value="LocaliteTest" type="text" class="form-control" placeholder="Localite_entreprise" >
+      </div>
+
+      <div class="input-test">
+      <input id="Logo_Entreprise" value="api/img/entreprises/logotest.png" type="text" class="form-control" placeholder="Logo_Entreprise" >
+
+      <div class="input-test">
+      <input id="ID_Utilisateur" value="1" type="text" class="form-control" placeholder="ID_Utilisateur" >
+      </div>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+</div>
+<div class="col-3">
+  <button id="test3" class="btn btn-primary test-btn float-right">TEST 3</button>
+</div>
+</div>
+<!--CREER UNE ENTREPRISE-->
+
+
+
+
+<!--SUPPRIMER UNE ENTREPRISE-->
+<div class="test-bar row">
+  <div class="col-2">
+    <div class="badge-methode delete">
+      <h3 class="badge-methode-text">DELETE</h3></div>
+  </div>
+<div class="col-7 row">
+  <div class="col-6">  
+    <h3 class="badge-bar-text">Supprimer entreprise</h3>
+  </div>
+  <div class="col-6 row"> 
+   <form name="test4" action="">
+    <div class="input-group">
+      <span class="input-group-text">ID</span>
+      <div class="input-test">
+      <input id="ID_Entreprise" value="4" type="text" class="form-control" placeholder="ID_entreprise" aria-label="Username">
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<div class="col-3">
+  <button id="test4" class="btn btn-primary test-btn float-right">TEST 4</button>
+</div>
+</div>
+<!--SUPPRIMER UNE ENTREPRISE-->
+
+
+
+<!--MODIFIER UNE ENTREPRISE-->
+<div class="test-bar row">
+  <div class="col-2">
+    <div class="badge-methode put">
+      <h3 class="badge-methode-text">PUT</h3></div>
+  </div>
+<div class="col-7 row">
+  <div class="col-6">  
+    <h3 class="badge-bar-text">Modifier entreprise</h3>
+  </div>
+  <div class="col-6 row"> 
+   <form name="test5" action="">
+
+    <div class="input-group">
+      <div class="input-test">
+        <input id="ID_Entreprise" value="5" type="text" class="form-control important" placeholder="ID_Entreprise" >
+        </div>
+
+      <div class="input-test">
+      <input id="Nom_entreprise" value="TEST5" type="text" class="form-control" placeholder="Nom_entreprise" >
+      </div>
+
+      <div class="input-test">
+      <input id="Secteur_activite" value="SecteurTest" type="text" class="form-control" placeholder="Secteur_activite">
+      </div>
+
+      <div class="input-test">
+      <input id="Competences_recherchees_dans_les_stages" value="CompetenceTest" type="text" class="form-control" placeholder="Competences_recherchees_dans_les_stages" >
+      </div>
+
+      <div class="input-test">
+      <input id="Nombre_de_stagiaires_CESI_deja_acceptes_en_stage" value="NbrTest" type="text" class="form-control" placeholder="Nombre_de_stagiaires_CESI_deja_acceptes_en_stage" >
+      </div>
+
+      <div class="input-test">
+      <input id="Evaluation_des_stagiaires" value="4" type="text" class="form-control" placeholder="Evaluation_des_stagiaires" >
+      </div>
+
+      <div class="input-test">
+      <input id="Confiance_du_Pilote_de_promotion" value="4" type="text" class="form-control" placeholder="Confiance_du_Pilote_de_promotion" >
+      </div>
+
+      <div class="input-test">
+      <input id="Localite_entreprise" value="LocaliteTest" type="text" class="form-control" placeholder="Localite_entreprise" >
+      </div>
+
+      <div class="input-test">
+      <input id="Logo_Entreprise" value="api/img/entreprises/logotest.png" type="text" class="form-control" placeholder="Logo_Entreprise" >
+
+      <div class="input-test">
+      <input id="ID_Utilisateur" value="1" type="text" class="form-control" placeholder="ID_Utilisateur" >
+      </div>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+</div>
+<div class="col-3">
+  <button id="test5" class="btn btn-primary test-btn float-right">TEST 3</button>
+</div>
+</div>
+<!--MODIFIER UNE ENTREPRISE-->
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<script src="menu-api-test.js"></script>
+
+       <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+  </body>
+</html>
