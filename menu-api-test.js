@@ -28,7 +28,7 @@ function edit_company() {
     if(true) /* Mettre les conditions de parametres valides */
     {
         var param = {
-            "ID_Entreprise":Nom_entreprise,
+            "ID_Entreprise":ID_Entreprise,
             "Nom_entreprise":Nom_entreprise,
             "Secteur_activite":Secteur_activite,
             "Competences_recherchees_dans_les_stages":Competences_recherchees_dans_les_stages,
