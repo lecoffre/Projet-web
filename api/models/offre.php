@@ -7,6 +7,7 @@ class Offre
 
     // object properties 
     public $ID_offre;
+    public $Secteur;
     public $Competences_offre;
     public $Localite_offre;
     public $Entreprise_offre;
@@ -61,7 +62,7 @@ class Offre
 
         // Ecriture de la requête SQL en y insérant le nom de la table
         $sql = "INSERT INTO " . $this->table . "
-         SET Competences_offre=:Competences_offre, Localite_offre=:Localite_offre,
+         SET Secteur=:Secteur, Competences_offre=:Competences_offre, Localite_offre=:Localite_offre,
          Entreprise_offre=:Entreprise_offre, Type_de_promotion_concernee=:Type_de_promotion_concernee,
          Duree_du_stage=:Duree_du_stage, Base_de_remuneration=:Base_de_remuneration,
          Date_de_offre=:Date_de_offre, Nombre_de_places_disponible=:Nombre_de_places_disponible,
@@ -73,6 +74,7 @@ class Offre
 
 
         // Protection contre les injections
+        $this->Secteur = htmlspecialchars(strip_tags($this->Secteur));
         $this->Competences_offre = htmlspecialchars(strip_tags($this->Competences_offre));
         $this->Localite_offre = htmlspecialchars(strip_tags($this->Localite_offre));
         $this->Entreprise_offre = htmlspecialchars(strip_tags($this->Entreprise_offre));
@@ -85,6 +87,7 @@ class Offre
         $this->ID_Utilisateur = htmlspecialchars(strip_tags($this->ID_Utilisateur));
 
         // Ajout des données protégées
+        $query->bindParam(":Secteur", $this->Secteur);
         $query->bindParam(":Competences_offre", $this->Competences_offre);
         $query->bindParam(":Localite_offre", $this->Localite_offre);
         $query->bindParam(":Entreprise_offre", $this->Entreprise_offre);
@@ -128,6 +131,7 @@ class Offre
         $row = $query->fetch(PDO::FETCH_ASSOC);
 
         // On hydrate l'objet
+        $this->Secteur = $row['Secteur'];
         $this->Competences_offre = $row['Competences_offre'];
         $this->Localite_offre = $row['Localite_offre'];
         $this->Entreprise_offre = $row['Entreprise_offre'];
@@ -178,7 +182,7 @@ class Offre
 
         // Ecriture de la requête SQL en y insérant le nom de la table
         $sql = "UPDATE " . $this->table . "
-        SET Competences_offre=:Competences_offre, Localite_offre=:Localite_offre,
+        SET Secteur=:Secteur, Competences_offre=:Competences_offre, Localite_offre=:Localite_offre,
         Entreprise_offre=:Entreprise_offre, Type_de_promotion_concernee=:Type_de_promotion_concernee,
         Duree_du_stage=:Duree_du_stage, Base_de_remuneration=:Base_de_remuneration,
         Date_de_offre=:Date_de_offre, Nombre_de_places_disponible=:Nombre_de_places_disponible,
@@ -191,6 +195,7 @@ class Offre
 
 
         // Protection contre les injections
+        $this->Secteur = htmlspecialchars(strip_tags($this->Secteur));
         $this->Competences_offre = htmlspecialchars(strip_tags($this->Competences_offre));
         $this->Localite_offre = htmlspecialchars(strip_tags($this->Localite_offre));
         $this->Entreprise_offre = htmlspecialchars(strip_tags($this->Entreprise_offre));
@@ -204,6 +209,7 @@ class Offre
         $this->ID_offre = htmlspecialchars(strip_tags($this->ID_offre));
 
         // Ajout des données protégées
+        $query->bindParam(':Secteur', $this->Secteur);
         $query->bindParam(':Competences_offre', $this->Competences_offre);
         $query->bindParam(':Localite_offre', $this->Localite_offre);
         $query->bindParam(':Entreprise_offre', $this->Entreprise_offre);

@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $etud = [
                 "ID_Utilisateur" => $etudiant->ID_Utilisateur,
                 "Centre_etudiant" => $etudiant->Centre_etudiant,
-                "Promotion_etudiant" => $etudiant->promotion_etudiant,
+                "Promotion_etudiant" => $etudiant->Promotion_etudiant,
                 "Specialite" => $etudiant->Specialite,
                 "Nom" => $etudiant->Nom,
                 "Prenom" => $etudiant->Prenom,

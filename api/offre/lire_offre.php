@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $ofr = [
                 "ID_offre" => $ID_offre,
                 "Competences_offre" => $Competences_offre,
+                "Secteur" => $Secteur,
                 "Localite_offre" => $Localite_offre,
                 "Entreprise_offre" => $Entreprise_offre,
                 "Type_de_promotion_concernee" => $Type_de_promotion_concernee,
