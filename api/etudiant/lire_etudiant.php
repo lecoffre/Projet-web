@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $stmt = $etudiant->lire_etudiant();
 
     // On vérifie si on a au moins 1 etudiant
-    if ($stmt->rowCount() > 1) {
+    if ($stmt->rowCount() > 0) {
         // On initialise un tableau associatif
         $tableauEtudiant = [];
         $tableauEtudiant['etudiant'] = [];
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $etud = [
                 "ID_Utilisateur" => $ID_Utilisateur,
                 "Centre_etudiant" => $Centre_etudiant,
-                "Promotion_etudiant" => $promotion_etudiant,
+                "Promotion_etudiant" => $Promotion_etudiant,
                 "Specialite" => $Specialite,
                 "Nom" => $Nom,
                 "Prenom" => $Prenom,
