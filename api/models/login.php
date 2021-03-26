@@ -66,6 +66,10 @@ class Login
         $this->Photo_Utilisateur = $row2['Photo_Utilisateur'];
 
 
+        
+
+
+
     }
 
 
