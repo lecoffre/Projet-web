@@ -13,55 +13,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include_once '../config/database.php';
     include_once '../models/login.php';
 
-
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
-
     // On instancie les entreprises 
     $authentification = new Login($db);
-
     $donnees = json_decode(file_get_contents("php://input"));
-
     if (!empty($donnees->Login) && !empty($donnees->Mot_de_passe)) {
-
         $authentification->Login = $donnees->Login;
         $authentification->Mot_de_passe = $donnees->Mot_de_passe;
-
-        // On récupère l'entreprise
+        // On 
         $authentification->login();
 
-        
-
-        
 
 
 
-        if ($authentification->Login != null) {
-            
+
+
+        if ($authentification->Login != null) { 
             $authen = [
                 "ID_Login" => $authentification->ID_Login,
                 "Login" => $authentification->Login,
                 "Mot_de_passe" => $authentification->Mot_de_passe,
-                "API Key" => 'token84v9d4f9v4df64v6s4d6v4s6d4v6s4dv6s4d6v4s6v54d6fv46d',
+                "Nom" => $authentification->Nom,
+                "Prenom" => $authentification->Prenom,
+                "Photo_Utilisateur" => $authentification->Photo_Utilisateur,
+                
 
             ];
             if($authen['ID_Login'] == null){
-                http_response_code(404);
-
+            http_response_code(404);
             echo json_encode(array("message" => "L'ID utilisateur n'existe pas'."));
             }else{
-                            // On envoie le code réponse 200 OK
+            // On envoie le code réponse 200 OK
             http_response_code(200);
-
             // On encode en json et on envoie
             echo json_encode($authen);
             }
-
         } else {
             // 404 Not found
             http_response_code(404);
-
             echo json_encode(array("message" => "L'utilisateur n'existe pas'."));
         }
     }
