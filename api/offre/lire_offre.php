@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // On vérifie si on a au moins 1 entreprise
     if ($stmt->rowCount() > 1) {
         // On initialise un tableau associatif
-        $tableauoffre= [];
+        $tableauoffre = [];
         $tableauoffre['offre'] = [];
 
         // On parcourt les entreprises
@@ -37,8 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
             $ofr = [
                 "ID_offre" => $ID_offre,
-                "Competences_offre" => $Competences_offre,
                 "Secteur" => $Secteur,
+                "Titre_offre" => $Titre_offre,
+                "Competences_offre" => $Competences_offre,
                 "Localite_offre" => $Localite_offre,
                 "Entreprise_offre" => $Entreprise_offre,
                 "Type_de_promotion_concernee" => $Type_de_promotion_concernee,

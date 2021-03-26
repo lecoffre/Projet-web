@@ -7,7 +7,7 @@ class Delegue
 
     // object properties 
     public $ID_Utilisateur;
-    public $Centre_delegue;
+    public $Centre_Delegue;
     public $Promotion_delegue;
     public $Specialite;
     public $Nom;
@@ -18,7 +18,7 @@ class Delegue
 
 
 
-   /**
+    /**
      * Constructeur avec $db pour la connexion à la base de données
      *
      * @param $db
@@ -57,7 +57,7 @@ class Delegue
     {
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET ID_Utilisateur=:ID_Utilisateur, Centre_delegue=:Centre_delegue, Promotion_delegue=:Promotion_delegue, Specialite=:Specialite, Nom=:Nom, Prenom=:Prenom, Photo_Utilisateur=:Photo_Utilisateur, ID_Utilisateur__CREE=:ID_Utilisateur__CREE, ID_Login=:ID_Login";
+        $sql = "INSERT INTO " . $this->table . " SET ID_Utilisateur=:ID_Utilisateur, Centre_Delegue=:Centre_Delegue, Promotion_delegue=:Promotion_delegue, Specialite=:Specialite, Nom=:Nom, Prenom=:Prenom, Photo_Utilisateur=:Photo_Utilisateur, ID_Utilisateur__CREE=:ID_Utilisateur__CREE, ID_Login=:ID_Login";
 
 
         // Préparation de la requête
@@ -66,7 +66,7 @@ class Delegue
 
         // Protection contre les injections
         $this->ID_Utilisateur = htmlspecialchars(strip_tags($this->ID_Utilisateur));
-        $this->Centre_delegue = htmlspecialchars(strip_tags($this->Centre_delegue));
+        $this->Centre_Delegue = htmlspecialchars(strip_tags($this->Centre_Delegue));
         $this->Promotion_delegue = htmlspecialchars(strip_tags($this->Promotion_delegue));
         $this->Specialite = htmlspecialchars(strip_tags($this->Specialite));
         $this->Nom = htmlspecialchars(strip_tags($this->Nom));
@@ -78,7 +78,7 @@ class Delegue
 
         // Ajout des données protégées
         $query->bindParam(":ID_Utilisateur", $this->ID_Utilisateur);
-        $query->bindParam(":Centre_delegue", $this->Centre_delegue);
+        $query->bindParam(":Centre_Delegue", $this->Centre_Delegue);
         $query->bindParam(":Promotion_delegue", $this->Promotion_delegue);
         $query->bindParam(":Specialite", $this->Specialite);
         $query->bindParam(":Nom", $this->Nom);
@@ -120,7 +120,7 @@ class Delegue
 
         // On hydrate l'objet
         $this->ID_Utilisateur = $row['ID_Utilisateur'];
-        $this->Centre_delegue = $row['Centre_delegue'];
+        $this->Centre_Delegue = $row['Centre_Delegue'];
         $this->Promotion_delegue = $row['Promotion_delegue'];
         $this->Specialite = $row['Specialite'];
         $this->Nom = $row['Nom'];
@@ -167,7 +167,7 @@ class Delegue
 
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "UPDATE " . $this->table . " SET Centre_delegue=:Centre_delegue, Promotion_delegue=:Promotion_delegue, Specialite=:Specialite, Nom=:Nom, Prenom=:Prenom, Photo_Utilisateur=:Photo_Utilisateur, ID_Utilisateur__CREE=:ID_Utilisateur__CREE, ID_Login=:ID_Login WHERE ID_Utilisateur=:ID_Utilisateur";
+        $sql = "UPDATE " . $this->table . " SET Centre_Delegue=:Centre_Delegue, Promotion_delegue=:Promotion_delegue, Specialite=:Specialite, Nom=:Nom, Prenom=:Prenom, Photo_Utilisateur=:Photo_Utilisateur, ID_Utilisateur__CREE=:ID_Utilisateur__CREE, ID_Login=:ID_Login WHERE ID_Utilisateur=:ID_Utilisateur";
 
 
         // Préparation de la requête
@@ -176,7 +176,7 @@ class Delegue
 
         // Protection contre les injections
         $this->ID_Utilisateur = htmlspecialchars(strip_tags($this->ID_Utilisateur));
-        $this->Centre_delegue = htmlspecialchars(strip_tags($this->Centre_delegue));
+        $this->Centre_Delegue = htmlspecialchars(strip_tags($this->Centre_Delegue));
         $this->promotion_delegue = htmlspecialchars(strip_tags($this->Promotion_delegue));
         $this->Specialite = htmlspecialchars(strip_tags($this->Specialite));
         $this->Nom = htmlspecialchars(strip_tags($this->Nom));
@@ -187,7 +187,7 @@ class Delegue
 
         // Ajout des données protégées
         $query->bindParam(":ID_Utilisateur", $this->ID_Utilisateur);
-        $query->bindParam(":Centre_delegue", $this->Centre_delegue);
+        $query->bindParam(":Centre_Delegue", $this->Centre_Delegue);
         $query->bindParam(":Promotion_delegue", $this->Promotion_delegue);
         $query->bindParam(":Specialite", $this->Specialite);
         $query->bindParam(":Nom", $this->Nom);

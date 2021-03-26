@@ -1,11 +1,76 @@
-window.onload = function() {get_api_connexion()};
+window.onload = function() {
+    get_api_connexion();
+    get_auth()
+
+}; 
 document.getElementById("del").onclick = function(){delete_()};
 document.getElementById("test1").onclick = function(){get_company()};
 document.getElementById("test2").onclick = function(){get_one_company();};
 document.getElementById("test3").onclick = function(){create_company();};
 document.getElementById("test4").onclick = function(){delete_company();};
-
 document.getElementById("test5").onclick = function(){edit_company();};
+
+
+
+
+
+
+function get_auth() {
+    var authentification = 0;
+    if(authentification == 1){
+        document.getElementsByClassName('page-chargement')[0].style.visibility = 'visible';
+
+
+    }else{
+        html = '<a style="padding-left: 22px; color: #5a18d6" href="login.html">Connectez vous</a>'
+        document.getElementById("auth").innerHTML = html;
+
+    }
+  
+
+};
+
+
+
+
+
+function get_api_connexion() {
+    console.log('Connecté');
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost/api/test/test_connexion.php" , true);
+    xhr.onload = function()
+    { 
+        var html = '';
+        try{
+        if( xhr.status == 200 )
+        {
+            var response = JSON.parse(xhr.response);
+            var message_co = response.message_connexion;
+
+            html = '<div class="alert alert-success" role="alert">'+message_co+'</div>';
+        }
+        else{html = '<p>Wrong request. Error: ' + xhr.status + '</p>';}
+      }catch(e){
+        console.log(e);
+        html = '<div class="alert alert-danger" role="alert">Erreur de connexion</div>';
+     }
+        document.getElementById("connexion_js").innerHTML = html;
+    };
+    xhr.send();   
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -377,32 +442,6 @@ function delete_() {
 };
 
 
-function get_api_connexion() {
-    console.log('Connecté');
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost/api/test/test_connexion.php" , true);
-    xhr.onload = function()
-    { 
-        var html = '';
-        try{
-        if( xhr.status == 200 )
-        {
-
-            var response = JSON.parse(xhr.response);
-            var message_co = response.message_connexion;
-            document.getElementsByClassName('page-chargement')[0].style.visibility = 'visible';
-
-            html = '<div class="alert alert-success" role="alert">'+message_co+'</div>';
-        }
-        else{html = '<p>Wrong request. Error: ' + xhr.status + '</p>';}
-      }catch(e){
-        console.log(e);
-        html = '<div class="alert alert-danger" role="alert">Erreur de connexion</div>';
-     }
-        document.getElementById("connexion_js").innerHTML = html;
-    };
-    xhr.send();   
-}
 
 
 

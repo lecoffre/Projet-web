@@ -22,12 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // On récupère les informations envoyées
     $donnees = json_decode(file_get_contents("php://input"));
 
-    if (!empty($donnees->ID_Utilisateur) && !empty($donnees->Centre_delegue) && !empty($donnees->Promotion_delegue) && !empty($donnees->Specialite) && !empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->ID_Utilisateur__CREE) && !empty($donnees->ID_Login)) {
+    if (!empty($donnees->ID_Utilisateur) && !empty($donnees->Centre_Delegue) && !empty($donnees->Promotion_delegue) && !empty($donnees->Specialite) && !empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->ID_Utilisateur__CREE) && !empty($donnees->ID_Login)) {
         // Ici on a reçu les données
         // On hydrate notre objet
 
         $delegue->ID_Utilisateur = $donnees->ID_Utilisateur;
-        $delegue->Centre_delegue = $donnees->Centre_delegue;
+        $delegue->Centre_Delegue = $donnees->Centre_Delegue;
         $delegue->Promotion_delegue = $donnees->Promotion_delegue;
         $delegue->Specialite = $donnees->Specialite;
         $delegue->Nom = $donnees->Nom;

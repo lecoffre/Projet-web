@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $stmt = $delegue->lire_delegue();
 
     // On vérifie si on a au moins 1 delegue
-    if ($stmt->rowCount() > 1) {
+    if ($stmt->rowCount() > 0) {
         // On initialise un tableau associatif
         $tableauDelegue = [];
         $tableauDelegue['delegue'] = [];
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
             $deleg = [
                 "ID_Utilisateur" => $ID_Utilisateur,
-                "Centre_delegue" => $Centre_delegue,
+                "Centre_Delegue" => $Centre_Delegue,
                 "Promotion_delegue" => $Promotion_delegue,
                 "Specialite" => $Specialite,
                 "Nom" => $Nom,

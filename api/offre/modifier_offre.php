@@ -25,22 +25,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
     if (
         !empty($donnees->Competences_offre) &&
-     !empty($donnees->Localite_offre) &&
-     !empty($donnees->Entreprise_offre) &&
-      !empty($donnees->Type_de_promotion_concernee) &&
-       !empty($donnees->Duree_du_stage) &&
+        !empty($donnees->Titre_offre) &&
+        !empty($donnees->Localite_offre) &&
+        !empty($donnees->Entreprise_offre) &&
+        !empty($donnees->Type_de_promotion_concernee) &&
+        !empty($donnees->Duree_du_stage) &&
         !empty($donnees->Base_de_remuneration) &&
-         !empty($donnees->Date_de_offre) &&
-          !empty($donnees->Nombre_de_places_disponible) && 
-          !empty($donnees->ID_Entreprise) &&
-          !empty($donnees->ID_Utilisateur) &&
+        !empty($donnees->Date_de_offre) &&
+        !empty($donnees->Nombre_de_places_disponible) &&
+        !empty($donnees->ID_Entreprise) &&
+        !empty($donnees->ID_Utilisateur) &&
         !empty($donnees->Secteur)
     ) {
         // Ici on a reçu les données
         // On hydrate notre objet
         $offre->ID_offre = $donnees->ID_offre;
-        $offre->Competences_offre = $donnees->Competences_offre;
         $offre->Secteur = $donnees->Secteur;
+        $offre->Titre_offre = $donnees->Titre_offre;
+        $offre->Competences_offre = $donnees->Competences_offre;
         $offre->Localite_offre = $donnees->Localite_offre;
         $offre->Entreprise_offre = $donnees->Entreprise_offre;
         $offre->Type_de_promotion_concernee = $donnees->Type_de_promotion_concernee;

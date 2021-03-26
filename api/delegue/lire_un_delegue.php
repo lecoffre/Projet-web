@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
             $deleg = [
                 "ID_Utilisateur" => $delegue->ID_Utilisateur,
-                "Centre_delegue" => $delegue->Centre_delegue,
+                "Centre_Delegue" => $delegue->Centre_Delegue,
                 "Promotion_delegue" => $delegue->Promotion_delegue,
                 "Specialite" => $delegue->Specialite,
                 "Nom" => $delegue->Nom,

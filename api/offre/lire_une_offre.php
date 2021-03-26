@@ -35,20 +35,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if ($offre->Entreprise_offre != null) {
 
             $ofr = [
-                "ID_offre " => $offre->ID_offre ,
-                "Competences_offre " => $offre->Competences_offre ,
+                "ID_offre " => $offre->ID_offre,
                 "Secteur" => $Secteur,
-                "Localite_offre " => $offre->Localite_offre ,
-                "Entreprise_offre " => $offre->Entreprise_offre ,
-                "Type_de_promotion_concernee	 " => $offre->Type_de_promotion_concernee ,
-                "Duree_du_stage " => $offre->Duree_du_stage ,
-                "Base_de_remuneration " => $offre->Base_de_remuneration ,
-                "Date_de_offre " => $offre->Date_de_offre ,
-                "Nombre_de_places_disponible " => $offre->Nombre_de_places_disponible ,
-                "ID_Entreprise " => $offre->ID_Entreprise ,
-                "ID_Utilisateur " => $offre->ID_Utilisateur ,
+                "Titre_offre" => $Titre_offre,
+                "Competences_offre " => $offre->Competences_offre,
+                "Localite_offre " => $offre->Localite_offre,
+                "Entreprise_offre " => $offre->Entreprise_offre,
+                "Type_de_promotion_concernee	 " => $offre->Type_de_promotion_concernee,
+                "Duree_du_stage " => $offre->Duree_du_stage,
+                "Base_de_remuneration " => $offre->Base_de_remuneration,
+                "Date_de_offre " => $offre->Date_de_offre,
+                "Nombre_de_places_disponible " => $offre->Nombre_de_places_disponible,
+                "ID_Entreprise " => $offre->ID_Entreprise,
+                "ID_Utilisateur " => $offre->ID_Utilisateur,
 
-              
+
             ];
             // On envoie le code réponse 200 OK
             http_response_code(200);
