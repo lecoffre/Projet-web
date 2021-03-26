@@ -7,11 +7,11 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // On vérifie que la méthode utilisée est correcte
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../config/database.php';
-    include_once '../models/authentification.php';
+    include_once '../models/login.php';
 
 
     // On instancie la base de données
@@ -19,34 +19,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $db = $database->getConnection();
 
     // On instancie les entreprises 
-    $authentification = new Authentification($db);
+    $authentification = new Login($db);
 
     $donnees = json_decode(file_get_contents("php://input"));
 
-    if (!empty($donnees->ID_Login)) {
-        $authentification->ID_Login = $donnees->ID_Login;
+    if (!empty($donnees->Login) && !empty($donnees->Mot_de_passe)) {
+
+        $authentification->Login = $donnees->Login;
+        $authentification->Mot_de_passe = $donnees->Mot_de_passe;
 
         // On récupère l'entreprise
-        $authentification->lireUne_authentification();
+        $authentification->login();
 
-        // On vérifie si l'entreprise existe
+        
+
+        
+
+
+
         if ($authentification->Login != null) {
-
+            
             $authen = [
                 "ID_Login" => $authentification->ID_Login,
                 "Login" => $authentification->Login,
                 "Mot_de_passe" => $authentification->Mot_de_passe,
+                "API Key" => 'token84v9d4f9v4df64v6s4d6v4s6d4v6s4dv6s4d6v4s6v54d6fv46d',
+
             ];
-            // On envoie le code réponse 200 OK
+            if($authen['ID_Login'] == null){
+                http_response_code(404);
+
+            echo json_encode(array("message" => "L'ID utilisateur n'existe pas'."));
+            }else{
+                            // On envoie le code réponse 200 OK
             http_response_code(200);
 
             // On encode en json et on envoie
             echo json_encode($authen);
+            }
+
         } else {
             // 404 Not found
             http_response_code(404);
 
-            echo json_encode(array("message" => "L'entreprise n'existe pas'."));
+            echo json_encode(array("message" => "L'utilisateur n'existe pas'."));
         }
     }
 } else {

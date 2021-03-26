@@ -20,6 +20,12 @@ class Authentification
         $this->connexion = $db;
     }
 
+
+
+
+
+
+
     /**
      * Lecture des authentifications
      *
