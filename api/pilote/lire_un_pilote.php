@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $donnees = json_decode(file_get_contents("php://input"));
 
-    if (!empty($donnees->ID_Utilisateur)) {
-        $pilote->ID_Utilisateur = $donnees->ID_Utilisateur;
+    if (!empty($donnees->ID_Login)) {
+        $pilote->ID_Login = $donnees->ID_Login;
 
         // On récupère l'entreprise
         $pilote->lire_un_pilote();
@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "Promotion_pilote" => $pilote->Promotion_pilote,
                 "Nom" => $pilote->Nom,
                 "Prenom" => $pilote->Prenom,
+                "Role" => $pilote->Role,
                 "Photo_Utilisateur" => $pilote->Photo_Utilisateur,
                 "ID_Utilisateur_Administrateur" => $pilote->ID_Utilisateur_Administrateur,
                 "ID_Login" => $pilote->ID_Login,

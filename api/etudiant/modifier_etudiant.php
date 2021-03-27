@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
 
     if (
-        !empty($donnees->ID_Utilisateur) && !empty($donnees->Centre_etudiant) && !empty($donnees->promotion_etudiant) && !empty($donnees->Specialite) && !empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->ID_Utilisateur__CREE) && !empty($donnees->ID_Login)
+        !empty($donnees->ID_Utilisateur) && !empty($donnees->Centre_etudiant) && !empty($donnees->promotion_etudiant) && !empty($donnees->Specialite) && !empty($donnees->ID_Utilisateur__CREE) && !empty($donnees->ID_Login)
     ) {
         // Ici on a reçu les données
         // On hydrate notre objet
@@ -32,9 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
         $etudiant->Centre_etudiant = $donnees->Centre_etudiant;
         $etudiant->promotion_etudiant = $donnees->Promotion_etudiant;
         $etudiant->Specialite = $donnees->Specialite;
-        $etudiant->Nom = $donnees->Nom;
-        $etudiant->Prenom = $donnees->Prenom;
-        $etudiant->Photo_Utilisateur = $donnees->Photo_Utilisateur;
         $etudiant->ID_Utilisateur__CREE = $donnees->ID_Utilisateur__CREE;
         $etudiant->ID_Login = $donnees->ID_Login;
 

@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "Nom" => $utilisateur->Nom,
                 "Prenom" => $utilisateur->Prenom,
                 "Photo_Utilisateur" => $utilisateur->Photo_Utilisateur,
+                "Role" => $utilisateur->Role,
                 "ID_Login" => $utilisateur->ID_Login,
             ];
 

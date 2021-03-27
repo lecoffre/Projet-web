@@ -24,13 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // On récupère les informations envoyées
     $donnees = json_decode(file_get_contents("php://input"));
 
-    if (!empty($donnees->ID_Utilisateur) && !empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->ID_Login)) {
+    if (!empty($donnees->ID_Utilisateur) && !empty($donnees->ID_Login)) {
         // Ici on a reçu les données
         // On hydrate notre objet
         $administrateur->ID_Utilisateur = $donnees->ID_Utilisateur;
-        $administrateur->Nom = $donnees->Nom;
-        $administrateur->Prenom = $donnees->Prenom;
-        $administrateur->Photo_Utilisateur = $donnees->Photo_Utilisateur;
         $administrateur->ID_Login = $donnees->ID_Login;
         if ($administrateur->creer_administrateur()) {
             // Ici la création a fonctionné

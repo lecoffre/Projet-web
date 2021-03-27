@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     $donnees->Prenom == $pilo['Prenom']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
-                case (!empty($donnees->Centre_pilote) and !empty($donnees->Promotion_pilote) and !empty($donnees->Nom) and empty($donnees->Nom_entreprise) and
+                case (!empty($donnees->Centre_pilote) and !empty($donnees->Promotion_pilote) and !empty($donnees->Nom) and empty($donnees->Prenom) and
                     $donnees->Centre_pilote == $pilo['Centre_pilote'] and
                     $donnees->Promotion_pilote == $pilo['Promotion_pilote'] and
                     $donnees->Nom == $pilo['Nom']):
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     $donnees->Prenom == $pilo['Prenom']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
-                case (!empty($donnees->Centre_pilote) and !empty($donnees->Promotion_pilote) and empty($donnees->Nom) and empty($donnees->Nom_entreprise) and
+                case (!empty($donnees->Centre_pilote) and !empty($donnees->Promotion_pilote) and empty($donnees->Nom) and empty($donnees->Prenom) and
                     $donnees->Centre_pilote == $pilo['Centre_pilote'] and
                     $donnees->Promotion_pilote == $pilo['Promotion_pilote']):
                     $tableaupilote['pilote'][] = $pilo;
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     $donnees->Prenom == $pilo['Prenom']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
-                case (!empty($donnees->Centre_pilote) and empty($donnees->Promotion_pilote) and !empty($donnees->Nom) and empty($donnees->Nom_entreprise) and
+                case (!empty($donnees->Centre_pilote) and empty($donnees->Promotion_pilote) and !empty($donnees->Nom) and empty($donnees->Prenom) and
                     $donnees->Centre_pilote == $pilo['Centre_pilote'] and
                     $donnees->Nom == $pilo['Nom']):
                     $tableaupilote['pilote'][] = $pilo;
@@ -95,10 +95,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     $donnees->Prenom == $pilo['Prenom']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
-                case (!empty($donnees->Centre_pilote) and empty($donnees->Promotion_pilote) and empty($donnees->Nom) and !empty($donnees->Prenom) and
+                case (!empty($donnees->Centre_pilote) and empty($donnees->Promotion_pilote) and empty($donnees->Nom) and empty($donnees->Prenom) and
                     $donnees->Centre_pilote == $pilo['Centre_pilote']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
+
                 case (empty($donnees->Centre_pilote) and !empty($donnees->Promotion_pilote) and !empty($donnees->Nom) and !empty($donnees->Prenom) and
 
                     $donnees->Promotion_pilote == $pilo['Promotion_pilote'] and
@@ -106,46 +107,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     $donnees->Prenom == $pilo['Prenom']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
-                case (empty($donnees->Centre_pilote) and !empty($donnees->Promotion_pilote) and !empty($donnees->Nom) and empty($donnees->Nom_entreprise) and
+                case (empty($donnees->Centre_pilote) and !empty($donnees->Promotion_pilote) and !empty($donnees->Nom) and empty($donnees->Prenom) and
 
                     $donnees->Promotion_pilote == $pilo['Promotion_pilote'] and
                     $donnees->Nom == $pilo['Nom']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
                 case (empty($donnees->Centre_pilote) and !empty($donnees->Promotion_pilote) and empty($donnees->Nom) and !empty($donnees->Prenom) and
-
                     $donnees->Promotion_pilote == $pilo['Promotion_pilote'] and
                     $donnees->Prenom == $pilo['Prenom']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
-                case (empty($donnees->Centre_pilote) and !empty($donnees->Promotion_pilote) and empty($donnees->Nom) and empty($donnees->Nom_entreprise) and
+                case (empty($donnees->Centre_pilote) and !empty($donnees->Promotion_pilote) and empty($donnees->Nom) and empty($donnees->Prenom) and
                     $donnees->Promotion_pilote == $pilo['Promotion_pilote']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
                 case (empty($donnees->Centre_pilote) and empty($donnees->Promotion_pilote) and !empty($donnees->Nom) and !empty($donnees->Prenom) and
-
                     $donnees->Nom == $pilo['Nom'] and
                     $donnees->Prenom == $pilo['Prenom']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
-                case (empty($donnees->Centre_pilote) and empty($donnees->Promotion_pilote) and !empty($donnees->Nom) and empty($donnees->Nom_entreprise) and
-
-
+                case (empty($donnees->Centre_pilote) and empty($donnees->Promotion_pilote) and !empty($donnees->Nom) and empty($donnees->Prenom) and
                     $donnees->Nom == $pilo['Nom']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
                 case (empty($donnees->Centre_pilote) and empty($donnees->Promotion_pilote) and empty($donnees->Nom) and !empty($donnees->Prenom) and
-
                     $donnees->Prenom == $pilo['Prenom']):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
-                case (empty($donnees->Centre_pilote) and empty($donnees->Promotion_pilote) and empty($donnees->Nom) and empty($donnees->Nom_entreprise)):
+                case (empty($donnees->Centre_pilote) and empty($donnees->Promotion_pilote) and empty($donnees->Nom) and empty($donnees->Prenom)):
                     $tableaupilote['pilote'][] = $pilo;
                     break;
             }
-
-
-            $tableaupilote['pilote'][] = $pilo;
         }
 
         // On envoie le code réponse 200 OK

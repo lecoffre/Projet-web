@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "Specialite" => $Specialite,
                 "Nom" => $Nom,
                 "Prenom" => $Prenom,
+                "Role" => $Role,
                 "Photo_Utilisateur" => $Photo_Utilisateur,
                 "ID_Utilisateur__CREE" => $ID_Utilisateur__CREE,
                 "ID_Login" => $ID_Login

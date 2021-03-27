@@ -24,16 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
 
     if (
-        !empty($donnees->ID_Utilisateur) && !empty($donnees->Centre_Delegue) && !empty($donnees->Promotion_delegue) && !empty($donnees->Specialite) && !empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->ID_Utilisateur__CREE) && !empty($donnees->ID_Login)) {
+        !empty($donnees->ID_Utilisateur) && !empty($donnees->Centre_Delegue) && !empty($donnees->Promotion_delegue) && !empty($donnees->Specialite) && !empty($donnees->ID_Utilisateur__CREE) && !empty($donnees->ID_Login)
+    ) {
         // Ici on a reçu les données
         // On hydrate notre objet
         $delegue->ID_Utilisateur = $donnees->ID_Utilisateur;
         $delegue->Centre_Delegue = $donnees->Centre_Delegue;
         $delegue->Promotion_delegue = $donnees->Promotion_delegue;
         $delegue->Specialite = $donnees->Specialite;
-        $delegue->Nom = $donnees->Nom;
-        $delegue->Prenom = $donnees->Prenom;
-        $delegue->Photo_Utilisateur = $donnees->Photo_Utilisateur;
         $delegue->ID_Utilisateur__CREE = $donnees->ID_Utilisateur__CREE;
         $delegue->ID_Login = $donnees->ID_Login;
 

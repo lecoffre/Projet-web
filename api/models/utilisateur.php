@@ -51,7 +51,7 @@ class Utilisateur
     {
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET Nom= :Nom, Prenom= :Prenom, Photo_Utilisateur= :Photo_Utilisateur, ID_Login= :ID_Login";
+        $sql = "INSERT INTO " . $this->table . " SET Nom= :Nom, Prenom= :Prenom, Photo_Utilisateur= :Photo_Utilisateur, Role= :Role, ID_Login= :ID_Login";
 
         // Préparation de la requête
         $query = $this->connexion->prepare($sql);
@@ -61,6 +61,7 @@ class Utilisateur
         $this->Nom = htmlspecialchars(strip_tags($this->Nom));
         $this->Prenom = htmlspecialchars(strip_tags($this->Prenom));
         $this->Photo_Utilisateur = htmlspecialchars(strip_tags($this->Photo_Utilisateur));
+        $this->Role = htmlspecialchars(strip_tags($this->Role));
         $this->ID_Login = htmlspecialchars(strip_tags($this->ID_Login));
 
 
@@ -68,6 +69,7 @@ class Utilisateur
         $query->bindParam(":Nom", $this->Nom);
         $query->bindParam(":Prenom", $this->Prenom);
         $query->bindParam(":Photo_Utilisateur", $this->Photo_Utilisateur);
+        $query->bindParam(":Role", $this->Role);
         $query->bindParam(":ID_Login", $this->ID_Login);
 
         // Exécution de la requête
@@ -104,6 +106,7 @@ class Utilisateur
         $this->Nom = $row['Nom'];
         $this->Prenom = $row['Prenom'];
         $this->Photo_Utilisateur = $row['Photo_Utilisateur'];
+        $this->Role = $row['Role'];
         $this->ID_Login = $row['ID_Login'];
     }
 
@@ -144,7 +147,7 @@ class Utilisateur
 
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "UPDATE " . $this->table . " SET Nom= :Nom, Prenom= :Prenom, Photo_Utilisateur= :Photo_Utilisateur, ID_Login= :ID_Login WHERE ID_Utilisateur= :ID_Utilisateur";
+        $sql = "UPDATE " . $this->table . " SET Nom= :Nom, Prenom= :Prenom, Photo_Utilisateur= :Photo_Utilisateur, Role= :Role, ID_Login= :ID_Login WHERE ID_Utilisateur= :ID_Utilisateur";
 
 
         // Préparation de la requête
@@ -156,6 +159,7 @@ class Utilisateur
         $this->Nom = htmlspecialchars(strip_tags($this->Nom));
         $this->Prenom = htmlspecialchars(strip_tags($this->Prenom));
         $this->Photo_Utilisateur = htmlspecialchars(strip_tags($this->Photo_Utilisateur));
+        $this->Role = htmlspecialchars(strip_tags($this->Role));
         $this->ID_Login = htmlspecialchars(strip_tags($this->ID_Login));
 
         // Ajout des données protégées
@@ -163,6 +167,7 @@ class Utilisateur
         $query->bindParam(":Nom", $this->Nom);
         $query->bindParam(":Prenom", $this->Prenom);
         $query->bindParam(":Photo_Utilisateur", $this->Photo_Utilisateur);
+        $query->bindParam(":Role", $this->Role);
         $query->bindParam(":ID_Login", $this->ID_Login);
 
 

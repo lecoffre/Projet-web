@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $donnees = json_decode(file_get_contents("php://input"));
 
-    if (!empty($donnees->ID_Utilisateur)) {
-        $delegue->ID_Utilisateur = $donnees->ID_Utilisateur;
+    if (!empty($donnees->ID_Login)) {
+        $delegue->ID_Login = $donnees->ID_Login;
 
         // On récupère du delegue
         $delegue->lire_un_delegue();
@@ -39,9 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "Centre_Delegue" => $delegue->Centre_Delegue,
                 "Promotion_delegue" => $delegue->Promotion_delegue,
                 "Specialite" => $delegue->Specialite,
-                "Nom" => $delegue->Nom,
+                "Nom" => $delegue->Prenom,
                 "Prenom" => $delegue->Prenom,
+                "Role" => $delegue->Role,
                 "Photo_Utilisateur" => $delegue->Photo_Utilisateur,
+                "Specialite" => $delegue->Specialite,
                 "ID_Utilisateur__CREE" => $delegue->ID_Utilisateur__CREE,
                 "ID_Login" => $delegue->ID_Login
             ];

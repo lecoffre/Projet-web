@@ -24,16 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
 
     if (
-        !empty($donnees->ID_Utilisateur) && !empty($donnees->Nom) &&
-        !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->ID_Login)
+        !empty($donnees->ID_Utilisateur)  && !empty($donnees->ID_Login)
     ) {
 
         // Ici on a reçu les données
         // On hydrate notre objet
         $administrateur->ID_Utilisateur = $donnees->ID_Utilisateur;
-        $administrateur->Nom = $donnees->Nom;
-        $administrateur->Prenom = $donnees->Prenom;
-        $administrateur->Photo_Utilisateur = $donnees->Photo_Utilisateur;
         $administrateur->ID_Login = $donnees->ID_Login;
 
 

@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $donnees = json_decode(file_get_contents("php://input"));
 
-    if (!empty($donnees->ID_Utilisateur)) {
-        $etudiant->ID_Utilisateur = $donnees->ID_Utilisateur;
+    if (!empty($donnees->ID_Login)) {
+        $etudiant->ID_Login = $donnees->ID_Login;
 
         // On récupère l'etudiant
         $etudiant->lire_un_etudiant();
@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "Specialite" => $etudiant->Specialite,
                 "Nom" => $etudiant->Nom,
                 "Prenom" => $etudiant->Prenom,
+                "Role" => $etudiant->Role,
                 "Photo_Utilisateur" => $etudiant->Photo_Utilisateur,
                 "ID_Utilisateur__CREE" => $etudiant->ID_Utilisateur__CREE,
                 "ID_Login" => $etudiant->ID_Login

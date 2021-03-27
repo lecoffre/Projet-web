@@ -4,6 +4,8 @@ class Candidature
     // Connexion
     private $connexion;
     private $table = "candidature"; //table de la base de données
+    private $table1 = "utilisateur"; //table de la base de données
+    private $table2 = "offre"; //table de la base de données
 
     // object properties
     public $ID_Candidature;
@@ -34,10 +36,14 @@ class Candidature
     public function lire_candidature()
     {
         // On écrit la requête 
-        $sql = "SELECT * FROM " . $this->table;
+        $sql = "SELECT * FROM " . $this->table . " INNER JOIN " . $this->table1 . " ON " . $this->table . ".ID_Utilisateur=" . $this->table1 . ".ID_Utilisateur" .
+            " INNER JOIN " . $this->table2 . " ON " . $this->table . ".ID_offre=" . $this->table2 . ".ID_offre";
+
+
 
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
+
 
         // On exécute la requête
         $query->execute();
@@ -99,7 +105,8 @@ class Candidature
     {
         // On écrit la requête
 
-        $sql = "SELECT * FROM " . $this->table . " WHERE ID_Candidature = ? LIMIT 0,1";
+        $sql = "SELECT * FROM " . $this->table . " INNER JOIN " . $this->table1 . " ON " . $this->table . ".ID_Utilisateur=" . $this->table1 . ".ID_Utilisateur" .
+            " INNER JOIN " . $this->table2 . " ON " . $this->table . ".ID_offre=" . $this->table2 . ".ID_offre WHERE ID_Candidature = ? LIMIT 0,1";
 
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
@@ -116,12 +123,15 @@ class Candidature
         // On hydrate l'objet
         $this->CV_etudiant = $row['CV_etudiant'];
         $this->Lettre_de_motivation_etudiant = $row['Lettre_de_motivation_etudiant'];
+        $this->Nom = $row['Nom'];
+        $this->Prenom = $row['Prenom'];
         $this->Fiche_de_validation = $row['Fiche_de_validation'];
         $this->Convention_de_stage = $row['Convention_de_stage'];
         $this->LIEN_OFFRE = $row['LIEN_OFFRE'];
         $this->ID_Utilisateur = $row['ID_Utilisateur'];
         $this->ID_offre = $row['ID_offre'];
         $this->ID_Utilisateur_Pilote = $row['ID_Utilisateur_Pilote'];
+        $this->Entreprise_offre = $row['Entreprise_offre'];
     }
 
     /**

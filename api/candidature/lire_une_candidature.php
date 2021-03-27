@@ -33,11 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "CV_etudiant" => $candidature->CV_etudiant,
                 "Lettre_de_motivation_etudiant" => $candidature->Lettre_de_motivation_etudiant,
                 "Fiche_de_validation" => $candidature->Fiche_de_validation,
+                "Nom" => $candidature->Nom,
+                "Prenom" => $candidature->Prenom,
                 "Convention_de_stage" => $candidature->Convention_de_stage,
                 "LIEN_OFFRE" => $candidature->LIEN_OFFRE,
                 "ID_Utilisateur" => $candidature->ID_Utilisateur,
                 "ID_offre" => $candidature->ID_offre,
                 "ID_Utilisateur_Pilote" => $candidature->ID_Utilisateur_Pilote,
+                "Entreprise_offre" => $candidature->Entreprise_offre,
             ];
 
 

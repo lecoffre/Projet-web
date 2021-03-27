@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $donnees = json_decode(file_get_contents("php://input"));
 
 
-    if (!empty($donnees->ID_Utilisateur)) {
-        $administrateur->ID_Utilisateur = $donnees->ID_Utilisateur;
+    if (!empty($donnees->ID_Login)) {
+        $administrateur->ID_Login = $donnees->ID_Login;
         // On récupère l'entreprise
         $administrateur->lire_un_administrateur();
 
@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "Nom" => $administrateur->Nom,
                 "Prenom" => $administrateur->Prenom,
                 "Photo_Utilisateur" => $administrateur->Photo_Utilisateur,
+                "Role" => $administrateur->Role,
                 "ID_Login" => $administrateur->ID_Login,
             ];
 

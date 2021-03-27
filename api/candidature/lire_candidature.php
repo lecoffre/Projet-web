@@ -38,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $candi = [
                 "ID_Candidature" => $ID_Candidature,
                 "CV_etudiant" => $CV_etudiant,
+                "Nom" => $Nom,
+                "Prenom" => $Prenom,
                 "Lettre_de_motivation_etudiant" => $Lettre_de_motivation_etudiant,
                 "Fiche_de_validation" => $Fiche_de_validation,
                 "Convention_de_stage" => $Convention_de_stage,
@@ -45,6 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "ID_Utilisateur" => $ID_Utilisateur,
                 "ID_offre" => $ID_offre,
                 "ID_Utilisateur_Pilote" => $ID_Utilisateur_Pilote,
+                "ID_Login" => $ID_Login,
+                "Entreprise_offre" => $Entreprise_offre,
             ];
 
             $tableaucandidature['candidature'][] = $candi;

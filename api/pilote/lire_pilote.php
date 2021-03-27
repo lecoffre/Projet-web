@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "Promotion_pilote" => $Promotion_pilote,
                 "Nom" => $Nom,
                 "Prenom" => $Prenom,
+                "Role" => $Role,
                 "Photo_Utilisateur" => $Photo_Utilisateur,
                 "ID_Utilisateur_Administrateur" => $ID_Utilisateur_Administrateur,
                 "ID_Login" => $ID_Login,

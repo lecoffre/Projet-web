@@ -24,15 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // On récupère les informations envoyées
     $donnees = json_decode(file_get_contents("php://input"));
 
-    if (!empty($donnees->ID_Utilisateur) && !empty($donnees->Centre_pilote) && !empty($donnees->Promotion_pilote) && !empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->ID_Utilisateur_Administrateur) && !empty($donnees->ID_Login)) {
+    if (!empty($donnees->ID_Utilisateur) && !empty($donnees->Centre_pilote) && !empty($donnees->Promotion_pilote) && !empty($donnees->ID_Utilisateur_Administrateur) && !empty($donnees->ID_Login)) {
         // Ici on a reçu les données
         // On hydrate notre objet
         $pilote->ID_Utilisateur = $donnees->ID_Utilisateur;
         $pilote->Centre_pilote = $donnees->Centre_pilote;
         $pilote->Promotion_pilote = $donnees->Promotion_pilote;
-        $pilote->Nom = $donnees->Nom;
-        $pilote->Prenom = $donnees->Prenom;
-        $pilote->Photo_Utilisateur = $donnees->Photo_Utilisateur;
         $pilote->ID_Utilisateur_Administrateur = $donnees->ID_Utilisateur_Administrateur;
         $pilote->ID_Login = $donnees->ID_Login;
         echo json_encode([$pilote]);

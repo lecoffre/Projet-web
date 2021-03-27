@@ -5,6 +5,9 @@ class Login
     private $connexion;
     private $table = "authentification"; //table de la base de données
     private $table_2 = "utilisateur"; //table de la base de données
+    private $table_3 = "etudiant"; //table de la base de données
+    private $table_4 = "pilote"; //table de la base de données
+    private $table_5 = "delegue"; //table de la base de données
 
     // object properties 
     public $ID_Login;
@@ -39,7 +42,7 @@ class Login
      */
 
 
-    public function login()
+    public function login() // Methode POST ou l'on fournit login et mot de passe
     {
         // On écrit la requête
         $sql = "SELECT * FROM " . $this->table . " WHERE Login =:Login AND Mot_de_passe =:Mot_de_passe";
@@ -55,8 +58,7 @@ class Login
         $this->ID_Login  = $row['ID_Login'];
 
 
-
-        $sql2 = "SELECT * FROM " . $this->table_2 . " WHERE ID_Login =:ID_Login"; //continuer ici (recherche utilisateur par ID)
+        $sql2 = "SELECT * FROM " . $this->table_2 . " WHERE ID_Login =:ID_Login"; //continue ici (recherche utilisateur par ID)
         $query2 = $this->connexion->prepare($sql2);
         $query2->bindParam(':ID_Login', $this->ID_Login);
         $query2->execute();
@@ -66,7 +68,16 @@ class Login
         $this->Photo_Utilisateur = $row2['Photo_Utilisateur'];
 
 
-        
+        $sql3 = "
+        (SELECT ID_Login FROM " . $this->table_3 . " WHERE ID_Login =:ID_Login)
+        UNION
+        (SELECT ID_Login FROM " . $this->table_4 . " WHERE ID_Login =:ID_Login)
+        UNION
+        (SELECT ID_Login FROM " . $this->table_5 . " WHERE ID_Login =:ID_Login)
+        ";
+        $query3 = $this->connexion->prepare($sql3);
+        $query3->bindParam(':ID_Login', $this->ID_Login);
+        $query3->execute();
 
 
 

@@ -24,13 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // On récupère les informations envoyées
     $donnees = json_decode(file_get_contents("php://input"));
 
-    if (!empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->ID_Login)) {
+    if (!empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->Role) && !empty($donnees->ID_Login)) {
         // Ici on a reçu les données
         // On hydrate notre objet
 
         $utilisateur->Nom = $donnees->Nom;
         $utilisateur->Prenom = $donnees->Prenom;
         $utilisateur->Photo_Utilisateur = $donnees->Photo_Utilisateur;
+        $utilisateur->Role = $donnees->Role;
         $utilisateur->ID_Login = $donnees->ID_Login;
 
 

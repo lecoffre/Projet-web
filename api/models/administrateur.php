@@ -4,12 +4,10 @@ class Administrateur
     // Connexion
     private $connexion;
     private $table = "administrateur"; //table de la base de données
+    private $table1 = "utilisateur"; //table de la base de données
 
     // object properties
     public $ID_Utilisateur;
-    public $Nom;
-    public $Prenom;
-    public $Photo_Utilisateur;
     public $ID_Login;
 
     /**
@@ -30,7 +28,7 @@ class Administrateur
     public function lire_administrateur()
     {
         // On écrit la requête 
-        $sql = "SELECT * FROM " . $this->table;
+        $sql = "SELECT * FROM " . $this->table . " INNER JOIN " . $this->table1 . " ON " . $this->table . ".ID_Utilisateur=" . $this->table1 . ".ID_Utilisateur";
 
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
@@ -51,7 +49,7 @@ class Administrateur
     {
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET ID_Utilisateur=:ID_Utilisateur, Nom=:Nom, Prenom=:Prenom,  Photo_Utilisateur=:Photo_Utilisateur, ID_Login=:ID_Login";
+        $sql = "INSERT INTO " . $this->table . " SET ID_Utilisateur=:ID_Utilisateur, ID_Login=:ID_Login";
 
         // Préparation de la requête
         $query = $this->connexion->prepare($sql);
@@ -59,17 +57,11 @@ class Administrateur
 
         // Protection contre les injections
         $this->ID_Utilisateur = htmlspecialchars(strip_tags($this->ID_Utilisateur));
-        $this->Nom = htmlspecialchars(strip_tags($this->Nom));
-        $this->Prenom = htmlspecialchars(strip_tags($this->Prenom));
-        $this->Photo_Utilisateur = htmlspecialchars(strip_tags($this->Photo_Utilisateur));
         $this->ID_Login = htmlspecialchars(strip_tags($this->ID_Login));
 
 
         // Ajout des données protégées
         $query->bindParam(":ID_Utilisateur", $this->ID_Utilisateur);
-        $query->bindParam(":Nom", $this->Nom);
-        $query->bindParam(":Prenom", $this->Prenom);
-        $query->bindParam(":Photo_Utilisateur", $this->Photo_Utilisateur);
         $query->bindParam(":ID_Login", $this->ID_Login);
 
         // Exécution de la requête
@@ -88,7 +80,7 @@ class Administrateur
     {
         // On écrit la requête
 
-        $sql = "SELECT * FROM " . $this->table . " WHERE ID_Utilisateur = ? LIMIT 0,1";
+        $sql ="SELECT * FROM " . $this->table . " INNER JOIN " . $this->table1 . " ON " . $this->table . ".ID_Utilisateur = " . $this->table1 . ".ID_Utilisateur WHERE " . $this->table . ".ID_Login = ? LIMIT 0,1";
 
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
@@ -107,6 +99,7 @@ class Administrateur
         $this->Nom = $row['Nom'];
         $this->Prenom = $row['Prenom'];
         $this->Photo_Utilisateur = $row['Photo_Utilisateur'];
+        $this->Role = $row['Role'];
         $this->ID_Login = $row['ID_Login'];
     }
 
@@ -147,7 +140,7 @@ class Administrateur
 
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "UPDATE " . $this->table . " SET  Nom=:Nom, Prenom=:Prenom,  Photo_Utilisateur=:Photo_Utilisateur, ID_Login=:ID_Login WHERE ID_Utilisateur= :ID_Utilisateur";
+        $sql = "UPDATE " . $this->table . " SET  ID_Login=:ID_Login WHERE ID_Utilisateur= :ID_Utilisateur";
 
 
         // Préparation de la requête
@@ -156,17 +149,11 @@ class Administrateur
 
         // Protection contre les injections
         $this->ID_Utilisateur = htmlspecialchars(strip_tags($this->ID_Utilisateur));
-        $this->Nom = htmlspecialchars(strip_tags($this->Nom));
-        $this->Prenom = htmlspecialchars(strip_tags($this->Prenom));
-        $this->Photo_Utilisateur = htmlspecialchars(strip_tags($this->Photo_Utilisateur));
         $this->ID_Login = htmlspecialchars(strip_tags($this->ID_Login));
 
 
         // Ajout des données protégées
         $query->bindParam(':ID_Utilisateur', $this->ID_Utilisateur);
-        $query->bindParam(':Nom', $this->Nom);
-        $query->bindParam(':Prenom', $this->Prenom);
-        $query->bindParam(':Photo_Utilisateur', $this->Photo_Utilisateur);
         $query->bindParam(':ID_Login', $this->ID_Login);
 
 

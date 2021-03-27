@@ -4,15 +4,13 @@ class Etudiant
     // Connexion
     private $connexion;
     private $table = "etudiant"; //table de la base de données
+    private $table1 = "utilisateur"; //table de la base de données
 
     // object properties 
     public $ID_Utilisateur;
     public $Centre_etudiant;
     public $Promotion_etudiant;
     public $Specialite;
-    public $Nom;
-    public $Prenom;
-    public $Photo_Utilisateur;
     public $ID_Utilisateur__CREE;
     public $ID_Login;
 
@@ -35,7 +33,7 @@ class Etudiant
     public function lire_etudiant()
     {
         // On écrit la requête 
-        $sql = "SELECT * FROM " . $this->table;
+        $sql = "SELECT * FROM " . $this->table . " INNER JOIN " . $this->table1 . " ON " . $this->table . ".ID_Utilisateur=" . $this->table1 . ".ID_Utilisateur";
 
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
@@ -56,7 +54,7 @@ class Etudiant
     {
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET ID_Utilisateur=:ID_Utilisateur, Centre_etudiant=:Centre_etudiant, Promotion_etudiant=:Promotion_etudiant, Specialite=:Specialite, Nom=:Nom, Prenom=:Prenom, Photo_Utilisateur=:Photo_Utilisateur, ID_Utilisateur__CREE=:ID_Utilisateur__CREE, ID_Login=:ID_Login";
+        $sql = "INSERT INTO " . $this->table . " SET ID_Utilisateur=:ID_Utilisateur, Centre_etudiant=:Centre_etudiant, Promotion_etudiant=:Promotion_etudiant, Specialite=:Specialite, ID_Utilisateur__CREE=:ID_Utilisateur__CREE, ID_Login=:ID_Login";
 
 
         // Préparation de la requête
@@ -68,9 +66,6 @@ class Etudiant
         $this->Centre_etudiant = htmlspecialchars(strip_tags($this->Centre_etudiant));
         $this->Promotion_etudiant = htmlspecialchars(strip_tags($this->Promotion_etudiant));
         $this->Specialite = htmlspecialchars(strip_tags($this->Specialite));
-        $this->Nom = htmlspecialchars(strip_tags($this->Nom));
-        $this->Prenom = htmlspecialchars(strip_tags($this->Prenom));
-        $this->Photo_Utilisateur = htmlspecialchars(strip_tags($this->Photo_Utilisateur));
         $this->ID_Utilisateur__CREE = htmlspecialchars(strip_tags($this->ID_Utilisateur__CREE));
         $this->ID_Login = htmlspecialchars(strip_tags($this->ID_Login));
 
@@ -80,9 +75,6 @@ class Etudiant
         $query->bindParam(":Centre_etudiant", $this->Centre_etudiant);
         $query->bindParam(":Promotion_etudiant", $this->Promotion_etudiant);
         $query->bindParam(":Specialite", $this->Specialite);
-        $query->bindParam(":Nom", $this->Nom);
-        $query->bindParam(":Prenom", $this->Prenom);
-        $query->bindParam(":Photo_Utilisateur", $this->Photo_Utilisateur);
         $query->bindParam(":ID_Utilisateur__CREE", $this->ID_Utilisateur__CREE);
         $query->bindParam(":ID_Login", $this->ID_Login);
 
@@ -103,13 +95,14 @@ class Etudiant
     {
         // On écrit la requête
 
-        $sql = "SELECT * FROM " . $this->table . " WHERE ID_Utilisateur = ? LIMIT 0,1";
+        $sql =
+            "SELECT * FROM " . $this->table . " INNER JOIN " . $this->table1 . " ON " . $this->table . ".ID_Utilisateur = " . $this->table1 . ".ID_Utilisateur WHERE " . $this->table . ".ID_Login = ? LIMIT 0,1";
 
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
 
         // On attache l'id
-        $query->bindParam(1, $this->ID_Utilisateur);
+        $query->bindParam(1, $this->ID_Login);
 
         // On exécute la requête
         $query->execute();
@@ -125,6 +118,7 @@ class Etudiant
         $this->Nom = $row['Nom'];
         $this->Prenom = $row['Prenom'];
         $this->Photo_Utilisateur = $row['Photo_Utilisateur'];
+        $this->Role = $row['Role'];
         $this->ID_Utilisateur__CREE = $row['ID_Utilisateur__CREE'];
         $this->ID_Login = $row['ID_Login'];
     }
@@ -166,7 +160,7 @@ class Etudiant
 
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "UPDATE " . $this->table . " SET Centre_etudiant=:Centre_etudiant, Promotion_etudiant=:Promotion_etudiant, Specialite=:Specialite, Nom=:Nom, Prenom=:Prenom, Photo_Utilisateur=:Photo_Utilisateur, ID_Utilisateur__CREE=:ID_Utilisateur__CREE, ID_Login=:ID_Login WHERE ID_Utilisateur=:ID_Utilisateur";
+        $sql = "UPDATE " . $this->table . " SET Centre_etudiant=:Centre_etudiant, Promotion_etudiant=:Promotion_etudiant, Specialite=:Specialite, ID_Utilisateur__CREE=:ID_Utilisateur__CREE, ID_Login=:ID_Login WHERE ID_Utilisateur=:ID_Utilisateur";
 
 
         // Préparation de la requête
@@ -178,9 +172,6 @@ class Etudiant
         $this->Centre_etudiant = htmlspecialchars(strip_tags($this->Centre_etudiant));
         $this->Promotion_etudiant = htmlspecialchars(strip_tags($this->Promotion_etudiant));
         $this->Specialite = htmlspecialchars(strip_tags($this->Specialite));
-        $this->Nom = htmlspecialchars(strip_tags($this->Nom));
-        $this->Prenom = htmlspecialchars(strip_tags($this->Prenom));
-        $this->Photo_Utilisateur = htmlspecialchars(strip_tags($this->Photo_Utilisateur));
         $this->ID_Utilisateur__CREE = htmlspecialchars(strip_tags($this->ID_Utilisateur__CREE));
         $this->ID_Login = htmlspecialchars(strip_tags($this->ID_Login));
 
@@ -189,9 +180,6 @@ class Etudiant
         $query->bindParam(":Centre_etudiant", $this->Centre_etudiant);
         $query->bindParam(":Promotion_etudiant", $this->Promotion_etudiant);
         $query->bindParam(":Specialite", $this->Specialite);
-        $query->bindParam(":Nom", $this->Nom);
-        $query->bindParam(":Prenom", $this->Prenom);
-        $query->bindParam(":Photo_Utilisateur", $this->Photo_Utilisateur);
         $query->bindParam(":ID_Utilisateur__CREE", $this->ID_Utilisateur__CREE);
         $query->bindParam(":ID_Login", $this->ID_Login);
 

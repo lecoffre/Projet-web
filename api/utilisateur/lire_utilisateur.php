@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "Nom" => $Nom,
                 "Prenom" => $Prenom,
                 "Photo_Utilisateur" => $Photo_Utilisateur,
+                "Role" => $Role,
                 "ID_Login" => $ID_Login,
             ];
             $tableauutilisateur['utilisateur'][] = $utili;
