@@ -392,7 +392,7 @@ class Login
  
 
             $NewToken;
-            $this->NewToken = 'TOKEN_GENERE_:'.bin2hex(random_bytes(40)); 
+            $this->NewToken = 'TOKEN_:'.bin2hex(random_bytes(40)); 
             // Ajout des données protégées
             
             $query->bindParam(':Token', $this->NewToken);
