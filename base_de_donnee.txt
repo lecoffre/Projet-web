@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 27 mars 2021 à 18:31
+-- Généré le : sam. 27 mars 2021 à 21:11
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.1
 
@@ -112,26 +112,46 @@ INSERT INTO `delegue` (`ID_Utilisateur`, `Centre_Delegue`, `Promotion_delegue`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `droitdelegue`
+-- Structure de la table `droit_token`
 --
 
-CREATE TABLE `droitdelegue` (
-  `ID_Utilisateur` int(11) NOT NULL,
-  `ID_Utilisateur_droitdelegue` int(11) NOT NULL,
+CREATE TABLE `droit_token` (
+  `Token` varchar(100) NOT NULL,
+  `Rechercher_une_entreprise` tinyint(1) NOT NULL,
+  `Creer_une_entreprise` tinyint(1) NOT NULL,
+  `Modifier_une_entreprise` tinyint(1) NOT NULL,
+  `Evaluer_une_entreprise` tinyint(1) NOT NULL,
+  `Supprimer_une_entreprise` tinyint(1) NOT NULL,
+  `Consulter_les_stats_des_entreprises` tinyint(1) NOT NULL,
+  `Rechercher_une_offre` tinyint(1) NOT NULL,
   `Creer_une_offre` tinyint(1) NOT NULL,
   `Modifier_une_offre` tinyint(1) NOT NULL,
   `Supprimer_une_offre` tinyint(1) NOT NULL,
+  `Consulter_les_stats_des_offres` tinyint(1) NOT NULL,
+  `Rechercher_un_compte_pilote` tinyint(1) NOT NULL,
+  `Creer_un_compte_pilote` tinyint(1) NOT NULL,
+  `Modifier_un_compte_pilote` tinyint(1) NOT NULL,
+  `Supprimer_un_compte_pilote` tinyint(1) NOT NULL,
   `Rechercher_un_compte_delegue` tinyint(1) NOT NULL,
-  `Creer_un_delegue` tinyint(1) NOT NULL,
+  `Creer_un_compte_delegue` tinyint(1) NOT NULL,
   `Modifier_un_compte_delegue` tinyint(1) NOT NULL,
   `Supprimer_un_compte_delegue` tinyint(1) NOT NULL,
+  `Assigner_des_droits_a_un_delegue` tinyint(1) NOT NULL,
   `Rechercher_un_compte_etudiant` tinyint(1) NOT NULL,
-  `Creer_un_etudiant` tinyint(1) NOT NULL,
-  `Modifier_un_etudiant` tinyint(1) NOT NULL,
-  `Supprimer_un_etudiant` tinyint(1) NOT NULL,
+  `Creer_un_compte_etudiant` tinyint(1) NOT NULL,
+  `Modifier_un_compte_etudiant` tinyint(1) NOT NULL,
+  `Supprimer_un_compte_etudiant` tinyint(1) NOT NULL,
   `Consulter_les_stats_des_etudiants` tinyint(1) NOT NULL,
+  `Ajouter_une_offre_a_la_wish_list` tinyint(1) NOT NULL,
+  `Retirer_une_offre_a_la_wish_list` tinyint(1) NOT NULL,
+  `Postuler_a_une_offre` tinyint(1) NOT NULL,
+  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_1` tinyint(1) NOT NULL,
+  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_2` tinyint(1) NOT NULL,
   `Informer_le_systeme_de_l_avancement_de_la_candidature_step_3` tinyint(1) NOT NULL,
-  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_4` tinyint(1) NOT NULL
+  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_4` tinyint(1) NOT NULL,
+  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_5` tinyint(1) NOT NULL,
+  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_6` tinyint(1) NOT NULL,
+  `ID_Utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -297,11 +317,11 @@ ALTER TABLE `delegue`
   ADD KEY `delegue_UTILISATEUR0_FK` (`ID_Utilisateur__CREE`);
 
 --
--- Index pour la table `droitdelegue`
+-- Index pour la table `droit_token`
 --
-ALTER TABLE `droitdelegue`
-  ADD PRIMARY KEY (`ID_Utilisateur`,`ID_Utilisateur_droitdelegue`),
-  ADD KEY `droitdelegue_UTILISATEUR0_FK` (`ID_Utilisateur_droitdelegue`);
+ALTER TABLE `droit_token`
+  ADD PRIMARY KEY (`Token`),
+  ADD UNIQUE KEY `droit_UTILISATEUR0_AK` (`ID_Utilisateur`);
 
 --
 -- Index pour la table `entreprise`
@@ -403,11 +423,10 @@ ALTER TABLE `delegue`
   ADD CONSTRAINT `delegue_UTILISATEUR_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
 
 --
--- Contraintes pour la table `droitdelegue`
+-- Contraintes pour la table `droit_token`
 --
-ALTER TABLE `droitdelegue`
-  ADD CONSTRAINT `droitdelegue_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur_droitdelegue`) REFERENCES `utilisateur` (`ID_Utilisateur`),
-  ADD CONSTRAINT `droitdelegue_delegue_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `delegue` (`ID_Utilisateur`);
+ALTER TABLE `droit_token`
+  ADD CONSTRAINT `droit_UTILISATEUR0_FK` FOREIGN KEY (`ID_Utilisateur`) REFERENCES `utilisateur` (`ID_Utilisateur`);
 
 --
 -- Contraintes pour la table `entreprise`
