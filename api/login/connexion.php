@@ -37,21 +37,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "Nom" => $authentification->Nom,
                 "Prenom" => $authentification->Prenom,
                 "Photo_Utilisateur" => $authentification->Photo_Utilisateur,
-                
+                "Role" => $authentification->Role,
+                "ID_Utilisateur" => $authentification->ID_Utilisateur,
             ];
-            if($authen['ID_Login'] == null){
+            if($authen['ID_Login'] == null || $authen['Role'] == null){
             http_response_code(404);
             echo json_encode(array("message" => "L'ID utilisateur n'existe pas'."));
             }else{
             // On envoie le code réponse 200 OK
+
+
+                switch($authentification->Role){
+                    case 'administrateur':
+                        $authen['Authorisations'] = 'Complet : authorisations administrateur avec ID:'.$authentification->ID_Utilisateur;
+                        $authen['TOKEN'] = 'TOKEN-SGDS: dvsfdblk,gblkg654r4srg88*dgefG)44gdr4gvdr';
+                        break;
+                    case 'etudiant':
+                        $authen['Authorisations'] = 'Restreint : authorisations du pilote avec ID:'.$authentification->ID_Utilisateur;
+                        $authen['TOKEN'] = 'TOKEN-SGDS: fvwvbjsfkjnkbxcnlk+54vxb654v6b1w5s<df+sd+';
+                        break;
+                    case 'pilote':
+                        $authen['Authorisations'] = 'Restreint : authorisations du pilote avec ID:'.$authentification->ID_Utilisateur;
+                        $authen['TOKEN'] = 'TOKEN-SGDS: wx65cv5cvfvsdw2321sfcvc3c23032gr5gf6w16fb';
+                        break;
+                    case 'delegue':
+                        $authen['Authorisations'] = 'Restreint : authorisations du delegue avec ID:'.$authentification->ID_Utilisateur;
+                        $authen['TOKEN'] = 'TOKEN-SGDS: d1xc5w61c6d51v654n6v4f,4hjg4h646d4g64df6g';
+                        break;
+                }
+
+            
+
+
+
             http_response_code(200);
+            $authen['message'] = 'ok';
+
             // On encode en json et on envoie
             echo json_encode($authen);
             }
         } 
-        
 
-        
+
+
+
+
+
+
+       /* 
         else if ($authentification->Login != null) { 
             $authen = [
                 "ID_Login" => $authentification->ID_Login,
@@ -60,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "Nom" => $authentification->Nom,
                 "Prenom" => $authentification->Prenom,
                 "Photo_Utilisateur" => $authentification->Photo_Utilisateur,
+                "Role" => $authentification->Role,
                 
             ];
             if($authen['ID_Login'] == null){
@@ -84,20 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         } 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+*/
         else {
             // 404 Not found
             http_response_code(404);
