@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : sam. 27 mars 2021 à 14:06
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
+-- Hôte : 127.0.0.1
+-- Généré le : sam. 27 mars 2021 à 18:31
+-- Version du serveur :  10.4.17-MariaDB
+-- Version de PHP : 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,12 +27,9 @@ SET time_zone = "+00:00";
 -- Structure de la table `administrateur`
 --
 
-DROP TABLE IF EXISTS `administrateur`;
-CREATE TABLE IF NOT EXISTS `administrateur` (
+CREATE TABLE `administrateur` (
   `ID_Utilisateur` int(11) NOT NULL,
-  `ID_Login` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Utilisateur`),
-  UNIQUE KEY `Administrateur_Authentification_AK` (`ID_Login`)
+  `ID_Login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -48,23 +45,21 @@ INSERT INTO `administrateur` (`ID_Utilisateur`, `ID_Login`) VALUES
 -- Structure de la table `authentification`
 --
 
-DROP TABLE IF EXISTS `authentification`;
-CREATE TABLE IF NOT EXISTS `authentification` (
-  `ID_Login` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `authentification` (
+  `ID_Login` int(11) NOT NULL,
   `Login` varchar(50) NOT NULL,
-  `Mot_de_passe` varchar(30) NOT NULL,
-  PRIMARY KEY (`ID_Login`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  `Mot_de_passe` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `authentification`
 --
 
 INSERT INTO `authentification` (`ID_Login`, `Login`, `Mot_de_passe`) VALUES
-(1, 'testadmin', 'testmdp123*'),
-(2, 'testpilote', 'testmdp123*'),
-(3, 'testdelegue', 'testmdp123*'),
-(4, 'testeleve', 'testmdp123*'),
+(1, 'kamkam', 'testmdp123*'),
+(2, 'nono', 'testmdp123*'),
+(3, 'thotho', 'testmdp123*'),
+(4, 'frefre', 'testmdp123*'),
 (6, 'eleve', 'mdp');
 
 -- --------------------------------------------------------
@@ -73,9 +68,8 @@ INSERT INTO `authentification` (`ID_Login`, `Login`, `Mot_de_passe`) VALUES
 -- Structure de la table `candidature`
 --
 
-DROP TABLE IF EXISTS `candidature`;
-CREATE TABLE IF NOT EXISTS `candidature` (
-  `ID_Candidature` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `candidature` (
+  `ID_Candidature` int(11) NOT NULL,
   `CV_etudiant` varchar(30) NOT NULL,
   `Lettre_de_motivation_etudiant` varchar(30) NOT NULL,
   `Fiche_de_validation` varchar(30) NOT NULL,
@@ -83,12 +77,8 @@ CREATE TABLE IF NOT EXISTS `candidature` (
   `LIEN_OFFRE` varchar(30) NOT NULL,
   `ID_Utilisateur` int(11) NOT NULL,
   `ID_offre` int(11) NOT NULL,
-  `ID_Utilisateur_Pilote` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Candidature`),
-  KEY `Candidature_etudiant_FK` (`ID_Utilisateur`),
-  KEY `Candidature_Offre0_FK` (`ID_offre`),
-  KEY `Candidature_Pilote1_FK` (`ID_Utilisateur_Pilote`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `ID_Utilisateur_Pilote` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `candidature`
@@ -103,17 +93,13 @@ INSERT INTO `candidature` (`ID_Candidature`, `CV_etudiant`, `Lettre_de_motivatio
 -- Structure de la table `delegue`
 --
 
-DROP TABLE IF EXISTS `delegue`;
-CREATE TABLE IF NOT EXISTS `delegue` (
+CREATE TABLE `delegue` (
   `ID_Utilisateur` int(11) NOT NULL,
   `Centre_Delegue` char(30) NOT NULL,
   `Promotion_delegue` varchar(20) NOT NULL,
   `Specialite` char(20) NOT NULL,
   `ID_Utilisateur__CREE` int(11) NOT NULL,
-  `ID_Login` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Utilisateur`),
-  UNIQUE KEY `delegue_Authentification_AK` (`ID_Login`),
-  KEY `delegue_UTILISATEUR0_FK` (`ID_Utilisateur__CREE`)
+  `ID_Login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -129,8 +115,7 @@ INSERT INTO `delegue` (`ID_Utilisateur`, `Centre_Delegue`, `Promotion_delegue`, 
 -- Structure de la table `droitdelegue`
 --
 
-DROP TABLE IF EXISTS `droitdelegue`;
-CREATE TABLE IF NOT EXISTS `droitdelegue` (
+CREATE TABLE `droitdelegue` (
   `ID_Utilisateur` int(11) NOT NULL,
   `ID_Utilisateur_droitdelegue` int(11) NOT NULL,
   `Creer_une_offre` tinyint(1) NOT NULL,
@@ -146,9 +131,7 @@ CREATE TABLE IF NOT EXISTS `droitdelegue` (
   `Supprimer_un_etudiant` tinyint(1) NOT NULL,
   `Consulter_les_stats_des_etudiants` tinyint(1) NOT NULL,
   `Informer_le_systeme_de_l_avancement_de_la_candidature_step_3` tinyint(1) NOT NULL,
-  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_4` tinyint(1) NOT NULL,
-  PRIMARY KEY (`ID_Utilisateur`,`ID_Utilisateur_droitdelegue`),
-  KEY `droitdelegue_UTILISATEUR0_FK` (`ID_Utilisateur_droitdelegue`)
+  `Informer_le_systeme_de_l_avancement_de_la_candidature_step_4` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -157,9 +140,8 @@ CREATE TABLE IF NOT EXISTS `droitdelegue` (
 -- Structure de la table `entreprise`
 --
 
-DROP TABLE IF EXISTS `entreprise`;
-CREATE TABLE IF NOT EXISTS `entreprise` (
-  `ID_Entreprise` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `entreprise` (
+  `ID_Entreprise` int(11) NOT NULL,
   `Nom_entreprise` varchar(30) NOT NULL,
   `Secteur_activite` varchar(30) NOT NULL,
   `Competences_recherchees_dans_les_stages` varchar(100) NOT NULL,
@@ -168,10 +150,8 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
   `Confiance_du_Pilote_de_promotion` int(11) NOT NULL,
   `Localite_entreprise` varchar(20) NOT NULL,
   `Logo_Entreprise` varchar(50) NOT NULL,
-  `ID_Utilisateur` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Entreprise`),
-  KEY `Entreprise_UTILISATEUR_FK` (`ID_Utilisateur`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+  `ID_Utilisateur` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `entreprise`
@@ -188,17 +168,13 @@ INSERT INTO `entreprise` (`ID_Entreprise`, `Nom_entreprise`, `Secteur_activite`,
 -- Structure de la table `etudiant`
 --
 
-DROP TABLE IF EXISTS `etudiant`;
-CREATE TABLE IF NOT EXISTS `etudiant` (
+CREATE TABLE `etudiant` (
   `ID_Utilisateur` int(11) NOT NULL,
   `Centre_etudiant` char(30) NOT NULL,
   `Promotion_etudiant` varchar(20) NOT NULL,
   `Specialite` char(20) NOT NULL,
   `ID_Utilisateur__CREE` int(11) NOT NULL,
-  `ID_Login` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Utilisateur`),
-  UNIQUE KEY `etudiant_Authentification_AK` (`ID_Login`),
-  KEY `etudiant_UTILISATEUR0_FK` (`ID_Utilisateur__CREE`)
+  `ID_Login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -215,9 +191,8 @@ INSERT INTO `etudiant` (`ID_Utilisateur`, `Centre_etudiant`, `Promotion_etudiant
 -- Structure de la table `offre`
 --
 
-DROP TABLE IF EXISTS `offre`;
-CREATE TABLE IF NOT EXISTS `offre` (
-  `ID_offre` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `offre` (
+  `ID_offre` int(11) NOT NULL,
   `Secteur` varchar(20) NOT NULL,
   `Titre_offre` varchar(30) NOT NULL,
   `Competences_offre` varchar(100) NOT NULL,
@@ -229,11 +204,8 @@ CREATE TABLE IF NOT EXISTS `offre` (
   `Date_de_offre` date NOT NULL,
   `Nombre_de_places_disponible` int(11) NOT NULL,
   `ID_Entreprise` int(11) DEFAULT NULL,
-  `ID_Utilisateur` int(11) NOT NULL,
-  PRIMARY KEY (`ID_offre`),
-  KEY `Offre_Entreprise_FK` (`ID_Entreprise`),
-  KEY `Offre_UTILISATEUR0_FK` (`ID_Utilisateur`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `ID_Utilisateur` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `offre`
@@ -249,16 +221,12 @@ INSERT INTO `offre` (`ID_offre`, `Secteur`, `Titre_offre`, `Competences_offre`, 
 -- Structure de la table `pilote`
 --
 
-DROP TABLE IF EXISTS `pilote`;
-CREATE TABLE IF NOT EXISTS `pilote` (
+CREATE TABLE `pilote` (
   `ID_Utilisateur` int(11) NOT NULL,
   `Centre_pilote` char(30) NOT NULL,
   `Promotion_pilote` varchar(20) NOT NULL,
   `ID_Utilisateur_Administrateur` int(11) DEFAULT NULL,
-  `ID_Login` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Utilisateur`),
-  UNIQUE KEY `Pilote_Authentification_AK` (`ID_Login`),
-  KEY `Pilote_Administrateur0_FK` (`ID_Utilisateur_Administrateur`)
+  `ID_Login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -274,28 +242,138 @@ INSERT INTO `pilote` (`ID_Utilisateur`, `Centre_pilote`, `Promotion_pilote`, `ID
 -- Structure de la table `utilisateur`
 --
 
-DROP TABLE IF EXISTS `utilisateur`;
-CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `ID_Utilisateur` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `utilisateur` (
+  `ID_Utilisateur` int(11) NOT NULL,
   `Nom` char(30) NOT NULL,
   `Prenom` char(30) NOT NULL,
   `Photo_Utilisateur` varchar(50) NOT NULL,
   `Role` varchar(20) NOT NULL,
-  `ID_Login` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Utilisateur`),
-  UNIQUE KEY `UTILISATEUR_Authentification_AK` (`ID_Login`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `ID_Login` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`ID_Utilisateur`, `Nom`, `Prenom`, `Photo_Utilisateur`, `Role`, `ID_Login`) VALUES
-(1, 'Utilisateur', 'Admin', 'img/users/default_avatar.png', '0', 1),
-(2, 'Utilisateur', 'Pilote', 'img/users/default_avatar.png', '0', 2),
-(3, 'Utilisateur', 'Delegue', 'img/users/default_avatar.png', '0', 3),
-(4, 'Utilisateur', 'Eleve', 'img/users/default_avatar.png', '0', 4),
-(5, 'eleve', 'eleve', 'eleve.png', '0', 6);
+(1, 'Boudani', 'Kamil', 'img/users/default_avatar.png', 'administrateur', 1),
+(2, 'Attia', 'Noah', 'img/users/default_avatar.png', 'pilote', 2),
+(3, 'Desgranges', 'Thomas', 'img/users/default_avatar.png', 'delegue', 3),
+(4, 'Nguyen', 'Frédéric', 'img/users/default_avatar.png', 'etudiant', 4),
+(5, 'NOMDELEVE', 'elevetest', 'eleve.png', 'etudiant', 6);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `administrateur`
+--
+ALTER TABLE `administrateur`
+  ADD PRIMARY KEY (`ID_Utilisateur`),
+  ADD UNIQUE KEY `Administrateur_Authentification_AK` (`ID_Login`);
+
+--
+-- Index pour la table `authentification`
+--
+ALTER TABLE `authentification`
+  ADD PRIMARY KEY (`ID_Login`);
+
+--
+-- Index pour la table `candidature`
+--
+ALTER TABLE `candidature`
+  ADD PRIMARY KEY (`ID_Candidature`),
+  ADD KEY `Candidature_etudiant_FK` (`ID_Utilisateur`),
+  ADD KEY `Candidature_Offre0_FK` (`ID_offre`),
+  ADD KEY `Candidature_Pilote1_FK` (`ID_Utilisateur_Pilote`);
+
+--
+-- Index pour la table `delegue`
+--
+ALTER TABLE `delegue`
+  ADD PRIMARY KEY (`ID_Utilisateur`),
+  ADD UNIQUE KEY `delegue_Authentification_AK` (`ID_Login`),
+  ADD KEY `delegue_UTILISATEUR0_FK` (`ID_Utilisateur__CREE`);
+
+--
+-- Index pour la table `droitdelegue`
+--
+ALTER TABLE `droitdelegue`
+  ADD PRIMARY KEY (`ID_Utilisateur`,`ID_Utilisateur_droitdelegue`),
+  ADD KEY `droitdelegue_UTILISATEUR0_FK` (`ID_Utilisateur_droitdelegue`);
+
+--
+-- Index pour la table `entreprise`
+--
+ALTER TABLE `entreprise`
+  ADD PRIMARY KEY (`ID_Entreprise`),
+  ADD KEY `Entreprise_UTILISATEUR_FK` (`ID_Utilisateur`);
+
+--
+-- Index pour la table `etudiant`
+--
+ALTER TABLE `etudiant`
+  ADD PRIMARY KEY (`ID_Utilisateur`),
+  ADD UNIQUE KEY `etudiant_Authentification_AK` (`ID_Login`),
+  ADD KEY `etudiant_UTILISATEUR0_FK` (`ID_Utilisateur__CREE`);
+
+--
+-- Index pour la table `offre`
+--
+ALTER TABLE `offre`
+  ADD PRIMARY KEY (`ID_offre`),
+  ADD KEY `Offre_Entreprise_FK` (`ID_Entreprise`),
+  ADD KEY `Offre_UTILISATEUR0_FK` (`ID_Utilisateur`);
+
+--
+-- Index pour la table `pilote`
+--
+ALTER TABLE `pilote`
+  ADD PRIMARY KEY (`ID_Utilisateur`),
+  ADD UNIQUE KEY `Pilote_Authentification_AK` (`ID_Login`),
+  ADD KEY `Pilote_Administrateur0_FK` (`ID_Utilisateur_Administrateur`);
+
+--
+-- Index pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`ID_Utilisateur`),
+  ADD UNIQUE KEY `UTILISATEUR_Authentification_AK` (`ID_Login`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `authentification`
+--
+ALTER TABLE `authentification`
+  MODIFY `ID_Login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pour la table `candidature`
+--
+ALTER TABLE `candidature`
+  MODIFY `ID_Candidature` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `entreprise`
+--
+ALTER TABLE `entreprise`
+  MODIFY `ID_Entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT pour la table `offre`
+--
+ALTER TABLE `offre`
+  MODIFY `ID_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `ID_Utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Contraintes pour les tables déchargées
