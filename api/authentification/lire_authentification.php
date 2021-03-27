@@ -6,6 +6,21 @@ header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+
+
+if (!isset($_SERVER['PHP_AUTH_USER'])){
+    header("WWW-Authenticate: Basic realm=\"Private Area\"");
+    header ("HHTP/1.0 401 Unauthorized");
+    print "Besoin d'une autorisation";
+    exit;
+}
+
+
+
+
+
+
+
 // On vérifie que la méthode utilisée est correcte
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 

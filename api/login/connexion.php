@@ -34,49 +34,59 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "Role" => $authentification->Role,
                 "ID_Utilisateur" => $authentification->ID_Utilisateur,
             ];
-            if($authen['ID_Login'] != null || $authen['Role'] != null || $authen['ID_Utilisateur'] != null ){
-            // On envoie le code réponse 200 OK
+            if($authen['ID_Login'] != null || $authen['Role'] != null || $authen['ID_Utilisateur'] != null )
                 switch($authentification->Role){
                     case 'administrateur':
-                        $authen['Authorisations'] = 'Complet : authorisations administrateur avec ID:'.$authentification->ID_Utilisateur;
-                        $token = 'TOKEN_GENERE_:'.bin2hex(random_bytes(40)); 
-                        $authen['TOKEN'] = $token;
-                        $authen['message'] = 'ok';
+                        $authen['Authorisations'] = 'Complet : authorisations administrateur avec ID: '.$authentification->ID_Utilisateur;
+                        $message = 'ok';
                         break;
                     case 'etudiant':
                         $authen['Centre_etudiant'] = $authentification->Centre_etudiant ;
                         $authen['Promotion_etudiant'] = $authentification->Promotion_etudiant ;
                         $authen['Centre_etudiant'] = $authentification->Centre_etudiant ;
                         $authen['ID_Utilisateur__CREE'] = $authentification->ID_Utilisateur__CREE ;
-                        $authen['Authorisations'] = 'Restreint : authorisations du pilote avec ID:'.$authentification->ID_Utilisateur;
-                        $token = 'TOKEN_GENERE_:'.bin2hex(random_bytes(40)); 
-                        $authen['TOKEN'] = $token;
-                        $authen['message'] = 'ok';
+                        $authen['Authorisations'] = 'Restreint : authorisations du pilote avec ID: '.$authentification->ID_Utilisateur;
+                        $message = 'ok';                
                         break;
                     case 'pilote':
                         $authen['Centre_pilote'] = $authentification->Centre_pilote ;
                         $authen['Promotion_pilote'] = $authentification->Promotion_pilote ;
                         $authen['ID_Utilisateur_Administrateur'] = $authentification->ID_Utilisateur_Administrateur ;
-                        $authen['Authorisations'] = 'Restreint : authorisations du pilote avec ID:'.$authentification->ID_Utilisateur;
-                        $token = 'TOKEN_GENERE_:'.bin2hex(random_bytes(40)); 
-                        $authen['TOKEN'] = $token;
-                        $authen['message'] = 'ok';
+                        $authen['Authorisations'] = 'Restreint : authorisations du pilote avec ID: '.$authentification->ID_Utilisateur;
+                        $message = 'ok';                      
                         break;
                     case 'delegue':
                         $authen['Centre_Delegue'] = $authentification->Centre_Delegue ;
                         $authen['Promotion_delegue'] = $authentification->Promotion_delegue ;
                         $authen['Specialite'] = $authentification->Specialite ;
                         $authen['ID_Utilisateur__CREE'] = $authentification->ID_Utilisateur__CREE ;
-                        $authen['Authorisations'] = 'Restreint : authorisations du delegue avec ID:'.$authentification->ID_Utilisateur;
-                        $token = 'TOKEN_GENERE_:'.bin2hex(random_bytes(40)); 
-                        $authen['TOKEN'] = $token;
-                        $authen['message'] = 'ok';
+                        $authen['Authorisations'] = 'Restreint : authorisations du delegue avec ID: '.$authentification->ID_Utilisateur;
+                        $message = 'ok';
                         break;
                     default:
-                    echo json_encode(array("message" => "ok, mais aucun role"));
-                    break;
+                        $message = "ok, mais aucun role";
+                        break;
                 }
             http_response_code(200);
+            // -------------------------TOKEN-------------------------
+            if($authentification->Token != null){
+            $authen['Token'] = $authentification->Token;
+            $message = 'Token récupéré avec succès';
+            }
+            else if($authentification->NewToken != null){
+            $authen['Nouveau Token'] = $authentification->NewToken;
+            $authen['Rechercher_entreprise'] = $authentification->Rechercher_entreprise;
+            if($authentification->Role == 'administrateur'){
+                $message = 'Token généré avec succès, vous avez tout les droits d\'API';
+            }else{
+                $message = 'Token généré avec succès, vos droits d\'API sont restreints, contactez un administrateur pour vous octroyer des droits supplémentaire';
+            }
+            }
+            else{
+            $authen['Token'] = 'Problème de géneration du Token';
+            }
+            // -------------------------TOKEN-------------------------
+            $authen['message'] = $message;
             echo json_encode($authen);
             }else{
                 http_response_code(404);
