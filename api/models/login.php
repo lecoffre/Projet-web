@@ -100,7 +100,6 @@ class Login
             break;
 
 
-
         case 'delegue':
             $sql = "SELECT * FROM " . $this->table_6 . " WHERE ID_Login =:ID_Login";
             $query = $this->connexion->prepare($sql);
@@ -112,10 +111,11 @@ class Login
             $this->Promotion_delegue = $row['Promotion_delegue'];
             $this->Specialite = $row['Specialite'];
             $this->ID_Utilisateur__CREE = $row['ID_Utilisateur__CREE'];
-            $this->ID_Login = $row['ID_Login'];
      
             break;
-
+            default:
+            $this->Role = 'aucun';
+            break;
 
 
     }

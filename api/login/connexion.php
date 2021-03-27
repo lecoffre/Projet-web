@@ -21,14 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $donnees = json_decode(file_get_contents("php://input"));
     if (!empty($donnees->Login) && !empty($donnees->Mot_de_passe)) {
         $authentification->Login = $donnees->Login;
-        $authentification->Mot_de_passe = $donnees->Mot_de_passe;
-        // On 
+        $authentification->Mot_de_passe = $donnees->Mot_de_passe; 
         $authentification->login();
-
-
-
-
-
         if ($authentification->Login != null && $authentification->Nom != null) { 
             $authen = [
                 "ID_Login" => $authentification->ID_Login,
@@ -40,85 +34,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "Role" => $authentification->Role,
                 "ID_Utilisateur" => $authentification->ID_Utilisateur,
             ];
-            if($authen['ID_Login'] == null || $authen['Role'] == null){
-            http_response_code(404);
-            echo json_encode(array("message" => "L'ID utilisateur n'existe pas'."));
-            }else{
+            if($authen['ID_Login'] != null || $authen['Role'] != null || $authen['ID_Utilisateur'] != null ){
             // On envoie le code réponse 200 OK
-
-
                 switch($authentification->Role){
                     case 'administrateur':
                         $authen['Authorisations'] = 'Complet : authorisations administrateur avec ID:'.$authentification->ID_Utilisateur;
-                        $authen['TOKEN'] = 'TOKEN-SGDS: dvsfdblk,gblkg654r4srg88*dgefG)44gdr4gvdr';
+                        $token = 'TOKEN_GENERE_:'.bin2hex(random_bytes(40)); 
+                        $authen['TOKEN'] = $token;
+                        $authen['message'] = 'ok';
                         break;
                     case 'etudiant':
+                        $authen['Centre_etudiant'] = $authentification->Centre_etudiant ;
+                        $authen['Promotion_etudiant'] = $authentification->Promotion_etudiant ;
+                        $authen['Centre_etudiant'] = $authentification->Centre_etudiant ;
+                        $authen['ID_Utilisateur__CREE'] = $authentification->ID_Utilisateur__CREE ;
                         $authen['Authorisations'] = 'Restreint : authorisations du pilote avec ID:'.$authentification->ID_Utilisateur;
-                        $authen['TOKEN'] = 'TOKEN-SGDS: fvwvbjsfkjnkbxcnlk+54vxb654v6b1w5s<df+sd+';
+                        $token = 'TOKEN_GENERE_:'.bin2hex(random_bytes(40)); 
+                        $authen['TOKEN'] = $token;
+                        $authen['message'] = 'ok';
                         break;
                     case 'pilote':
+                        $authen['Centre_pilote'] = $authentification->Centre_pilote ;
+                        $authen['Promotion_pilote'] = $authentification->Promotion_pilote ;
+                        $authen['ID_Utilisateur_Administrateur'] = $authentification->ID_Utilisateur_Administrateur ;
                         $authen['Authorisations'] = 'Restreint : authorisations du pilote avec ID:'.$authentification->ID_Utilisateur;
-                        $authen['TOKEN'] = 'TOKEN-SGDS: wx65cv5cvfvsdw2321sfcvc3c23032gr5gf6w16fb';
+                        $token = 'TOKEN_GENERE_:'.bin2hex(random_bytes(40)); 
+                        $authen['TOKEN'] = $token;
+                        $authen['message'] = 'ok';
                         break;
                     case 'delegue':
+                        $authen['Centre_Delegue'] = $authentification->Centre_Delegue ;
+                        $authen['Promotion_delegue'] = $authentification->Promotion_delegue ;
+                        $authen['Specialite'] = $authentification->Specialite ;
+                        $authen['ID_Utilisateur__CREE'] = $authentification->ID_Utilisateur__CREE ;
                         $authen['Authorisations'] = 'Restreint : authorisations du delegue avec ID:'.$authentification->ID_Utilisateur;
-                        $authen['TOKEN'] = 'TOKEN-SGDS: d1xc5w61c6d51v654n6v4f,4hjg4h646d4g64df6g';
+                        $token = 'TOKEN_GENERE_:'.bin2hex(random_bytes(40)); 
+                        $authen['TOKEN'] = $token;
+                        $authen['message'] = 'ok';
                         break;
+                    default:
+                    echo json_encode(array("message" => "ok, mais aucun role"));
+                    break;
                 }
-
-            
-
-
-
             http_response_code(200);
-            $authen['message'] = 'ok';
-
-            // On encode en json et on envoie
             echo json_encode($authen);
-            }
-        } 
-
-
-
-
-
-
-
-       /* 
-        else if ($authentification->Login != null) { 
-            $authen = [
-                "ID_Login" => $authentification->ID_Login,
-                "Login" => $authentification->Login,
-                "Mot_de_passe" => $authentification->Mot_de_passe,
-                "Nom" => $authentification->Nom,
-                "Prenom" => $authentification->Prenom,
-                "Photo_Utilisateur" => $authentification->Photo_Utilisateur,
-                "Role" => $authentification->Role,
-                
-            ];
-            if($authen['ID_Login'] == null){
-            http_response_code(404);
-            echo json_encode(array("message" => "L'ID utilisateur n'existe pas'."));
-            }
-            else if($authen['ID_Login'] != null && $authen['Nom'] == null){
-                $authen = [
-                    "ID_Login" => $authentification->ID_Login,
-                    "Login" => $authentification->Login,
-                    "Mot_de_passe" => $authentification->Mot_de_passe,
-                    "message" => "Connecté mais aucun utilisateur associé",
-                ];
-                http_response_code(200);
-                echo json_encode($authen);
+            }else{
+                http_response_code(404);
+                echo json_encode(array("message" => "L'ID utilisateur n'existe pas'."));
                 }
-            else{
-            // On envoie le code réponse 200 OK
-            http_response_code(200);
-            // On encode en json et on envoie
-            echo json_encode($authen);
-            }
         } 
-
-*/
         else {
             // 404 Not found
             http_response_code(404);
