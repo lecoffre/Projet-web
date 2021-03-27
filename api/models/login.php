@@ -12,34 +12,6 @@ class Login
     private $table_6 = "delegue"; //table de la base de données
 
     // object properties 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Constructeur avec $db pour la connexion à la base de données
