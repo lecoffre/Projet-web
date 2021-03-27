@@ -2,7 +2,6 @@
 
 
 
-
 /*--------------------------------------------------------------------------------------------------------------------------------
 
 Requete POST
@@ -14,11 +13,6 @@ essayez avec ce type de requete
 }
 
 --------------------------------------------------------------------------------------------------------------------------------*/
-
-
-
-
-
 
 
 // Headers requis
@@ -56,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "Role" => $authentification->Role,
                 "ID_Utilisateur" => $authentification->ID_Utilisateur,
             ];
-            if($authen['ID_Login'] != null || $authen['Role'] != null || $authen['ID_Utilisateur'] != null )
+            if($authen['ID_Login'] != null || $authen['Role'] != null || $authen['ID_Utilisateur'] != null ){
+
                 switch($authentification->Role){
                     case 'administrateur':
                         $authen['Authorisations'] = 'Complet : authorisations administrateur avec ID: '.$authentification->ID_Utilisateur;
