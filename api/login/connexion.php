@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $message = 'Token récupéré avec succès';
             }
             else if($authentification->NewToken != null){
-            $authen['Nouveau Token'] = $authentification->NewToken;
+            $authen['Nouveau_Token'] = $authentification->NewToken;
             $authen['Rechercher_entreprise'] = $authentification->Rechercher_entreprise;
             if($authentification->Role == 'administrateur'){
                 $message = 'Token généré avec succès, vous avez tout les droits d\'API';

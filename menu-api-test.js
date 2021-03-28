@@ -1,33 +1,46 @@
 window.onload = function() {
     get_api_connexion();
-    get_auth()
+    get_auth(1)
 
 }; 
+/*----------------------------------PAGE MENU TEST----------------------------------------------------------*/
 document.getElementById("del").onclick = function(){delete_()};
 document.getElementById("test1").onclick = function(){get_company()};
 document.getElementById("test2").onclick = function(){get_one_company();};
 document.getElementById("test3").onclick = function(){create_company();};
 document.getElementById("test4").onclick = function(){delete_company();};
 document.getElementById("test5").onclick = function(){edit_company();};
+/*----------------------------------PAGE MENU TEST----------------------------------------------------------*/
 
 
 
 
 
 
-function get_auth() {
-    var authentification = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function get_auth(authentification) {  
     if(authentification == 1){
         document.getElementsByClassName('page-chargement')[0].style.visibility = 'visible';
-
-
-    }else{
-        html = '<a style="padding-left: 22px; color: #5a18d6" href="login.html">Connectez vous</a>'
-        document.getElementById("auth").innerHTML = html;
-
     }
-  
-
+    else if (authentification != 1){
+        html = '<a style="padding-left: 22px; color: #5a18d6" href="login.html">Connectez vous dans un premier temps ;p</a>'
+        document.getElementById("auth").innerHTML = html;
+        document.getElementsByClassName('page-chargement')[0].style.visibility = 'hidden';
+    }
 };
 
 
@@ -35,7 +48,6 @@ function get_auth() {
 
 
 function get_api_connexion() {
-    console.log('Connecté');
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://localhost/api/test/test_connexion.php" , true);
     xhr.onload = function()
@@ -48,11 +60,12 @@ function get_api_connexion() {
             var message_co = response.message_connexion;
 
             html = '<div class="alert alert-success" role="alert">'+message_co+'</div>';
+
         }
         else{html = '<p>Wrong request. Error: ' + xhr.status + '</p>';}
       }catch(e){
         console.log(e);
-        html = '<div class="alert alert-danger" role="alert">Erreur de connexion</div>';
+        html = '<div class="alert alert-danger" role="alert">Erreur de connexion à la bdd/API, actualisez ou réessayez plus tard</div>';
      }
         document.getElementById("connexion_js").innerHTML = html;
     };
