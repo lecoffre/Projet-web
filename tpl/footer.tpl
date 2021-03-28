@@ -133,6 +133,7 @@
     </div>
 </div>
 
+
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -144,11 +145,16 @@
 <script src="js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="vendor/chart.js/Chart.min.js"></script>
+<!--<script src="vendor/chart.js/Chart.min.js"></script>-->
+
+
+<!-- Afficher les vignettes -->
+
+<!--<script src="js/card_offre.js"></script>-->
 
 <!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
+<!--<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>-->
 <!--script de la page-->
 <script src="js/main.js"></script>
 <!--ajout plugin car flemme de le faire-->

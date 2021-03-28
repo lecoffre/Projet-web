@@ -69,6 +69,33 @@
         <!-- Heading -->
         <div class="sidebar-heading">gestion des stages</div>
 
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseTwo"
+            aria-expanded="true"
+            aria-controls="collapseTwo"
+          >
+            <i class="fas fa-fw fa-building"></i>
+            <span>Entreprises</span>
+          </a>
+          <div
+            id="collapseTwo"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Etablissements</h6>
+              <a class="collapse-item" href="buttons.html">Parcourir</a>
+              <a class="collapse-item" href="buttons.html">Partenariats</a>
+            </div>
+          </div>
+        </li>
+
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
           <a
@@ -232,8 +259,9 @@
                             </div>
                         </div>
                     </form>-->
+           
             <div class="border-0 nav-title"><a>Administrateur</a></div>
-
+            <div class="border-0 nav-title" style="padding-left: 18px;"><b><a href="menu-test-api.html" style="color: rgb(219, 61, 135);">API</a></b></div>
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
               <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -537,8 +565,6 @@
                         type="button"
                         style="border-radius: 5px 0 0 5px"
                         class="btn btn-primary float-left col-2"
-                        data-toggle="modal"
-                        data-target="#popup-entreprise"
                       >
                         <span aria-hidden="true"
                           ><i class="fa fa-plus" aria-hidden="true"></i
@@ -546,7 +572,6 @@
                       </button>
                       <!--
                                 <button type="button" style="border-radius: 0" class="btn btn-primary  col-2"><span aria-hidden="true">F-1</span></button>
-
                                 <button type="button" style="border-radius: 0" class="btn btn-primary  col-2"><span aria-hidden="true">F-2</span></button>
                                 -->
 
@@ -594,7 +619,12 @@
 </div>
 -->
 
-<!--multi-selection via plugin-->
+
+
+
+
+
+
                       <div class="col-12 multi-selection-bar">
                         <select
                           class="form-control"
@@ -832,7 +862,6 @@
             </div>
 
             <div class="row">
-              <!--supprimer si nouveau format accepté-->
               <div class="col-8" style="margin: 0 0 0 0; padding: 0 0 0 5px">
                 <ul
                   style="padding: 5px 0"
@@ -878,7 +907,6 @@
                   </li>
                 </ul>
               </div>
-              <!-- fin de suppression-->
 
               <div class="page col-4" style="padding: 4px">
                 <div class="arrow float-right">
@@ -937,26 +965,12 @@
 
                 <div class="card">
                     <div class="card-header">
-                      <!-- nouvelle navigation dans la carte si format accepté-->
-                      <div class="col-8" style="margin: 0 0 0 0; padding: 0 0 0 5px">
-                        <a class="btn btn-primary " data-toggle="collapse" href="#informations" role="button" aria-expanded="false" aria-controls="collapseExample">
-                          Infromations
-                        </a>
-                        <a class="btn btn-primary " data-toggle="collapse" href="#modifier" role="button" aria-expanded="false" aria-controls="collapseExample">
-                          Modifier
-                        </a>
-                        <a class="btn btn-primary " data-toggle="collapse" href="#prof" role="button" aria-expanded="false" aria-controls="collapseExample">
-                          Stages proposés
-                        </a>
-                      </div>
+                      Informations - Synthèse
                     </div>
-                    
-                    <!--si nouveau format non-accepté contactez moi pour vque je supprime les nouveaux elements-->
                     <div class="card-body">
-                      <div id="myAccordion">
-                        <div class="Accordion">
-                        <div class="row collapse show" id="informations" data-parent="#myAccordion">
-                            <div class="col-lg-4" >
+                        <div class="row">
+                            
+                            <div class="col-lg-4">
                                 <h6 class="card-title">CESI - ÉCOLE D'INGÉNIEUR </h6>
                       <p class="card-text" style="margin-bottom: 0;">93 boulevard de la seine</p>
 
@@ -983,125 +997,14 @@
                             <div class="col-lg-4" style="border-left: 1px solid rgb(218, 218, 218);">
                                 <img class="image-company " alt="100x100" src="img/cesi-nanterre.png" >
                             </div>
-                    </div>
-
-                    <!--reprise du formulaire de création des entreprises pour modificatio voir avec api-->
-                    <div class="row collapse " id="modifier" data-parent="#myAccordion">
-                      <form class="needs-validation" novalidate>
-                        <div class="form-row">
-                          <div class="col-md-6 mb-3">
-                            <label for="validationCustom01">Nom de l'entreprise</label>
-                            <input type="text" class="form-control" id="validationCustom01" placeholder="Nom de l'entreprise" required>
-                            <div class="valid-feedback">
-                              Looks good!
-                            </div>
-                            <div class="invalid-feedback">
-                              Looks good!
-                            </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <label for="validationCustom02">Secteur d'activité</label>
-                            <input type="text" class="form-control" id="validationCustom02" placeholder="Secteur" required>
-                            <div class="valid-feedback">
-                              Looks good!
-                            </div>
-                            <div class="invalid-feedback">
-                              Looks good!
-                            </div>
-                          </div>
-                          <div class="col-md-12 mb-3">
-                            <label for="validationCustom03">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description" required></textarea>
-                            <div class="valid-feedback">
-                              Looks good!
-                            </div>
-                            <div class="invalid-feedback">
-                              Looks good!
-                            </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <label for="validationCustom04">Avis</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Avis" required></textarea>
-                            <div class="valid-feedback">
-                              Merci de votre avis!
-                            </div>
-                            <div class="invalid-feedback">
-                            </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <label class="mr-sm-2" for="inlineFormCustomSelect">Note</label>
-                            <select class="custom-select" required>
-                              <option value="">Noter l'entreprise</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                              <option value="7">7</option>
-                              <option value="8">8</option>
-                              <option value="9">9</option>
-                              <option value="10">10</option>
-                            </select>
-                            <div class="invalid-feedback">
-                              Example invalid custom select feedback
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-row">
-                          <div class="col-md-6 mb-3">
-                            <label for="validationCustom05">City</label>
-                            <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
-                            <div class="invalid-feedback">
-                              Please provide a valid city.
-                            </div>
-                          </div>
-                          <div class="col-md-3 mb-3">
-                            <label for="validationCustom06">State</label>
-                            <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
-                            <div class="invalid-feedback">
-                              Please provide a valid state.
-                            </div>
-                          </div>
-                          <div class="col-md-3 mb-3">
-                            <label for="validationCustom07">Zip</label>
-                            <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
-                            <div class="invalid-feedback">
-                              Please provide a valid zip.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="col-md-10 mb-3">
-                            <label class="form-label" for="customFile">Image d'illusatrtion</label>
-                            <input type="file" class="form-control" id="customFile" required />
-                            <div class="invalid-feedback">
-                              Merci de donner une photo d'illustration.
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                            <label class="form-check-label" for="invalidCheck">
-                              Soumettre l'entreprise
-                            </label>
-                            <div class="invalid-feedback">
-                              Cochez la case
-                            </div>
-                          </div>
-                        </div>
-                        <button class="btn btn-primary" type="submit">Submit form</button>
-                      </form>
-                    </div>
-                    </div>                    
+                            
+                      
                     </div>
                     </div>
                   </div>
 
                 <!--1ere page-->
               </div>
-              <!--supprimer si nouveau fromat accepter-->
               <div
                 class="tab-pane fade"
                 id="pills-profile"
@@ -1118,7 +1021,6 @@
               >
                 3ème page
               </div>
-              <!--fin de suppresion-->
             </div>
 
             <div
@@ -1135,141 +1037,6 @@
               style="height: 250px; background-color: rgba(243, 243, 243, 0.63)"
             ></div>
 
-
-            <!--formulaire création d'entreprise/modification (je ne savais pas ou trop le placé)-->
-            <div id="popup-entreprise" class="modal">
-              <div class="modal-dialog ">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <p> Création de l'entreprise </p>
-                  </div>
-                  <div class="modal-body">
-                    <form class="needs-validation" novalidate>
-                      <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                          <label for="validationCustom01">Nom de l'entreprise</label>
-                          <input type="text" class="form-control" id="validationCustom01" placeholder="Nom de l'entreprise"
-                            required>
-                          <div class="valid-feedback">
-                            Looks good!
-                          </div>
-                          <div class="invalid-feedback">
-                            Looks good!
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <label for="validationCustom02">Secteur d'activité</label>
-                          <input type="text" class="form-control" id="validationCustom02" placeholder="Secteur" required>
-                          <div class="valid-feedback">
-                            Looks good!
-                          </div>
-                          <div class="invalid-feedback">
-                            Looks good!
-                          </div>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                          <label for="validationCustom03">Description</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description"
-                            required></textarea>
-                          <div class="valid-feedback">
-                            Looks good!
-                          </div>
-                          <div class="invalid-feedback">
-                            Looks good!
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <label for="validationCustom04">Avis</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Avis" required></textarea>
-                          <div class="valid-feedback">
-                            Merci de votre avis!
-                          </div>
-                          <div class="invalid-feedback">
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <label class="mr-sm-2" for="inlineFormCustomSelect">Note</label>
-                          <select class="custom-select" required>
-                            <option value="">Noter l'entreprise</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                          </select>
-                          <div class="invalid-feedback">
-                            Example invalid custom select feedback
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                          <label for="validationCustom05">City</label>
-                          <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
-                          <div class="invalid-feedback">
-                            Please provide a valid city.
-                          </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <label for="validationCustom06">State</label>
-                          <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
-                          <div class="invalid-feedback">
-                            Please provide a valid state.
-                          </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <label for="validationCustom07">Zip</label>
-                          <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
-                          <div class="invalid-feedback">
-                            Please provide a valid zip.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-md-10 mb-3">
-                          <label class="form-label" for="customFile">Image d'illusatrtion</label>
-                          <input type="file" class="form-control" id="customFile" required />
-                          <div class="invalid-feedback">
-                            Merci de donner une photo d'illustration.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                          <label class="form-check-label" for="invalidCheck">
-                            Soumettre l'entreprise
-                          </label>
-                          <div class="invalid-feedback">
-                            Cochez la case
-                          </div>
-                        </div>
-                      </div>
-                      <button class="btn btn-primary" type="submit">Submit form</button>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <p> Footer du pop-up</p>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up
-                  </div>
-                </div>
-              </div>
-            </div>
-              
-<!-- Affichage des entreprises -->
-
-            <script text="text/Javascript">
-
-            window.addEventListener('load', (event)=>{
-            get_company(1);   
-        })
-          </script>
-              
             <!-- Contenu de la page au dessus -->
           </div>
           <!-- /.container-fluid -->

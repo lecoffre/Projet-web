@@ -7,7 +7,7 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          href="index.php"
         >
             <img class="image-cesi" src="img/cesi-blanc.svg" alt="" />
         </a>
@@ -17,9 +17,9 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="http://localhost/projet-web-frontend/index.php?page=Accueil">
             <i class="fas fa-fw fa-home"></i>
-            <span>accueil</span></a>
+            <span>Accueil</span></a>
         </li>
 
         <!-- Divider -->
@@ -48,50 +48,58 @@
                 data-parent="#accordionSidebar"
             >
                 <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Stages</h6>
-                <a class="collapse-item" href="utilities-color.html">Parcourir</a>
-                <a class="collapse-item" href="utilities-other.html"
-                    >Partenariats</a
-                >
+                    <h6 class="collapse-header">Stages</h6>
+                    <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Offres">
+                        Parcourir
+                    </a>
+                    <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Candidature">
+                        Candidature
+                    </a>
+                    <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Entreprises">
+                        Entreprises
+                    </a>
                 </div>
             </div>
         </li>
 
+
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a
-                class="nav-link collapsed"
-                href="#"
-                data-toggle="collapse"
-                data-target="#collapseBoo"
-                aria-expanded="true"
-                aria-controls="collapseBoo"
-            >
-                <i class="fas fa-fw fa-user"></i>
-                <span>EDP</span>
-            </a>
-            <div
-                id="collapseBoo"
-                class="collapse"
-                aria-labelledby="collapseBoo"
-                data-parent="#accordionSidebar"
-            >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Elévès/Délégués/Pilotes</h6>
-                    <a class="collapse-item" href="utilities-color.html">
-                        Gerer (Tous)
-                    </a>
-                    <a class="collapse-item" href="utilities-other.html">
-                        Gerer (Élèves)
-                    </a>
-                    <a class="collapse-item" href="utilities-other.html">
-                        Gerer (Délégués)
-                    </a>
-                    <a class="collapse-item" href="utilities-other.html">
-                        Gerer (Pilotes)
-                    </a>
-                </div>
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseBoo"
+            aria-expanded="true"
+            aria-controls="collapseBoo"
+          >
+            <i class="fas fa-fw fa-user"></i>
+            <span>Utilisateurs</span>
+          </a>
+          <div
+            id="collapseBoo"
+            class="collapse"
+            aria-labelledby="collapseBoo"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Etudiants/Délégués/Pilotes</h6>
+                <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Administrateurs">
+                    Administrateurs
+                </a>
+                <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Pilotes">
+                    Pilotes
+                </a>
+                <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Delegues">
+                    Délégués
+                </a>
+                <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Etudiants">
+                    Etudiants
+                </a>
+                
+                
             </div>
+          </div>
         </li>
 
         <!-- Divider -->
@@ -449,5 +457,5 @@
                 </li>
             </ul>
         </nav>
-</div>
+
 <!-- End of Topbar -->
