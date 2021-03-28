@@ -277,7 +277,7 @@
         </div>
     <!-- /.container-fluid -->
     </div>
-</div>
 <!-- End of Main Content -->
+</div>
 <script src="js/card_entreprise.js"></script>  
 

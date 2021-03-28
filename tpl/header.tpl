@@ -39,7 +39,7 @@
                 aria-controls="collapseUtilities"
             >
                 <i class="fas fa-fw fa-bookmark"></i>
-                <span>Offres</span>
+                <span>Stages</span>
             </a>
             <div
                 id="collapseUtilities"
@@ -50,7 +50,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Stages</h6>
                     <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Offres">
-                        Parcourir
+                        Offres
                     </a>
                     <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Candidature">
                         Candidature

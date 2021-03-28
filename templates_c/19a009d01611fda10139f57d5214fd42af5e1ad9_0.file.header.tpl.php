@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-28 16:42:51
+/* Smarty version 3.1.39, created on 2021-03-28 20:02:20
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_606095eb45dd29_02711145',
+  'unifunc' => 'content_6060c4acd8f179_78880810',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '19a009d01611fda10139f57d5214fd42af5e1ad9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\header.tpl',
-      1 => 1616942569,
+      1 => 1616954538,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_606095eb45dd29_02711145 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6060c4acd8f179_78880810 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Page Wrapper -->
 <div id="wrapper">
     <!-- Sidebar -->
@@ -62,7 +62,7 @@ function content_606095eb45dd29_02711145 (Smarty_Internal_Template $_smarty_tpl)
                 aria-controls="collapseUtilities"
             >
                 <i class="fas fa-fw fa-bookmark"></i>
-                <span>Offres</span>
+                <span>Stages</span>
             </a>
             <div
                 id="collapseUtilities"
@@ -73,7 +73,7 @@ function content_606095eb45dd29_02711145 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Stages</h6>
                     <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Offres">
-                        Parcourir
+                        Offres
                     </a>
                     <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Candidature">
                         Candidature

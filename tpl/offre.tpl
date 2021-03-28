@@ -1,15 +1,10 @@
-
-
-
-
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
     <div
         class="d-sm-flex align-items-center justify-content-between mb-4"
     >
-        <h1 class="h3 mb-0 text-gray-800">Acceuil</h1>
+        <h1 class="h3 mb-0 text-gray-800">Offres</h1>
     </div> 
     <!-- Contenu de la page en dessous -->
 
@@ -239,7 +234,7 @@
                     role="tabpanel"
                     aria-labelledby="pills-home-tab"
                 >
-                <!--1ere page-->
+                    <!--1ere page-->
 
                     <div class="card">
                         <div class="card-header">
@@ -313,10 +308,10 @@
                 style="height: 250px; background-color: rgba(243, 243, 243, 0.63)"
             ></div>
 
-    <!-- Contenu de la page au dessus -->
+        <!-- Contenu de la page au dessus -->
         </div>
-<!-- /.container-fluid -->
+    <!-- /.container-fluid -->
     </div>
 <!-- End of Main Content -->
-</div>   
+ 
 <script src="js/card_offre.js"></script>  

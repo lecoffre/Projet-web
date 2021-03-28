@@ -216,7 +216,7 @@
                     role="tabpanel"
                     aria-labelledby="pills-home-tab"
                 >
-                <!--1ere page-->
+                    <!--1ere page-->
 
                     <div class="card">
                         <div class="card-header">
@@ -293,9 +293,9 @@
                 style="height: 250px; background-color: rgba(243, 243, 243, 0.63)"
             ></div>
 
-    <!-- Contenu de la page au dessus -->
+        <!-- Contenu de la page au dessus -->
         </div>
-<!-- /.container-fluid -->
+    <!-- /.container-fluid -->
     </div>
 <!-- End of Main Content -->
 </div>

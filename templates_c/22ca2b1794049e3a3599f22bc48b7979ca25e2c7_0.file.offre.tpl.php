@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-28 18:51:12
+/* Smarty version 3.1.39, created on 2021-03-28 20:04:41
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\offre.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6060b400570069_15216480',
+  'unifunc' => 'content_6060c539891957_60878250',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '22ca2b1794049e3a3599f22bc48b7979ca25e2c7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\offre.tpl',
-      1 => 1616950138,
+      1 => 1616954679,
       2 => 'file',
     ),
   ),
@@ -20,19 +20,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6060b400570069_15216480 (Smarty_Internal_Template $_smarty_tpl) {
-?>
-
-
-
-
-<!-- Begin Page Content -->
+function content_6060c539891957_60878250 (Smarty_Internal_Template $_smarty_tpl) {
+?><!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
     <div
         class="d-sm-flex align-items-center justify-content-between mb-4"
     >
-        <h1 class="h3 mb-0 text-gray-800">Acceuil</h1>
+        <h1 class="h3 mb-0 text-gray-800">Offres</h1>
     </div> 
     <!-- Contenu de la page en dessous -->
 
@@ -262,7 +257,7 @@ function content_6060b400570069_15216480 (Smarty_Internal_Template $_smarty_tpl)
                     role="tabpanel"
                     aria-labelledby="pills-home-tab"
                 >
-                <!--1ere page-->
+                    <!--1ere page-->
 
                     <div class="card">
                         <div class="card-header">
@@ -336,12 +331,12 @@ function content_6060b400570069_15216480 (Smarty_Internal_Template $_smarty_tpl)
                 style="height: 250px; background-color: rgba(243, 243, 243, 0.63)"
             ></div>
 
-    <!-- Contenu de la page au dessus -->
+        <!-- Contenu de la page au dessus -->
         </div>
-<!-- /.container-fluid -->
+    <!-- /.container-fluid -->
     </div>
 <!-- End of Main Content -->
-</div>   
+ 
 <?php echo '<script'; ?>
  src="js/card_offre.js"><?php echo '</script'; ?>
 >  
