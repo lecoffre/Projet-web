@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 27 mars 2021 à 21:11
+-- Généré le : Dim 28 mars 2021 à 01:49
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.1
 
@@ -154,6 +154,14 @@ CREATE TABLE `droit_token` (
   `ID_Utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `droit_token`
+--
+
+INSERT INTO `droit_token` (`Token`, `Rechercher_une_entreprise`, `Creer_une_entreprise`, `Modifier_une_entreprise`, `Evaluer_une_entreprise`, `Supprimer_une_entreprise`, `Consulter_les_stats_des_entreprises`, `Rechercher_une_offre`, `Creer_une_offre`, `Modifier_une_offre`, `Supprimer_une_offre`, `Consulter_les_stats_des_offres`, `Rechercher_un_compte_pilote`, `Creer_un_compte_pilote`, `Modifier_un_compte_pilote`, `Supprimer_un_compte_pilote`, `Rechercher_un_compte_delegue`, `Creer_un_compte_delegue`, `Modifier_un_compte_delegue`, `Supprimer_un_compte_delegue`, `Assigner_des_droits_a_un_delegue`, `Rechercher_un_compte_etudiant`, `Creer_un_compte_etudiant`, `Modifier_un_compte_etudiant`, `Supprimer_un_compte_etudiant`, `Consulter_les_stats_des_etudiants`, `Ajouter_une_offre_a_la_wish_list`, `Retirer_une_offre_a_la_wish_list`, `Postuler_a_une_offre`, `Informer_le_systeme_de_l_avancement_de_la_candidature_step_1`, `Informer_le_systeme_de_l_avancement_de_la_candidature_step_2`, `Informer_le_systeme_de_l_avancement_de_la_candidature_step_3`, `Informer_le_systeme_de_l_avancement_de_la_candidature_step_4`, `Informer_le_systeme_de_l_avancement_de_la_candidature_step_5`, `Informer_le_systeme_de_l_avancement_de_la_candidature_step_6`, `ID_Utilisateur`) VALUES
+('TOKEN_:4dafde577f7e0f8cfb062d2408eb4d9326b938aa14b232c25a3f3c758a1f96a9a273edf6308ee2ae', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3),
+('TOKEN_:c233894534bb73c2f5c5479424b3680411595cfc0f1b9aebbe3d13a553bc62552f1393598417dcae', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -276,10 +284,10 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`ID_Utilisateur`, `Nom`, `Prenom`, `Photo_Utilisateur`, `Role`, `ID_Login`) VALUES
-(1, 'Boudani', 'Kamil', 'img/users/default_avatar.png', 'administrateur', 1),
-(2, 'Attia', 'Noah', 'img/users/default_avatar.png', 'pilote', 2),
-(3, 'Desgranges', 'Thomas', 'img/users/default_avatar.png', 'delegue', 3),
-(4, 'Nguyen', 'Frédéric', 'img/users/default_avatar.png', 'etudiant', 4),
+(1, 'Boudani', 'Kamil', 'api/img/users/default_avatar.png', 'administrateur', 1),
+(2, 'Attia', 'Noah', 'api/img/users/default_avatar.png', 'pilote', 2),
+(3, 'Desgranges', 'Thomas', 'api/img/users/default_avatar.png', 'delegue', 3),
+(4, 'Nguyen', 'Frédéric', 'api/img/users/default_avatar.png', 'etudiant', 4),
 (5, 'NOMDELEVE', 'elevetest', 'eleve.png', 'etudiant', 6);
 
 --
