@@ -1,10 +1,14 @@
 
-
+var html_cookie = "resultat-cookies";
 
 
 window.onload = function() {
     get_api_connexion();
     var auth = get_cookies();
+    if(auth==1){
+        html_cookie = "<p>cookies: "+Login_by_cookie+", "+Mot_de_passe_by_cookie+", "+Token_by_cookie+'</p>';
+        document.getElementById("resultat-cookies").innerHTML = html_cookie;
+    }
     get_auth(auth)
    
 console.log()
@@ -14,8 +18,6 @@ console.log()
 
 
 /*----------------------------------PAGE MENU TEST----------------------------------------------------------*/
-
-
 
 document.getElementById("del").onclick = function(){delete_()};
 document.getElementById("test1").onclick = function(){get_company()};
@@ -37,7 +39,10 @@ function get_cookies(){
     if(Token_by_cookie == '' || Login_by_cookie =='' || Mot_de_passe_by_cookie=='' ){
         return 0;
     }else{
+
+
         return 1;
+
     }
 }
 
@@ -142,7 +147,7 @@ function edit_company() {
         var data = JSON.stringify(param);
         console.log(data);
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+      
         xhr.addEventListener("readystatechange", function() 
         {
             if( this.readyState === 4) 
@@ -218,7 +223,8 @@ function delete_company() {
         var data = JSON.stringify(param);
         console.log(data);
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+        
+
         xhr.addEventListener("readystatechange", function() 
         {
             if( this.readyState === 4) 
@@ -318,7 +324,8 @@ function create_company() {
         var data = JSON.stringify(param);
         console.log(data);
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+
+
         xhr.addEventListener("readystatechange", function() 
         {
             if( this.readyState === 4) 
@@ -395,7 +402,8 @@ function get_one_company() {
         var data = JSON.stringify(param);
         console.log(data);
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+
+    
         xhr.addEventListener("readystatechange", function() 
         {
             if( this.readyState === 4) 
