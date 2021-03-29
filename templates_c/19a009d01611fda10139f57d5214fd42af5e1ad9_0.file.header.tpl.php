@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-28 20:02:20
+/* Smarty version 3.1.39, created on 2021-03-29 10:54:01
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6060c4acd8f179_78880810',
+  'unifunc' => 'content_606195a98d88a1_09972364',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '19a009d01611fda10139f57d5214fd42af5e1ad9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\header.tpl',
-      1 => 1616954538,
+      1 => 1617008037,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6060c4acd8f179_78880810 (Smarty_Internal_Template $_smarty_tpl) {
+function content_606195a98d88a1_09972364 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Page Wrapper -->
 <div id="wrapper">
     <!-- Sidebar -->
@@ -76,7 +76,7 @@ function content_6060c4acd8f179_78880810 (Smarty_Internal_Template $_smarty_tpl)
                         Offres
                     </a>
                     <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Candidature">
-                        Candidature
+                        Candidatures
                     </a>
                     <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Entreprises">
                         Entreprises

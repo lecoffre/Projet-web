@@ -21,11 +21,11 @@ function show_etudiant()
                  if(i<etudiant.length)
                 {
                     current_etudiant = etudiant[i];
-                    html += `<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style=" background-color: rgba(206, 206, 206, 0.247); padding: 10px;">
+                    html += `<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style=" background-color: rgba(206, 206, 206, 0.247); padding: 10px; max-width:15%;">
                                 <div class="card border-bottom-dark">
-                                    <img style="width: auto; max-height: 110px;  max-width: 210px" src="` + current_etudiant.Photo_Utilisateur + `" >
+                                    <img style="width: auto; max-height: auto" src="` + current_etudiant.Photo_Utilisateur + `" >
                                     <div class="card-body" style="padding: 10px">
-                                        <h5 class="card-title" style="font-size: 15px; margin: 0 0 4px 7px">` + current_etudiant.Nom  + ' ' + current_etudiant.Prenom  + `</h5>
+                                        <h5 class="card-title" style="font-size: 15px; margin: 0 0 4px 7px; text-align: center;">` + current_etudiant.Nom  + ' ' + current_etudiant.Prenom  + `</h5>
                                     </div>
                                 </div>
                             </div>`;

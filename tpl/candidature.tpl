@@ -122,22 +122,27 @@
         <div 
             
             class="row"
-            style="
-            margin-top: 8px;
+            style="margin-top: 8px;
             margin-bottom: 2px;
-            border: 1px rgba(201, 201, 201, 0.911) solid;
             border-radius: 12px;
-            background-color: rgba(238, 238, 238, 0.178);
-            "
-            >   
-            <table class="table">
+            background-color: rgba(206, 206, 206, 0.247);
+            padding: 10px;
+
+            ">   
+            <table class="table border-bottom-dark"
+            style=" 
+                background-color: white;
+                border-radius: 10px;
+                 ">
                 <thead>
                     <tr>
-                        <th scope="col"> Nom - Prenom </th>
-                        <th scope="col"> Entreprise </th>
+                        <th scope="col"style="font-weight= bold " > Nom - Prenom </th>
+                        <th scope="col" style="font-weight= bold"> Entreprise </th>
                     </tr>
                 </thead>
-                <tbody id="js-result-candidature">
+                <tbody id="js-result-candidature"
+                style="height:auto;"
+                >
                     
                 </tbody>
             </table>
@@ -198,19 +203,16 @@
                 
                 <div class="arrow float-right">
                   
-                  <div
+                    <div
                     class="btn btn-primary" onclick="previous_page()" 
                     style="
-                      border-radius: 8px 0 0 8px;
-                      padding-right: 15px;
-                      padding-left: 15px;
+                    border-radius: 8px 0 0 8px;
+                    padding-right: 15px;
+                    padding-left: 15px;
                     "
-                  > 
-                    <a href=""
-                      ><i class="fa fa-angle-left" aria-hidden="true"></i
-                    ></a>
-                    Précédente
-                  </div>
+                    > 
+                        <a href=""><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                    </div>
 
                   <span id="page_info_candidature"></span>
 
@@ -221,11 +223,9 @@
                       padding-right: 15px;
                       padding-left: 15px;
                     "
-                  > Suivante
-                    <a href=""
-                      ><i class="fa fa-angle-right" aria-hidden="true"></i
-                    ></a>
-                  </div>
+                    > 
+                        <a href=""><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </div>
                 </div>
               </div>
             </div>

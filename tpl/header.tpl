@@ -53,7 +53,7 @@
                         Offres
                     </a>
                     <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Candidature">
-                        Candidature
+                        Candidatures
                     </a>
                     <a class="collapse-item" href="http://localhost/projet-web-frontend/index.php?page=Entreprises">
                         Entreprises

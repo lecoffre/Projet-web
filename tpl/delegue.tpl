@@ -298,5 +298,5 @@
     <!-- /.container-fluid -->
     </div>
 <!-- End of Main Content -->
-</div>
+
 <script src="js/card_delegue.js"></script>  

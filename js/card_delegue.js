@@ -21,11 +21,11 @@ function show_delegue()
                  if(i<delegue.length)
                 {
                     current_delegue = delegue[i];
-                    html += `<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style=" background-color: rgba(206, 206, 206, 0.247); padding: 10px;">
-                                    <div class="card border-bottom-dark">
-                                    <img style="width: auto; max-height: 110px;  max-width: 210px" src="`+ current_delegue.Photo_Utilisateur + `">
+                    html += `<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style=" background-color: rgba(206, 206, 206, 0.247); padding: 10px; max-width:15%;">
+                                <div class="card border-bottom-dark">
+                                    <img style="width: auto; height:auto;" src="`+ current_delegue.Photo_Utilisateur + `">
                                     <div class="card-body" style="padding: 10px">
-                                        <h5 class="card-title" style="font-size: 15px; margin: 0 0 4px 7px">`
+                                        <h5 class="card-title" style="font-size: 15px; margin: 0 0 4px 7px;text-align: center;">`
                                             + current_delegue.Nom  + ' ' + current_delegue.Prenom  + 
                                         `</h5>
                                     </div>

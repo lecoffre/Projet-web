@@ -27,7 +27,9 @@ var candidature;
                      current_candidature = candidature[i];
                   
                     // à modifier selon le contenu souhaité   
-                    html+='<tr><td>'+ current_candidature.Nom + ' ' + current_candidature.Prenom + '</td><td>'+ current_candidature.Entreprise_offre +'</td></tr><br>'; 
+                    html+=  '<tr><td style="border-top: 2px solid  ;">'+ current_candidature.Nom + ' ' + current_candidature.Prenom + 
+                            '</td><td style="border-top:2px solid ;">'+ current_candidature.Entreprise_offre +
+                            '</td></tr>'; 
                  }
              }
  
@@ -73,7 +75,7 @@ function next_page()
 function show_page_info()
 {
     var max_page = Math.ceil (candidature.length  / number_of_item);
-    document.getElementById('page_info_candidature').innerHTML= `Page ${actual_page} / ${max_page}`
+    document.getElementById('page_info_candidature').innerHTML= `${actual_page} / ${max_page}`;
     
 }
 

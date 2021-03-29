@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-28 20:06:38
+/* Smarty version 3.1.39, created on 2021-03-29 10:52:09
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\candidature.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6060c5ae9e0706_87865789',
+  'unifunc' => 'content_60619539d16b35_24063038',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '58d837d59a25f2ae17a04870ff1d969a0ba54dea' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\candidature.tpl',
-      1 => 1616954796,
+      1 => 1617007927,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6060c5ae9e0706_87865789 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60619539d16b35_24063038 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -145,22 +145,27 @@ function content_6060c5ae9e0706_87865789 (Smarty_Internal_Template $_smarty_tpl)
         <div 
             
             class="row"
-            style="
-            margin-top: 8px;
+            style="margin-top: 8px;
             margin-bottom: 2px;
-            border: 1px rgba(201, 201, 201, 0.911) solid;
             border-radius: 12px;
-            background-color: rgba(238, 238, 238, 0.178);
-            "
-            >   
-            <table class="table">
+            background-color: rgba(206, 206, 206, 0.247);
+            padding: 10px;
+
+            ">   
+            <table class="table border-bottom-dark"
+            style=" 
+                background-color: white;
+                border-radius: 10px;
+                 ">
                 <thead>
                     <tr>
-                        <th scope="col"> Nom - Prenom </th>
-                        <th scope="col"> Entreprise </th>
+                        <th scope="col"style="font-weight= bold " > Nom - Prenom </th>
+                        <th scope="col" style="font-weight= bold"> Entreprise </th>
                     </tr>
                 </thead>
-                <tbody id="js-result-candidature">
+                <tbody id="js-result-candidature"
+                style="height:auto;"
+                >
                     
                 </tbody>
             </table>
@@ -221,19 +226,16 @@ function content_6060c5ae9e0706_87865789 (Smarty_Internal_Template $_smarty_tpl)
                 
                 <div class="arrow float-right">
                   
-                  <div
+                    <div
                     class="btn btn-primary" onclick="previous_page()" 
                     style="
-                      border-radius: 8px 0 0 8px;
-                      padding-right: 15px;
-                      padding-left: 15px;
+                    border-radius: 8px 0 0 8px;
+                    padding-right: 15px;
+                    padding-left: 15px;
                     "
-                  > 
-                    <a href=""
-                      ><i class="fa fa-angle-left" aria-hidden="true"></i
-                    ></a>
-                    Précédente
-                  </div>
+                    > 
+                        <a href=""><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                    </div>
 
                   <span id="page_info_candidature"></span>
 
@@ -244,11 +246,9 @@ function content_6060c5ae9e0706_87865789 (Smarty_Internal_Template $_smarty_tpl)
                       padding-right: 15px;
                       padding-left: 15px;
                     "
-                  > Suivante
-                    <a href=""
-                      ><i class="fa fa-angle-right" aria-hidden="true"></i
-                    ></a>
-                  </div>
+                    > 
+                        <a href=""><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </div>
                 </div>
               </div>
             </div>

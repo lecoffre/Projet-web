@@ -21,11 +21,11 @@ function show_administrateur()
                  if(i<administrateur.length)
                 {
                     current_administrateur = administrateur[i];
-                    html += `<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style=" background-color: rgba(206, 206, 206, 0.247); padding: 10px;">
+                    html += `<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style=" background-color: rgba(206, 206, 206, 0.247); padding: 10px; max-width:15%;">
                                 <div class="card border-bottom-dark">
-                                    <img style="width: auto; height:auto;  max-width: 210px" src="` + current_administrateur.Photo_Utilisateur + `" >
+                                    <img style="width: auto; height:auto;" src="` + current_administrateur.Photo_Utilisateur + `" >
                                     <div class="card-body" style="padding: 10px">
-                                        <h5 class="card-title" style="font-size: 15px; margin: 0 0 4px 7px">` + current_administrateur.Nom  + ' ' + current_administrateur.Prenom  + `</h5>
+                                        <h5 class="card-title" style="font-size: 15px; margin: 0 0 4px 7px;text-align: center;">` + current_administrateur.Nom  + ' ' + current_administrateur.Prenom  + `</h5>
                                     </div>
                                 </div>
                             </div>`;

@@ -1,7 +1,9 @@
-var number_of_item=2;
+var number_of_item=8;
 var first=0;
 var actual_page=1;
 let entreprise;
+
+
 
 
 function afficher_company()
