@@ -1,5 +1,13 @@
-console.log('Cookies.js chargé');
 
+
+var Login_by_cookie=ck_decode_cookie("Login");
+var Mot_de_passe_by_cookie=ck_decode_cookie("Mot_de_passe");
+var Token_by_cookie;
+var cookie_remember;
+var Remember_me;
+
+
+console.log('Cookies.js chargé');
 ck_display_cookies_in_log();
 
 
