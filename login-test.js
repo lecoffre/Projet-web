@@ -44,29 +44,18 @@ window.onload = function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function error_or_not(error){
    
 
 
     if(error=='0'){
-        alert_html = '<div class="alert alert-success" role="alert">Requete terminé, tout s\'est bien passé</div>';
         ck_popup_cookie();
+        window.location.href = "menu-test-api.html";
+    }else if(error=='reconnect'){    
+        //alert('Votre token à été mis à jour, veuillez vous reconnecter');
+        alert_html = '<div class="alert alert-info" role="alert">Votre token à été mis à jour, veuillez vous reconnecter</div>';
+
+        //location.reload();
     }else{
         
         alert_html = '<div class="alert alert-danger" role="alert">Une erreur s\'est produite: '+error+'</div>';
@@ -200,9 +189,16 @@ async function  login() {
                                         html += '</div><hr>';
                                         */
                                         Token_by_cookie = current_user.Token;
-                                        console.log('fin html '+ Token_by_cookie);
+                                        console.log('Token_by_cookie => '+ Token_by_cookie);
                                         ck_setCookie("Token", Token_by_cookie);
-                                        error_or_not('0');
+                                        alert_html = '<div class="alert alert-success" role="alert">Requete terminé, tout s\'est bien passé</div>';
+                                        if(typeof(Token_by_cookie)  === 'undefined'){
+                                            error_or_not('reconnect');
+                                        }else{
+                                            
+                                            error_or_not('0');
+                                        }
+                                        
 
                                         
                                         

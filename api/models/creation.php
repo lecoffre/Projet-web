@@ -9,6 +9,7 @@ class Creation
     private $table4 = "delegue";
     private $table5 = "etudiant";
     private $table6 = "pilote";
+    private $table7 = "droit_token";
 
     // object properties table
     public $ID_Login;
@@ -351,5 +352,104 @@ class Creation
         $this->Photo_Utilisateur = $row['Photo_Utilisateur'];
         $this->ID_Utilisateur = $row['ID_Utilisateur'];
         $this->ID_Login = $row['ID_Login'];
+    }
+
+
+
+    /**
+     * Créer un delegue
+     *
+     * @return void
+     */
+    public function creer_droit()
+    {
+
+        // Ecriture de la requête SQL en y insérant le nom de la table
+        $sql = "INSERT INTO " . $this->table7 . " SET 
+            Token=:Token,
+            Rechercher_une_entreprise=:Rechercher_une_entreprise,
+            Creer_une_entreprise=:Creer_une_entreprise,
+            Modifier_une_entreprise=:Modifier_une_entreprise,
+            Evaluer_une_entreprise=:Evaluer_une_entreprise,
+            Supprimer_une_entreprise=:Supprimer_une_entreprise,
+            Consulter_les_stats_des_entreprises=:Consulter_les_stats_des_entreprises,
+            Rechercher_une_offre=:Rechercher_une_offre,
+            Creer_une_offre=:Creer_une_offre,
+            Modifier_une_offre=:Modifier_une_offre,
+            Supprimer_une_offre=:Supprimer_une_offre,
+            Consulter_les_stats_des_offres=:Consulter_les_stats_des_offres,
+            Rechercher_un_compte_pilote=:Rechercher_un_compte_pilote,
+            Creer_un_compte_pilote=:Creer_un_compte_pilote,
+            Modifier_un_compte_pilote=:Modifier_un_compte_pilote,
+            Supprimer_un_compte_pilote=:Supprimer_un_compte_pilote,
+            Rechercher_un_compte_delegue=:Rechercher_un_compte_delegue,
+            Creer_un_compte_delegue=:Creer_un_compte_delegue,
+            Modifier_un_compte_delegue=:Modifier_un_compte_delegue,
+            Supprimer_un_compte_delegue=:Supprimer_un_compte_delegue,
+            Assigner_des_droits_a_un_delegue=:Assigner_des_droits_a_un_delegue,
+            Rechercher_un_compte_etudiant=:Rechercher_un_compte_etudiant,
+            Creer_un_compte_etudiant=:Creer_un_compte_etudiant,
+            Modifier_un_compte_etudiant=:Modifier_un_compte_etudiant,
+            Supprimer_un_compte_etudiant=:Supprimer_un_compte_etudiant,
+            Consulter_les_stats_des_etudiants=:Consulter_les_stats_des_etudiants,
+            Ajouter_une_offre_a_la_wish_list=:Ajouter_une_offre_a_la_wish_list,
+            Retirer_une_offre_a_la_wish_list=:Retirer_une_offre_a_la_wish_list,
+            Postuler_a_une_offre=:Postuler_a_une_offre,
+            Informer_le_systeme_de_l_avancement_de_la_candidature_step_1=:Informer_le_systeme_de_l_avancement_de_la_candidature_step_1,
+            Informer_le_systeme_de_l_avancement_de_la_candidature_step_2=:Informer_le_systeme_de_l_avancement_de_la_candidature_step_2,
+            Informer_le_systeme_de_l_avancement_de_la_candidature_step_3=:Informer_le_systeme_de_l_avancement_de_la_candidature_step_3,
+            Informer_le_systeme_de_l_avancement_de_la_candidature_step_4=:Informer_le_systeme_de_l_avancement_de_la_candidature_step_4,
+            Informer_le_systeme_de_l_avancement_de_la_candidature_step_5=:Informer_le_systeme_de_l_avancement_de_la_candidature_step_5,
+            Informer_le_systeme_de_l_avancement_de_la_candidature_step_6=:Informer_le_systeme_de_l_avancement_de_la_candidature_step_6,
+            ID_Utilisateur =:ID_Utilisateur";
+
+        // Préparation de la requête
+        $query = $this->connexion->prepare($sql);
+
+        // Ajout des données protégées
+
+        $query->bindParam(':Token', $this->Token);
+        $query->bindParam(':ID_Utilisateur', $this->ID_Utilisateur);
+        $query->bindParam(':Rechercher_une_entreprise', $this->Rechercher_entreprise); //1
+        $query->bindParam(':Creer_une_entreprise', $this->Creer_une_entreprise);
+        $query->bindParam(':Modifier_une_entreprise', $this->Modifier_une_entreprise);
+        $query->bindParam(':Evaluer_une_entreprise', $this->Evaluer_une_entreprise);
+        $query->bindParam(':Supprimer_une_entreprise', $this->Supprimer_une_entreprise);
+        $query->bindParam(':Consulter_les_stats_des_entreprises', $this->Consulter_les_stats_des_entreprises);
+        $query->bindParam(':Rechercher_une_offre', $this->Rechercher_une_offre);
+        $query->bindParam(':Creer_une_offre', $this->Creer_une_offre);
+        $query->bindParam(':Modifier_une_offre', $this->Modifier_une_offre);
+        $query->bindParam(':Supprimer_une_offre', $this->Supprimer_une_offre); //10
+        $query->bindParam(':Consulter_les_stats_des_offres', $this->Consulter_les_stats_des_offres);
+        $query->bindParam(':Rechercher_un_compte_pilote', $this->Rechercher_un_compte_pilote);
+        $query->bindParam(':Creer_un_compte_pilote', $this->Creer_un_compte_pilote);
+        $query->bindParam(':Modifier_un_compte_pilote', $this->Modifier_un_compte_pilote);
+        $query->bindParam(':Supprimer_un_compte_pilote', $this->Supprimer_un_compte_pilote);
+        $query->bindParam(':Rechercher_un_compte_delegue', $this->Rechercher_un_compte_delegue);
+        $query->bindParam(':Creer_un_compte_delegue', $this->Creer_un_compte_delegue);
+        $query->bindParam(':Modifier_un_compte_delegue', $this->Modifier_un_compte_delegue);
+        $query->bindParam(':Supprimer_un_compte_delegue', $this->Supprimer_un_compte_delegue);
+        $query->bindParam(':Assigner_des_droits_a_un_delegue', $this->Assigner_des_droits_a_un_delegue); //20
+        $query->bindParam(':Rechercher_un_compte_etudiant', $this->Rechercher_un_compte_etudiant);
+        $query->bindParam(':Creer_un_compte_etudiant', $this->Creer_un_compte_etudiant);
+        $query->bindParam(':Modifier_un_compte_etudiant', $this->Modifier_un_compte_etudiant);
+        $query->bindParam(':Supprimer_un_compte_etudiant', $this->Supprimer_un_compte_etudiant);
+        $query->bindParam(':Consulter_les_stats_des_etudiants', $this->Consulter_les_stats_des_etudiants);
+        $query->bindParam(':Ajouter_une_offre_a_la_wish_list', $this->Ajouter_une_offre_a_la_wish_list);
+        $query->bindParam(':Retirer_une_offre_a_la_wish_list', $this->Retirer_une_offre_a_la_wish_list);
+        $query->bindParam(':Postuler_a_une_offre', $this->Postuler_a_une_offre);
+        $query->bindParam(':Informer_le_systeme_de_l_avancement_de_la_candidature_step_1', $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_1);
+        $query->bindParam(':Informer_le_systeme_de_l_avancement_de_la_candidature_step_2', $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_2); //30
+        $query->bindParam(':Informer_le_systeme_de_l_avancement_de_la_candidature_step_3', $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_3);
+        $query->bindParam(':Informer_le_systeme_de_l_avancement_de_la_candidature_step_4', $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_4);
+        $query->bindParam(':Informer_le_systeme_de_l_avancement_de_la_candidature_step_5', $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_5);
+        $query->bindParam(':Informer_le_systeme_de_l_avancement_de_la_candidature_step_6', $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_6); //34
+
+
+        // Exécution de la requête
+        if ($query->execute()) {
+            return true;
+        }
+        return false;
     }
 }

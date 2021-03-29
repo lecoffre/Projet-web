@@ -19,23 +19,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
     // On instancie les entreprises 
     $suppression = new Suppression($db);
+    $utilisateur = new Suppression($db);
 
     // On récupère l'id de l'entreprise
     $donnees = json_decode(file_get_contents("php://input"));
 
     if (!empty($donnees->ID_Login)) {
-        $suppression->ID_Login = $donnees->ID_Login;
+        $utilisateur->ID_Login = $donnees->ID_Login;
 
-        if ($suppression->supprimer_pilote() && $suppression->supprimer_utilisateur() && $suppression->supprimer_authentification()) {
-            // Ici la suppression a fonctionné
-            // On envoie un code 200
-            http_response_code(200);
-            echo json_encode(["message" => "La suppression a été effectuée"]);
+        // On récupère l'entreprise
+        $utilisateur->lire_utilisateur();
+
+        // On vérifie si l'entreprise existe
+        if ($utilisateur->Nom != null) {
+
+            $suppression->ID_Utilisateur = $utilisateur->ID_Utilisateur;
+            $suppression->ID_Login = $donnees->ID_Login;
+
+            echo json_encode($suppression);
+
+            if ($suppression->supprimer_pilote() && $suppression->supprimer_droit() && $suppression->supprimer_utilisateur() && $suppression->supprimer_authentification()) {
+                // Ici la suppression a fonctionné
+                // On envoie un code 200
+                http_response_code(200);
+                echo json_encode(["message" => "La suppression a été effectuée"]);
+            } else {
+                // Ici la création n'a pas fonctionné
+                // On envoie un code 503
+                http_response_code(503);
+                echo json_encode(["message" => "La suppression n'a pas été effectuée"]);
+            }
         } else {
-            // Ici la création n'a pas fonctionné
-            // On envoie un code 503
-            http_response_code(503);
-            echo json_encode(["message" => "La suppression n'a pas été effectuée"]);
+            // 404 Not found
+            http_response_code(404);
+
+            echo json_encode(array("message" => "L'utilisateur n'existe pas'."));
         }
     }
 } else {

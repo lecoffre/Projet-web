@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // On récupère les informations envoyées
     $donnees = json_decode(file_get_contents("php://input"));
 
-    if (!empty($donnees->Login) && !empty($donnees->Prenom) && !empty($donnees->Nom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->Role)) {
+    if (!empty($donnees->Login) && !empty($donnees->Mot_de_passe) && !empty($donnees->Prenom) && !empty($donnees->Nom) && !empty($donnees->Photo_Utilisateur)) {
         $authentification->Login = $donnees->Login;
         $utilisateur->Nom = $donnees->Nom;
         $utilisateur->Prenom = $donnees->Prenom;
@@ -60,14 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 //a partir du dernier element créé nous pouvons créer un nouvel utilisateur pour cela nous devons recuper le dernier ID_Login
                 //creation de l'utilisateur
-                if (!empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->Role)) {
+                if (!empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur)) {
                     // Ici on a reçu les données
                     // On hydrate notre objet
 
                     $authentification->Nom = $donnees->Nom;
                     $authentification->Prenom = $donnees->Prenom;
                     $authentification->Photo_Utilisateur = $donnees->Photo_Utilisateur;
-                    $authentification->Role = $donnees->Role;
+                    $authentification->Role = 'administrateur';
                     $authentification->ID_Login = $authen['ID_Login'];
 
                     if ($authentification->creer_utilisateur()) {

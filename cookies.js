@@ -22,11 +22,10 @@ ck_display_cookies_in_log();
 /*------------------------------------------COOOOOKIIIIESSSSS----------------------------------------------------------------------------------------------------------- */
 
 function ck_popup_cookie(){
-    
     var_alert_cookie='vous consentez à ce que ces informations soient provisoirement stockées sur votre ordinateur via des cookies: '+document.cookie;
     //document.getElementById("resultat-requete").innerHTML += var_alert_cookie;
     alert(var_alert_cookie);
-    window.location.href = "menu-test-api.html";
+   
 }
 
 
@@ -99,6 +98,15 @@ function ck_erase_unused_cookies() {
 function ck_display_cookies_in_log() {
     console.log("cookies => "+document.cookie);
 }
+
+
+function ck_getCookie(name)
+    {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+
 
 function ck_decode_cookie(variable){
     var value = document.cookie.match('(^|;)\\s*' + variable + '\\s*=\\s*([^;]+)')?.pop() || '';

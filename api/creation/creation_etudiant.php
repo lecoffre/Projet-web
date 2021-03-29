@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $donnees = json_decode(file_get_contents("php://input"));
 
     if (
-        !empty($donnees->Login) && !empty($donnees->Prenom) && !empty($donnees->Nom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->Role)
+        !empty($donnees->Login) && !empty($donnees->Mot_de_passe) && !empty($donnees->Prenom) && !empty($donnees->Nom) && !empty($donnees->Photo_Utilisateur)
         && !empty($donnees->Centre_etudiant) && !empty($donnees->Promotion_etudiant) && !empty($donnees->Specialite) && !empty($donnees->ID_Utilisateur__CREE)
     ) {
         $authentification->Login = $donnees->Login;
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $authentification->Nom = $donnees->Nom;
                     $authentification->Prenom = $donnees->Prenom;
                     $authentification->Photo_Utilisateur = $donnees->Photo_Utilisateur;
-                    $authentification->Role = $donnees->Role;
+                    $authentification->Role = 'etudiant';
                     $authentification->ID_Login = $authen['ID_Login'];
 
                     if ($authentification->creer_utilisateur()) {
