@@ -1,19 +1,22 @@
 
-
 var Login_by_cookie=ck_decode_cookie("Login");
 var Mot_de_passe_by_cookie=ck_decode_cookie("Mot_de_passe");
+var Token_by_cookie;
 var cookie_remember;
 var Remember_me;
 var message_json ='';
 var alert_html = '';
 var error = '';
 
+
 /*----------------------------------PAGE LOG-IN----------------------------------------------------------*/
 var checkBox = document.getElementById("RemeberMe");
 document.getElementById("login").onclick = function(){
     login();
     ck_set_new_logins_cookies();
-    error_or_not();
+    console.log('boo')
+    ck_display_cookies_in_log();
+
     
 };
 checkBox.onclick = function(){
@@ -48,10 +51,6 @@ function ck_setCookie(name, value) {
             document.cookie = name + '=' + value + '; ' + expires + '; path=/';
         }
 
-
-
-
-
 function ck_set_new_logins_fields(){
 document.forms["se_connecter"]["Login"].value = Login_by_cookie;
 document.forms["se_connecter"]["Mot_de_passe"].value = Mot_de_passe_by_cookie;
@@ -73,7 +72,7 @@ if(Remember_me==true && (Login_by_cookie!="" && Mot_de_passe_by_cookie!="")){
     ck_setCookie("Login",Login_by_cookie);
     ck_setCookie("Mot_de_passe",Mot_de_passe_by_cookie);
 }else{
-    ck_deleteAllCookies();
+    
     ck_setCookie("rememberMe",cookie_remember);
 }
 }
@@ -170,7 +169,7 @@ function error_or_not(error){
    
 
 
-    if(error==''){
+    if(error=='0'){
         alert_html = '<div class="alert alert-success" role="alert">Requete terminé, tout s\'est bien passé</div>';
     }else{
         
@@ -290,13 +289,22 @@ function login() {
                                         html += '<p>Prenom : '+current_user.Prenom+'</p>';
                                         html += '<p>Role : '+current_user.Role+'</p>';
                                         html += '<p>ID_Utilisateur : '+current_user.ID_Utilisateur+'</p>';
-                                        if(typeof current_user.Token != 'undefined'){html += '<p> token: '+current_user.Token+'</p>';};
-                                        if(typeof current_user.Nouveau_Token != 'undefined'){html += '<p> nouveau token: '+current_user.Nouveau_Token+'</p>';};
+                                        if(typeof current_user.Token != 'undefined'){
+                                
+                                            html += '<p> token: '+current_user.Token+'</p>';
+                                        };
+                                        if(typeof current_user.Nouveau_Token != 'undefined'){
+                                     
+                                            html += '<p> nouveau token: '+current_user.Nouveau_Token+'</p>';
+                                        };
                                         html += '<p>image : --------------------------------</p><img style="height: auto; width: auto; max-height: 80px;  max-width: 80px" src="'+ current_user.Photo_Utilisateur+'">';
                                         html += '<p>----------------------------------------</p>';
                                         html += '</div><hr>';
-                                        console.log('fin html');
-                                        error_or_not('');
+                                        Token_by_cookie = current_user.Token;
+                                        console.log('fin html '+ Token_by_cookie);
+                                        ck_setCookie("Token", Token_by_cookie);
+                                        error_or_not('0');
+                                        
                                         
                                         }catch(e){
                                             if(e=="SyntaxError: Unexpected end of JSON input"){
@@ -311,7 +319,7 @@ function login() {
 
                                             }else{
                                                 console.log('erreur ==> '+e+'');
-                                                error = '3, ';
+                                                error = 'Problème interne';
                                                 error_or_not(error);
 
                                                 }
