@@ -38,11 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     try {
-
-
-
-
-
     if (!empty($donnees->Login) && !empty($donnees->Mot_de_passe)) {
         $authentification->Login = $donnees->Login;
         $authentification->Mot_de_passe = $donnees->Mot_de_passe; 
@@ -98,17 +93,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             http_response_code(200);
 
 
-
-
             
             // -------------------------TOKEN-------------------------
             if($authentification->Token != null){
-            $authen['Token'] = $authentification->Token;
-            $message = 'Token récupéré avec succès';
+            if(str_starts_with($authentification->Token, 'TOKENPROVISOIRE_')){
+                $authentification->changerToken($authen['ID_Utilisateur']);//MODIFIE LE TOKEN PROVISOIRE
+                $message = 'Token provisoire récupéré avec succès, nouveau token généré';
+                $authen['Nouveau_Token'] = $authentification->NewToken;
+            }else{
+                $authen['Token'] = $authentification->Token;
+                $message = 'Token récupéré avec succès';
+            }
             }
             else if($authentification->NewToken != null){
             $authen['Nouveau_Token'] = $authentification->NewToken;
-            $authen['Rechercher_entreprise'] = $authentification->Rechercher_entreprise;
+            //$authen['Rechercher_entreprise'] = $authentification->Rechercher_entreprise;
             if($authentification->Role == 'administrateur'){
                 $message = 'Token généré avec succès, vous avez tout les droits d\'API';
             }else{
@@ -119,6 +118,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $authen['Token'] = 'Problème de géneration du Token';
             }
             // -------------------------TOKEN-------------------------
+
+
             $authen['message'] = $message;
             echo json_encode($authen);
             }else{

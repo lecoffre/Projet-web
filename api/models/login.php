@@ -10,7 +10,7 @@ class Login
     private $table_4 = "etudiant"; //table de la base de données
     private $table_5 = "pilote"; //table de la base de données
     private $table_6 = "delegue"; //table de la base de données
-
+    
     // object properties 
 
     /**
@@ -28,6 +28,9 @@ class Login
      *
      * @return void
      */
+
+
+    
 
 
     public function login() // Methode POST ou l'on fournit login et mot de passe
@@ -369,7 +372,6 @@ class Login
             
             $query->bindParam(':Token', $this->NewToken);
             $query->bindParam(':ID_Utilisateur', $this->ID_Utilisateur);
-
             $query->bindParam(':Rechercher_une_entreprise', $this->Rechercher_entreprise); //1
             $query->bindParam(':Creer_une_entreprise', $this->Creer_une_entreprise);
             $query->bindParam(':Modifier_une_entreprise', $this->Modifier_une_entreprise);
@@ -409,25 +411,56 @@ class Login
             // Exécution de la requête
             if ($query->execute()) {
             $this->Token = null;
-            
             }else{ 
-                
                 return false;
                 }
-        }
-        else if( $row['Token'] != null) {
+        }else if( $row['Token'] != null) {
             $this->Token = $row['Token'];
-            }
-        else{
+            }else{ 
             return false;
-
         }
     }
+
+
+
+
+
+
+
+
+    public function changerToken($ID_Utilisateur_change_token){
+        $sql = "UPDATE " . $this->droit_token . " SET Token=:Token WHERE ID_Utilisateur=:ID_Utilisateur";
+        $query = $this->connexion->prepare($sql);
+                $NewToken;
+                $this->NewToken = 'TOKEN_:'.bin2hex(random_bytes(40)); 
+     
+                $query->bindParam(':Token', $this->NewToken);
+                $query->bindParam(':ID_Utilisateur', $ID_Utilisateur_change_token);
+    
+        if ($query->execute()) {
+            return true;
+        }else{
+        return false;
+    }
+        }
+
+
+
+
+
+
+
+
+
 
     //-----------------------------------------------------------------------
     }
 
 
+
+
+
+    
 
 
 
