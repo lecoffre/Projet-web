@@ -1,24 +1,11 @@
-
-
 var Login_by_cookie=ck_decode_cookie("Login");
 var Mot_de_passe_by_cookie=ck_decode_cookie("Mot_de_passe");
 var Token_by_cookie;
 var cookie_remember;
 var Remember_me;
 
-
 console.log('Cookies.js chargé');
 ck_display_cookies_in_log();
-
-
-
-
-
-
-
-
-
-
 /*------------------------------------------COOOOOKIIIIESSSSS----------------------------------------------------------------------------------------------------------- */
 
 function ck_popup_cookie(){
@@ -122,6 +109,7 @@ function ck_get_cookie_remeber_me() {
         console.log("le cookie se souvenir de moi est fixé sur oui")
         checkBox.checked = true;
         Remember_me = true;
+        ck_setCookie("rememberMe", "yes");
         if((Login_by_cookie!="" && Mot_de_passe_by_cookie!="")&&(Login_by_cookie!="undefined" && Mot_de_passe_by_cookie!="undefined")){
            
             ck_set_new_logins_fields();
@@ -134,6 +122,7 @@ function ck_get_cookie_remeber_me() {
         console.log("le cookie se souvenir de moi est fixé sur non")
         checkBox.checked = false;
         Remember_me = false;
+        ck_setCookie("rememberMe", "no");
     }else{
         console.log("le cookie se souvenir de moi n'existe pas");
         checkBox.checked = true;

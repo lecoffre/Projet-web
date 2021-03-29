@@ -12,14 +12,17 @@ checkBox.onclick = function(){
     ck_get_cookie_remeber_me();}
 document.getElementById("login").onclick = function(){
     login();
-    
     ck_set_new_logins_cookies();
-    ck_display_cookies_in_log();
-    
+    ck_display_cookies_in_log();  
+}
+document.getElementById("forgot_psw").onclick = function(){
+    error_or_not("forgot_psw");
+}
+document.getElementById("contact_admin").onclick = function(){
+    error_or_not("contact_admin");
+  
     
 }
-
-
 /*----------------------------------PAGE LOG-IN----------------------------------------------------------*/
 
 
@@ -46,7 +49,7 @@ window.onload = function() {
 
 function error_or_not(error){
    
-
+    
 
     if(error=='0'){
         ck_popup_cookie();
@@ -56,7 +59,18 @@ function error_or_not(error){
         alert_html = '<div class="alert alert-info" role="alert">Votre token à été mis à jour, veuillez vous reconnecter</div>';
 
         //location.reload();
-    }else{
+    }else if(error=='forgot_psw'){    
+        //alert('Votre token à été mis à jour, veuillez vous reconnecter');
+        alert_html = '<div class="alert alert-info" role="alert">La page de récupération de mot de passe est momentanément indisponible, veuillez contacter un administrateur</div>';
+
+        //location.reload();
+    }else if(error=='contact_admin'){    
+        //alert('Votre token à été mis à jour, veuillez vous reconnecter');
+        alert_html = '<div class="alert alert-info" role="alert"> <div class="row col-12"><div class="col-lg-8 col-md-8  col-sm-12 col-xs-12"> Veuiller reseigner un email</div>';
+        alert_html += ' <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 row" ><input class="col-10 form-control form-control-user" style="height:30px"><button style="height:30px" class = "col-2 btn btn-primary"><i class="far fa-envelope"></i></button></div> </div>  </div>'
+        //location.reload();
+    } 
+    else{
         
         alert_html = '<div class="alert alert-danger" role="alert">Une erreur s\'est produite: '+error+'</div>';
 
