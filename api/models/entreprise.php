@@ -33,8 +33,15 @@ class Entreprise
      *
      * @return void
      */
+    
+
+
+
+
+
     public function lire_entreprises()
     {
+        
         // On écrit la requête 
         $sql = "SELECT * FROM " . $this->table;
 
