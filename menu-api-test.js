@@ -1,7 +1,7 @@
 window.onload = function() {
     get_api_connexion();
     get_auth(1)
-
+console.log()
 }; 
 /*----------------------------------PAGE MENU TEST----------------------------------------------------------*/
 document.getElementById("del").onclick = function(){delete_()};
