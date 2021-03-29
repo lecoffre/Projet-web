@@ -35,11 +35,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // On instancie les entreprises 
     $authentification = new Login($db);
     $donnees = json_decode(file_get_contents("php://input"));
+
+
+    try {
+
+
+
+
+
     if (!empty($donnees->Login) && !empty($donnees->Mot_de_passe)) {
         $authentification->Login = $donnees->Login;
         $authentification->Mot_de_passe = $donnees->Mot_de_passe; 
         $authentification->login();
-        if ($authentification->Login != null && $authentification->Nom != null) { 
+       
+        if ($authentification->Login != null && $authentification->Nom != null && $authentification->ID_Utilisateur != null) { 
+           
             $authen = [
                 "ID_Login" => $authentification->ID_Login,
                 "Login" => $authentification->Login,
@@ -84,7 +94,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $message = "ok, mais aucun role";
                         break;
                 }
+               
             http_response_code(200);
+
+
+
+
+            
             // -------------------------TOKEN-------------------------
             if($authentification->Token != null){
             $authen['Token'] = $authentification->Token;
@@ -116,6 +132,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo json_encode(array("message" => "L'utilisateur n'existe pas'."));
         }
     }
+
+
+
+
+}catch (Exception $e) {
+    $message = ("Caught exception: ".$e->getMessage() );
+    if (($e->getMessage())=="SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'ID_Utilisateur' cannot be null"){
+        $message = 'Binome login - mot de passe incorrects';
+    }
+    $authen['message'] = $message;
+    echo json_encode($authen);
+
+    http_response_code(404);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 } else {
     // On gère l'erreur
     http_response_code(405);
