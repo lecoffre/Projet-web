@@ -14,6 +14,22 @@ var Photo_Utilisateur_by_cookie = ck_getCookie('Photo_Utilisateur');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Variables
 var Remember_me;
 /*----------------------------------------------------------------------------------------------------------*/

@@ -285,6 +285,72 @@ async function  login() {
                                         ck_setCookie("ID_Login", current_user.ID_Login);
                                         ck_setCookie("Photo_Utilisateur",  current_user.Photo_Utilisateur);
 
+
+
+
+                                        ck_setCookie("Rechercher_entreprise", current_user.Rechercher_entreprise);
+                                        ck_setCookie("Creer_une_entreprise", current_user.Creer_une_entreprise);
+                                        ck_setCookie("Modifier_une_entreprise", current_user.Modifier_une_entreprise);
+                                        ck_setCookie("Evaluer_une_entreprise", current_user.Evaluer_une_entreprise);
+                                        ck_setCookie("Supprimer_une_entreprise", current_user.Supprimer_une_entreprise);
+                                        ck_setCookie("Consulter_les_stats_des_entreprises", current_user.Consulter_les_stats_des_entreprises);
+                                        ck_setCookie("Rechercher_une_offre", current_user.Rechercher_une_offre);
+                                        ck_setCookie("Creer_une_offre", current_user.Creer_une_offre);
+                                        ck_setCookie("Modifier_une_offre", current_user.Modifier_une_offre);
+                                        ck_setCookie("Supprimer_une_offre", current_user.Supprimer_une_offre);
+                                        ck_setCookie("Consulter_les_stats_des_offres", current_user.Consulter_les_stats_des_offres);
+                                        ck_setCookie("Rechercher_un_compte_pilote", current_user.Rechercher_un_compte_pilote);
+                                        ck_setCookie("Creer_un_compte_pilote", current_user.Creer_un_compte_pilote);
+                                        ck_setCookie("Modifier_un_compte_pilote", current_user.Modifier_un_compte_pilote);
+                                        ck_setCookie("Supprimer_un_compte_pilote", current_user.Supprimer_un_compte_pilote);
+                                        ck_setCookie("Rechercher_un_compte_delegue", current_user.Rechercher_un_compte_delegue);
+                                        ck_setCookie("Creer_un_compte_delegue", current_user.Creer_un_compte_delegue);
+                                        ck_setCookie("Modifier_un_compte_delegue", current_user.Modifier_un_compte_delegue);
+                                        ck_setCookie("Supprimer_un_compte_delegue", current_user.Supprimer_un_compte_delegue);
+                                        ck_setCookie("Assigner_des_droits_a_un_delegue", current_user.Assigner_des_droits_a_un_delegue);
+                                        ck_setCookie("Rechercher_un_compte_etudiant", current_user.Rechercher_un_compte_etudiant);
+                                        ck_setCookie("Creer_un_compte_etudiant", current_user.Creer_un_compte_etudiant);
+                                        ck_setCookie("Modifier_un_compte_etudiant", current_user.Modifier_un_compte_etudiant);
+                                        ck_setCookie("Supprimer_un_compte_etudiant", current_user.Supprimer_un_compte_etudiant);
+                                        ck_setCookie("Consulter_les_stats_des_etudiants", current_user.Consulter_les_stats_des_etudiants);
+                                        ck_setCookie("Ajouter_une_offre_a_la_wish_list", current_user.Ajouter_une_offre_a_la_wish_list);
+                                        ck_setCookie("Retirer_une_offre_a_la_wish_list", current_user.Retirer_une_offre_a_la_wish_list);
+                                        ck_setCookie("Postuler_a_une_offre", current_user.Postuler_a_une_offre);
+                                        ck_setCookie("Informer_le_systeme_de_l_avancement_de_la_candidature_step_1", current_user.Informer_le_systeme_de_l_avancement_de_la_candidature_step_1);
+                                        ck_setCookie("Informer_le_systeme_de_l_avancement_de_la_candidature_step_2", current_user.Informer_le_systeme_de_l_avancement_de_la_candidature_step_2);
+                                        ck_setCookie("Informer_le_systeme_de_l_avancement_de_la_candidature_step_3", current_user.Informer_le_systeme_de_l_avancement_de_la_candidature_step_3);
+                                        ck_setCookie("Informer_le_systeme_de_l_avancement_de_la_candidature_step_4", current_user.Informer_le_systeme_de_l_avancement_de_la_candidature_step_4);
+                                        ck_setCookie("Informer_le_systeme_de_l_avancement_de_la_candidature_step_5", current_user.Informer_le_systeme_de_l_avancement_de_la_candidature_step_5);
+                                        ck_setCookie("Informer_le_systeme_de_l_avancement_de_la_candidature_step_6", current_user.Informer_le_systeme_de_l_avancement_de_la_candidature_step_6); 
+                                       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                             if(current_user.Role=='administrateur'){
                                             ck_setCookie("Authorisations", current_user.Authorisations);
                                             }else if(current_user.Role=='pilote'){
