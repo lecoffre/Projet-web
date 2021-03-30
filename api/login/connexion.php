@@ -102,6 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $authen['Nouveau_Token'] = $authentification->NewToken;
             }else{
                 $authen['Token'] = $authentification->Token;
+                $authen['Rechercher_entreprise'] = $authentification->Rechercher_entreprise;
+
                 $message = 'Token récupéré avec succès';
             }
             }

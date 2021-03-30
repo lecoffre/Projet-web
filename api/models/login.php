@@ -410,6 +410,7 @@ class Login
             
             // Exécution de la requête
             if ($query->execute()) {
+                
             $this->Token = null;
             }else{ 
                 return false;

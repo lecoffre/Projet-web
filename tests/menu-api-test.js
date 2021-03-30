@@ -2,11 +2,20 @@
 var html_cookie = "resultat-cookies";
 
 
+
+
+
+
+
+
+
+
+
 window.onload = function() {
     get_api_connexion();
     var auth = get_cookies();
     if(auth==1){
-        html_cookie = "<p>cookies: "+Login_by_cookie+", "+Mot_de_passe_by_cookie+", "+Token_by_cookie+'</p>';
+        html_cookie = "<p>cookies: "+ck_getCookie('Login')+", "+ck_getCookie('Mot_de_passe')+", "+ck_getCookie('Token')+'</p>';
         document.getElementById("resultat-cookies").innerHTML = html_cookie;
     }
     get_auth(auth)
@@ -25,17 +34,16 @@ document.getElementById("test2").onclick = function(){get_one_company();};
 document.getElementById("test3").onclick = function(){create_company();};
 document.getElementById("test4").onclick = function(){delete_company();};
 document.getElementById("test5").onclick = function(){edit_company();};
-document.getElementById("delete_token").onclick = function(){delete_token()};
+document.getElementById("delete_token").onclick = function(){ck_delete_token()};
 
 /*----------------------------------PAGE MENU TEST----------------------------------------------------------*/
 
 
 
 function get_cookies(){
-    Login_by_cookie=ck_decode_cookie("Login");
-    Mot_de_passe_by_cookie=ck_decode_cookie("Mot_de_passe");
-    Token_by_cookie=ck_decode_cookie("Token");
-    console.log('cookies recupérés==> '+Login_by_cookie+', '+Mot_de_passe_by_cookie+', '+Token_by_cookie);
+
+
+    console.log('cookies recupérés==> '+Login_by_cookie+', '+Mot_de_passe_by_cookie+', '+Token_by_cookie+', '+Role_by_cookie);
     if(Token_by_cookie == '' || Login_by_cookie =='' || Mot_de_passe_by_cookie=='' ){
         return 0;
     }else{
@@ -45,14 +53,6 @@ function get_cookies(){
 
     }
 }
-
-
-
-function delete_token(){
-    ck_erase_unused_cookies();
-    location.reload();
-}
-
 
 
 

@@ -11,6 +11,7 @@ checkBox.onclick = function(){
     ck_remeber_me();
     ck_get_cookie_remeber_me();}
 document.getElementById("login").onclick = function(){
+
     login();
     ck_set_new_logins_cookies();
     ck_display_cookies_in_log();  
@@ -31,12 +32,84 @@ window.onload = function() {
     ck_display_cookies_in_log();
     ck_get_cookie_remeber_me();
     ck_erase_fields();
-    ck_erase_unused_cookies();
+    
     ck_display_cookies_in_log();
     ck_control_logins_field();
     ck_set_new_logins_fields();
     
 }; 
+
+
+
+
+    //Sert à remplir les cookies utilisés pour remplir les champs pour le rememberme dans login.html
+    function ck_set_new_logins_cookies(){
+        if(Remember_me==true && (Login_by_cookie!="" && Mot_de_passe_by_cookie!="")){
+         
+            ck_setCookie("Login",Login_by_cookie);
+            ck_setCookie("Mot_de_passe",Mot_de_passe_by_cookie);
+        }else{  
+            ck_setCookie("rememberMe",cookie_remember);
+        }
+        }
+        
+        //Sert à verifier que les champs de login.html ne soient pas sur 'undefined'
+        function ck_control_logins_field(){
+            if(document.forms["se_connecter"]["Login"].value != "undefined" || document.forms["se_connecter"]["Mot_de_passe"].value == "undefined"){
+                document.forms["se_connecter"]["Login"].value = "";
+                document.forms["se_connecter"]["Mot_de_passe"].value = "";
+            }
+        }
+        
+        
+        //Pour remember me index.html
+        function ck_get_cookie_remeber_me() {
+            console.log("cookie se souvenir de moi => "+ck_decode_cookie("rememberMe"));
+            cookie_remember=ck_decode_cookie("rememberMe");
+            if(cookie_remember=="yes"){
+                console.log("le cookie se souvenir de moi est fixé sur oui")
+                checkBox.checked = true;
+                Remember_me = true;
+                ck_setCookie("rememberMe", "yes");
+                if((Login_by_cookie!="" && Mot_de_passe_by_cookie!="")&&(Login_by_cookie!="undefined" && Mot_de_passe_by_cookie!="undefined")){
+                   
+                    ck_set_new_logins_fields();
+                }else{
+                    console.log("Les cookies ne peuvent pas etres utilisés pour le login, suppression des cookies de Login");
+                    ck_erase_unused_cookies;
+                }
+        
+            }else if(cookie_remember=="no"){
+                console.log("le cookie se souvenir de moi est fixé sur non")
+                checkBox.checked = false;
+                Remember_me = false;
+                ck_setCookie("rememberMe", "no");
+            }else{
+                console.log("le cookie se souvenir de moi n'existe pas");
+                checkBox.checked = true;
+                Remember_me = true;
+            }
+        }
+        
+        //Pour remember me index.html
+        function ck_remeber_me() {
+            if (checkBox.checked == true){
+            console.log('checked');
+            ck_setCookie("rememberMe","yes");
+            }else{
+            console.log('not checked');
+            ck_setCookie("rememberMe","no");
+            ck_get_cookie_remeber_me();
+            }
+        }
+        
+    
+    
+    
+    
+
+
+
 
 
 
@@ -50,10 +123,10 @@ window.onload = function() {
 function error_or_not(error){
    
     
-
     if(error=='0'){
         ck_popup_cookie();
-        window.location.href = "menu-test-api.html";
+        //get_more_infos();--------------------------------------------------------------------------------------------------------------ATTRAPPER LES INFOS SUPPLÉMENTAIRES
+        window.location.href = "account.html";
     }else if(error=='reconnect'){    
         //alert('Votre token à été mis à jour, veuillez vous reconnecter');
         alert_html = '<div class="alert alert-info" role="alert">Votre token à été mis à jour, veuillez vous reconnecter</div>';
@@ -155,6 +228,7 @@ async function  login() {
     var Mot_de_passe = document.forms["se_connecter"]["Mot_de_passe"].value;
     if(Login != "" && Mot_de_passe != "")
     {
+        console.log('creation des cookies Login et Mot de passe')
                     Login_by_cookie = Login;
                     Mot_de_passe_by_cookie = Mot_de_passe;
 
@@ -202,9 +276,54 @@ async function  login() {
                                         html += '<p>----------------------------------------</p>';
                                         html += '</div><hr>';
                                         */
-                                        Token_by_cookie = current_user.Token;
-                                        console.log('Token_by_cookie => '+ Token_by_cookie);
-                                        ck_setCookie("Token", Token_by_cookie);
+                                        ck_erase_unused_cookies;
+                                        console.log('Creation des cookies apres login : Role, Token, ID_Utilisateur');
+        
+                                        ck_setCookie("Role", current_user.Role);
+                                        ck_setCookie("Token", current_user.Token);
+                                        ck_setCookie("ID_utilisateur", current_user.ID_Utilisateur);
+                                        ck_setCookie("ID_Login", current_user.ID_Login);
+                                        ck_setCookie("Photo_Utilisateur",  current_user.Photo_Utilisateur);
+
+                                            if(current_user.Role=='administrateur'){
+                                            ck_setCookie("Authorisations", current_user.Authorisations);
+                                            }else if(current_user.Role=='pilote'){
+                                            ck_setCookie("Authorisations", current_user.Authorisations);
+                                            ck_setCookie("Centre_pilote", current_user.Centre_pilote);
+                                            ck_setCookie("Promotion_pilote", current_user.Promotion_pilote);
+                                            }else if(current_user.Role=='delegue'){
+                                            ck_setCookie("Authorisations", current_user.Authorisations);
+                                            ck_setCookie("Centre_Delegue", current_user.Centre_Delegue);
+                                            ck_setCookie("Promotion_delegue", current_user.Promotion_delegue);
+                                            ck_setCookie("Specialite", current_user.Specialite);
+                                            ck_setCookie("ID_Utilisateur__CREE", current_user.ID_Utilisateur__CREE);
+                                            }else if(current_user.Role=='etudiant'){
+                                            ck_setCookie("Authorisations", current_user.Authorisations);
+                                            ck_setCookie("Centre_etudiant", current_user.Centre_etudiant);
+                                            ck_setCookie("Promotion_etudiant", current_user.Promotion_etudiant);
+                                            ck_setCookie("ID_Utilisateur__CREE", current_user.ID_Utilisateur__CREE);
+                                            }else{
+                                                ck_setCookie("Authorisations", 'Aucune');
+                                            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    
+                                        
+                                        
                                         alert_html = '<div class="alert alert-success" role="alert">Requete terminé, tout s\'est bien passé</div>';
                                         if(typeof(Token_by_cookie)  === 'undefined'){
                                             error_or_not('reconnect');
