@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     $db = $database->getConnection();
 
     // On instancie les entreprises 
-    $droitdelegue = new Droitdelegue($db);
+    $droitdelegue = new DroitToken($db);
 
     // On récupère l'id du delegue
     $donnees = json_decode(file_get_contents("php://input"));
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     if (!empty($donnees->ID_Utilisateur)) {
         $droitdelegue->ID_Utilisateur = $donnees->ID_Utilisateur;
 
-        if ($droitdelegue->supprimer_droit_delegue()) {
+        if ($droitdelegue->supprimer_droit_token()) {
             // Ici la suppression a fonctionné
             // On envoie un code 200
             http_response_code(200);

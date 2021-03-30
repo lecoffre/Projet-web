@@ -1,4 +1,4 @@
-var number_of_item=4;
+var number_of_item=6;
 var first=0;
 var actual_page=1;
 var administrateur;

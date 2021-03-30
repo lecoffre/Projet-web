@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-28 20:04:41
+/* Smarty version 3.1.39, created on 2021-03-30 20:06:17
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\offre.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6060c539891957_60878250',
+  'unifunc' => 'content_60636899b24471_32072103',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '22ca2b1794049e3a3599f22bc48b7979ca25e2c7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\offre.tpl',
-      1 => 1616954679,
+      1 => 1617115073,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6060c539891957_60878250 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60636899b24471_32072103 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -55,13 +55,124 @@ function content_6060c539891957_60878250 (Smarty_Internal_Template $_smarty_tpl)
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
+                        <!-- créer offre-->
+                        <!-- Boutton -->
                         <button
                         type="button"
+                        data-toggle="modal" 
+                        data-target="#popup-offre"
                         style="border-radius: 5px 0 0 5px"
                         class="btn btn-primary float-left col-2"
                         >
                             <span aria-hidden="true"><i class="fa fa-plus" aria-hidden="true"></i></span>
                         </button>
+                        <!-- Pop-up -->
+                        <div id="popup-offre" class="modal">
+                            <div class="modal-dialog ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <p> Ajout d'une offre </p>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="creationOffreForm" class="needs-validation" novalidate>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom01">Nom de l'Offre</label>
+                                                    <input type="text" class="form-control" id="nomOffre" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom02">Secteur d'activité</label>
+                                                    <input type="text" class="form-control" id="secteurActivite" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="validationCustom03">Compétences recherchées dans le stage</label>
+                                                    <textarea class="form-control" id="compRecherchees" required></textarea>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Entreprise</label>
+                                                    <input type="text" class="form-control" id="nomEntreprise" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Promotion concernée</label>
+                                                    <select type="text" class="form-control" id="promoConcernee" required>
+                                                        <option value="CPI A1">CPI A1</option>
+                                                        <option value="CPI A2">CPI A2</option>
+                                                        <option value="CI A1">CI A1</option>
+                                                        <option value="CI A2">CI A2</option>
+                                                        <option value="CI A3">CI A3</option>
+                                                    </select>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Durée du stage (en mois)</label>
+                                                    <input type="number" class="form-control" id="dureeStage" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom05">Rémunération</label>
+                                                    <input type="number" class="form-control" id="remuneration" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom06">Date de l'offre</label>
+                                                    <input type="date" class="form-control" id="dateOffre" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom06">Nombre de places disponible</label>
+                                                    <input type="input" class="form-control" id="placeDispoOffre" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom05">Ville</label>
+                                                    <input type="text" class="form-control" id="localite" required>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" id="btnCreationOffre" onclick="creation_offre()" type="submit">Créer l'offre</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                         <div class="form-floating col-10 ">
                             <div class="row">

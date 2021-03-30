@@ -32,13 +32,80 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
+                        <!-- Création de administrateur -->
+                        <!-- Boutton -->
                         <button
                         type="button"
+                        data-toggle="modal" 
+                        data-target="#popup-administrateur"
                         style="border-radius: 5px 0 0 5px"
                         class="btn btn-primary float-left col-2"
                         >
                             <span aria-hidden="true"><i class="fa fa-plus" aria-hidden="true"></i></span>
                         </button>
+                        <!-- Pop-up -->
+                        <div id="popup-administrateur" class="modal">
+                            <div class="modal-dialog ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <p> Ajout d'un administrateur </p>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="creationAdministrateurForm" class="needs-validation" novalidate>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom01">Nom</label>
+                                                    <input type="text" class="form-control" id="nomAdmin" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom01">Prénom</label>
+                                                    <input type="text" class="form-control" id="prenomAdmin" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom02">Login</label>
+                                                    <input type="text" class="form-control" id="loginAdmin" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="validationCustom03">Mot de passe</label>
+                                                    <input type="text" class="form-control" id="mdpAdmin" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-10 mb-3">
+                                                    <label class="form-label" for="customFile">Photo de profil</label>
+                                                    <input type="file" class="form-control" id="photoAdmin" required />
+                                                    <div class="invalid-feedback">
+                                                        Merci de fournir une photo de profil.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" id="btnCreationAdministrateur" onclick="creation_administrateur()" type="submit">Créer l'administrateur</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                         <div class="form-floating col-10 ">
                             <div class="row">
@@ -258,7 +325,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!--1ere page-->
             
                 <div
@@ -298,5 +364,5 @@
     <!-- /.container-fluid -->
     </div>
 <!-- End of Main Content -->
-
+<script src="js/creation.js"></script>
 <script src="js/card_administrateur.js"></script>  

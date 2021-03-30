@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../config/database.php';
-    include_once '../models/droitdelegue.php';
+    include_once '../models/droittoken.php';
 
 
     // On instancie la base de données
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $db = $database->getConnection();
 
     // On instancie les delegues 
-    $droitdelegue = new Droitdelegue($db);
+    $droitdelegue = new DroitToken($db);
 
 
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $droitdelegue->ID_Utilisateur = $donnees->ID_Utilisateur;
 
         // On récupère du delegue
-        $droitdelegue->lire_un_droit_delegue();
+        $droitdelegue->lire_un_droit_token();
 
         // On vérifie si du delegue existe
         if ($droitdelegue->ID_Utilisateur != null) {

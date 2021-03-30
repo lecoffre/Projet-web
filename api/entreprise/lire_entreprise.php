@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $entreprise = new Entreprise($db);
 
 
+
     // On récupère les données
     $stmt = $entreprise->lire_entreprises();
 

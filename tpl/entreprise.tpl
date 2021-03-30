@@ -51,7 +51,7 @@
                                         <p> Ajout d'une entreprise </p>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="needs-validation" novalidate>
+                                        <form id="creationEntrepriseForm" class="needs-validation" novalidate>
                                             <div class="form-row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="validationCustom01">Nom de l'entreprise</label>
@@ -79,7 +79,7 @@
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="validationCustom04">Nombre d'étudiants CESI déjà acceptés par l'entreprise</label>
-                                                    <textarea class="form-control" id="nbStagiaireCESI" placeholder="Nombre d'étudiants acceptés par l'entreprise" required></textarea>
+                                                    <input type="number" class="form-control" id="nbStagiaireCESI" required>
                                                     <div class="valid-feedback">
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -87,7 +87,7 @@
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="validationCustom04">Noter l'entreprise de 0 à 10</label>
-                                                    <textarea class="form-control" id="noteEntreprise" placeholder="5 s'il n'y a pas encore eu de stage réalisé" required></textarea>
+                                                    <input type="number" class="form-control" id="noteEntreprise" required>
                                                     <div class="valid-feedback">
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -95,7 +95,7 @@
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="validationCustom04">Confiance du Pilote de Promotion de 0 à 10</label>
-                                                    <textarea class="form-control" id="notePilote" placeholder="Voir avec votre pilote de promotion si vous êtes un élève" required></textarea>
+                                                    <input type="number" class="form-control" id="notePilote" required>
                                                     <div class="valid-feedback">
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -134,10 +134,10 @@
                             <div class="row">
                                 <input
                                     class="search-input-bar col-9"
-                                    type="email"
+                                    type="text"
                                 
                                     class="form-control col-9"
-                                    id="floatingInput"
+                                    id="barreRecherche"
                                     placeholder="Rechercher"
                                 />
                                 <button
@@ -161,212 +161,170 @@
                     style="height: 0.5px; margin: 5px 0px 9px 0px"
                 ></div>
                 </div>
-                    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
-                        <div class="row">
                     
-                            <div class="col-12 multi-selection-bar">
-                                <select
-                                class="form-control"
-                                id="droit_delegue"
-                                placeholder="Selection"
-                                multiple
-                                >
-                                    <option value="">Droit</option>
-                                    <option value="true">Créer une offre</option>
-                                    <option value="true">Modifier une offre</option>
-                                    <option value="true">Supprimer une offre</option>
-                                    <option value="true">
-                                        Rechercher un compte délégué
-                                    </option>
-                                    <option value="true">Créer un délégué</option>
-                                    <option value="true">
-                                        Modifier un compte délégué
-                                    </option>
-                                    <option value="true">
-                                        Rechercher un compte étudiant
-                                    </option>
-                                    <option value="true">Créer un étudiant</option>
-                                    <option value="true">Strasbourg</option>
-                                    <option value="true">Modifier un étudiant</option>
-                                    <option value="true">Supprimer un étudiant</option>
-                                    <option value="true">
-                                        Consulter les stats des étudiants
-                                    </option>
-                                    <option value="true">
-                                        Informer le système de l'avancement de la
-                                        candidature step 3
-                                    </option>
-                                    <option value="true">
-                                        Informer le système de l'avancement de la
-                                        candidature step 4
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="row"
+        id="js-result-entreprise"
+        style="
+        margin-top: 8px;
+        margin-bottom: 2px;
+        border: 1px rgba(201, 201, 201, 0.911) solid;
+        border-radius: 12px;
+        background-color: rgba(238, 238, 238, 0.178);
+        "
+    >     
+    </div>
+
+        <div class="row">
+            <div class="col-8" style="margin: 0 0 0 0; padding: 0 0 0 5px">
+                <ul
+                style="padding: 5px 0"
+                class="nav nav-pills"
+                id="pills-tab"
+                role="tablist"
+                >
+                    <li class="nav-item">
+                        <a
+                        class="nav-link active"
+                        id="pills-home-tab"
+                        data-toggle="pill"
+                        href="#pills-home"
+                        role="tab"
+                        aria-controls="pills-home"
+                        aria-selected="true"
+                        >
+                            Informations
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                        class="nav-link"
+                        id="pills-profile-tab"
+                        data-toggle="pill"
+                        href="#pills-profile"
+                        role="tab"
+                        aria-controls="pills-profile"
+                        aria-selected="false"
+                        >
+                            Modifier
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                        class="nav-link"
+                        id="pills-contact-tab"
+                        data-toggle="pill"
+                        href="#pills-contact"
+                        role="tab"
+                        aria-controls="pills-contact"
+                        aria-selected="false"
+                        >
+                            Contacter
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="page col-4" style="padding: 4px">
+                <div class="arrow float-right">
+                    <div
+                        class="btn btn-primary"
+                        onclick="previous_page()"
+                        type="button"
+                        style="
+                        border-radius: 8px 0 0 8px;
+                        padding-right: 15px;
+                        padding-left: 15px;
+                        "
+                    >
+                        
+                        <a href=""><i class="fa fa-angle-left" aria-hidden="true" ></i></a>
+                    </div>
+                    <span id="page_info_entreprise"></span>
+                    <div
+                        class="btn btn-primary"
+                        onclick="next_page()"
+                        type="button"
+                        style="
+                        border-radius: 0 8px 8px 0;
+                        padding-right: 15px;
+                        padding-left: 15px;
+                        "
+                    >  
+                        <a href=""><i class="fa fa-angle-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div
-            class="row"
-            id="js-result-entreprise"
+            class="col-12"
             style="
-            margin-top: 8px;
-            margin-bottom: 2px;
-            border: 1px rgba(201, 201, 201, 0.911) solid;
-            border-radius: 12px;
-            background-color: rgba(238, 238, 238, 0.178);
+            height: 0.5px;
+            margin: 0 0 10px 0;
+            background-color: rgba(39, 37, 31, 0.219);
             "
-        >     
-        </div>
+        ></div>
 
-            <div class="row">
-                <div class="col-8" style="margin: 0 0 0 0; padding: 0 0 0 5px">
-                    <ul
-                    style="padding: 5px 0"
-                    class="nav nav-pills"
-                    id="pills-tab"
-                    role="tablist"
-                    >
-                        <li class="nav-item">
-                            <a
-                            class="nav-link active"
-                            id="pills-home-tab"
-                            data-toggle="pill"
-                            href="#pills-home"
-                            role="tab"
-                            aria-controls="pills-home"
-                            aria-selected="true"
-                            >
-                                Informations
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                            class="nav-link"
-                            id="pills-profile-tab"
-                            data-toggle="pill"
-                            href="#pills-profile"
-                            role="tab"
-                            aria-controls="pills-profile"
-                            aria-selected="false"
-                            >
-                                Modifier
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                            class="nav-link"
-                            id="pills-contact-tab"
-                            data-toggle="pill"
-                            href="#pills-contact"
-                            role="tab"
-                            aria-controls="pills-contact"
-                            aria-selected="false"
-                            >
-                                Contacter
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="page col-4" style="padding: 4px">
-                    <div class="arrow float-right">
-                        <div
-                            class="btn btn-primary"
-                            onclick="previous_page()"
-                            type="button"
-                            style="
-                            border-radius: 8px 0 0 8px;
-                            padding-right: 15px;
-                            padding-left: 15px;
-                            "
-                        >
-                            
-                            <a href=""><i class="fa fa-angle-left" aria-hidden="true" ></i></a>
-                        </div>
-                        <span id="page_info_entreprise"></span>
-                        <div
-                            class="btn btn-primary"
-                            onclick="next_page()"
-                            type="button"
-                            style="
-                            border-radius: 0 8px 8px 0;
-                            padding-right: 15px;
-                            padding-left: 15px;
-                            "
-                        >  
-                            <a href=""><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="tab-content" id="pills-tabContent" style="padding-bottom: 10px;">
             <div
-              class="col-12"
-              style="
-                height: 0.5px;
-                margin: 0 0 10px 0;
-                background-color: rgba(39, 37, 31, 0.219);
-              "
-            ></div>
-
-            <div class="tab-content" id="pills-tabContent" style="padding-bottom: 10px;">
-                <div
-                    class="tab-pane fade show active"
-                    id="pills-home"
-                    role="tabpanel"
-                    aria-labelledby="pills-home-tab"
-                >
-                    <!--1ere page-->
-
-                    <div class="card">
-                        <div class="card-header">
-                        Informations - Synthèse
-                        </div>
-                        <div id="afficher_une_entreprise">
-                        
-                    </div>
-                </div>
+                class="tab-pane fade show active"
+                id="pills-home"
+                role="tabpanel"
+                aria-labelledby="pills-home-tab"
+            >
                 <!--1ere page-->
-            
-                <div
-                class="tab-pane fade"
-                id="pills-profile"
-                role="tabpanel"
-                aria-labelledby="pills-profile-tab"
-                >
-                    2ème page
-                </div>
-                <div
-                class="tab-pane fade"
-                id="pills-contact"
-                role="tabpanel"
-                aria-labelledby="pills-contact-tab"
-                >
-                    3ème page
+
+                <div class="card">
+                    <div class="card-header">
+                    Informations - Synthèse
+                    </div>
+                    <div id="afficher_une_entreprise">
+                    
                 </div>
             </div>
-
+            <!--1ere page-->
+        
             <div
-                class="col-12"
-                style="
-                height: 0.5px;
-                margin-top: 1px;
-                background-color: rgba(39, 37, 31, 0.219);
-                "
-            ></div>
-
+            class="tab-pane fade"
+            id="pills-profile"
+            role="tabpanel"
+            aria-labelledby="pills-profile-tab"
+            >
+                2ème page
+            </div>
             <div
-                class="row"
-                style="height: 250px; background-color: rgba(243, 243, 243, 0.63)"
-            ></div>
-
-        <!-- Contenu de la page au dessus -->
+            class="tab-pane fade"
+            id="pills-contact"
+            role="tabpanel"
+            aria-labelledby="pills-contact-tab"
+            >
+                3ème page
+            </div>
         </div>
-    <!-- /.container-fluid -->
+
+        <div
+            class="col-12"
+            style="
+            height: 0.5px;
+            margin-top: 1px;
+            background-color: rgba(39, 37, 31, 0.219);
+            "
+        ></div>
+
+        <div
+            class="row"
+            style="height: 250px; background-color: rgba(243, 243, 243, 0.63)"
+        ></div>
+
+    <!-- Contenu de la page au dessus -->
     </div>
+<!-- /.container-fluid -->
+</div>
 <!-- End of Main Content -->
 </div>
 <script src="js/card_entreprise.js"></script>  

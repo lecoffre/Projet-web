@@ -1,6 +1,6 @@
 //Variables globales
 
-let number_of_item=4;
+let number_of_item=10;
 let first=0;
 var actual_page=1;
 var candidature;

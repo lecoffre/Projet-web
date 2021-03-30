@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-29 11:45:06
+/* Smarty version 3.1.39, created on 2021-03-30 22:48:41
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\delegue.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6061a1a2a64dc5_93758233',
+  'unifunc' => 'content_60638ea95c86f5_01916902',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '36e1673ceffe851c68eae7c8ad97f63a05a18101' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\delegue.tpl',
-      1 => 1617007978,
+      1 => 1617108386,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6061a1a2a64dc5_93758233 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60638ea95c86f5_01916902 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -55,13 +55,141 @@ function content_6061a1a2a64dc5_93758233 (Smarty_Internal_Template $_smarty_tpl)
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
+                        <!-- Création de délégué -->
+                        <!-- Boutton -->
                         <button
                         type="button"
+                        data-toggle="modal" 
+                        data-target="#popup-delegue"
                         style="border-radius: 5px 0 0 5px"
                         class="btn btn-primary float-left col-2"
                         >
                             <span aria-hidden="true"><i class="fa fa-plus" aria-hidden="true"></i></span>
                         </button>
+                        <!-- Pop-up -->
+                        <div id="popup-delegue" class="modal">
+                            <div class="modal-dialog ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <p> Ajout d'un étudiant </p>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="creationDelegueForm" class="needs-validation" novalidate>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom01">Nom</label>
+                                                    <input type="text" class="form-control" id="nomDelegue" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom01">Prénom</label>
+                                                    <input type="text" class="form-control" id="prenomDelegue" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom02">Login</label>
+                                                    <input type="text" class="form-control" id="loginDelegue" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="validationCustom03">Mot de passe</label>
+                                                    <input type="text" class="form-control" id="mdpDelegue" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Centre de formation</label>
+                                                    <select class="form-control" id="centreDelegue" required>
+                                                        <option value="Aix-en-Provence">Aix-en-Provence</option>
+                                                        <option value="Angoulême">Angoulême</option>
+                                                        <option value="Arras">Arras</option>
+                                                        <option value="Bordeaux">Bordeaux</option>
+                                                        <option value="Brest">Brest</option>
+                                                        <option value="Caen">Caen</option>
+                                                        <option value="Châteauroux">Châteauroux</option>
+                                                        <option value="Dijon">Dijon</option>
+                                                        <option value="Grenoble">Grenoble</option>
+                                                        <option value="La Rochelle">La Rochelle</option>
+                                                        <option value="Le Mans">Le Mans</option>
+                                                        <option value="Lille">Lille</option>
+                                                        <option value="Lyon">Lyon</option>
+                                                        <option value="Montpellier">Montpellier</option>
+                                                        <option value="Nancy">Nancy</option>
+                                                        <option value="Nanterre">Nanterre</option>
+                                                        <option value="Nantes">Nantes</option>
+                                                        <option value="Nice">Nice</option>
+                                                        <option value="Orléans">Orléans</option>
+                                                        <option value="Pau">Pau</option>
+                                                        <option value="Reims">Reims</option>
+                                                        <option value="Rouen">Rouen</option>
+                                                        <option value="Saint-Nazaire">Saint-Nazaire</option>
+                                                        <option value="Strasbourg">Strasbourg</option>
+                                                        <option value="Toulouse">Toulouse</option>
+                                                    </select>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Promotion</label>
+                                                    <select class="form-control" id="promotionDelegue"required>
+                                                        <option value="CPI A1">CPI A1</option>
+                                                        <option value="CPI A2">CPI A2</option>
+                                                        <option value="CI A1">CI A1</option>
+                                                        <option value="CI A2">CI A2</option>
+                                                        <option value="CI A3">CI A3</option>
+                                                    </select>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Spécialité</label>
+                                                    <select class="form-control" id="specialiteDelegue" required>
+                                                        <option value="BTP">BTP</option>
+                                                        <option value="Généraliste">Généraliste</option>
+                                                        <option value="Informatique">Informatique</option>
+                                                        <option value="S3E">S3E</option>
+                                                    </select>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-10 mb-3">
+                                                    <label class="form-label" for="customFile">Photo de profil</label>
+                                                    <input type="file" class="form-control" id="photoDelegue" required />
+                                                    <div class="invalid-feedback">
+                                                        Merci de fournir une photo de profil.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" id="btnCreationDelegue" onclick="creation_delegue()" type="submit">Créer le délégué</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                         <div class="form-floating col-10 ">
                             <div class="row">
@@ -324,5 +452,8 @@ function content_6061a1a2a64dc5_93758233 (Smarty_Internal_Template $_smarty_tpl)
 
 <?php echo '<script'; ?>
  src="js/card_delegue.js"><?php echo '</script'; ?>
->  <?php }
+>  
+<?php echo '<script'; ?>
+ src="js/creation.js"><?php echo '</script'; ?>
+><?php }
 }
