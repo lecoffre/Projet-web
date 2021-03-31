@@ -21,7 +21,7 @@ function show_administrateur()
                  if(i<administrateur.length)
                 {
                     current_administrateur = administrateur[i];
-                    html += `<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style=" background-color: rgba(206, 206, 206, 0.247); padding: 10px; max-width:15%;">
+                    html += `<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" id="`+ current_administrateur.ID_Login +`" onclick="show_one_admin(this.id)" style="background-color: rgba(206, 206, 206, 0.247); padding: 10px; max-width:15%;">
                                 <div class="card border-bottom-dark">
                                     <img style="width: auto; height:auto;" src="` + current_administrateur.Photo_Utilisateur + `" >
                                     <div class="card-body" style="padding: 10px">
@@ -72,6 +72,146 @@ function show_page_info()
     document.getElementById('page_info_administrateur').innerHTML= `${actual_page}/${max_page}`
     
 }
+
+function show_one_admin(id_admin){
+    var param={
+        "ID_Login":id_admin
+    }
+    var html = '';
+    var data = JSON.stringify(param);
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.addEventListener("readystatechange", function() 
+    {
+        if( this.readyState === 4) 
+        {
+        
+            console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+            if( xhr.status == 200 )
+                {
+                try{
+                
+                var response = JSON.parse(xhr.response);
+                unAdmin= response; 
+
+                // Ici, j'utilise le bouton pour lancer la fonction d'affichage de la popup modifier en recuperant l'ID
+                html += `<div class="card-body">
+                        <div class="row">
+                            
+                            <div class="col-lg-4">
+                                <h6 class="card-title">`+ unAdmin.Nom + ` `+ unAdmin.Prenom +`</h6>
+                                <p class="card-text" style="margin-bottom: 0;"> `+ unAdmin.Role + `</p>
+                                <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
+                
+                                <button
+                                type="button"                                                           
+                                data-toggle="modal"
+                                data-target="#popup-modifier-administrateur"
+                                class="btn btn-primary" 
+                                onclick="popup_modifier_admin(this.id)" 
+                                id="`+ id_admin + `"
+                                style="margin: 13px 0 13px 0"
+                                >Modifier</button>
+                                <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
+
+                            </div>
+                            <div class="col-lg-4" style="border-left: 1px solid rgb(218, 218, 218);">
+                                <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
+                            </div>
+                            <div class="col-lg-4" style="border-left: 1px solid rgb(218, 218, 218);">
+                                <img class="image-company " alt="100x100" src="`+ unAdmin.Photo_Utilisateur +`" >
+                            </div>
+                        </div>
+                    </div>`;
+                }catch(e){
+                    if(e=="SyntaxError: Unexpected end of JSON input"){
+                        html = 'JSON incorrect (vide)';}
+                    else if(e==   "SyntaxError: Unexpected token < in JSON at position 0"){
+                        html = "L'admin n'existe pas"
+                        }
+                    else{
+                        html ='erreur ==> '+e+'';
+                    }
+                }
+            }
+            else{
+                    html = '<p>Wrong request. Error: ' + xhr.status + '</p>';
+                }
+        }
+        document.getElementById("afficher_un_admin").innerHTML = html;
+       
+    });
+    
+    xhr.open("POST", "http://localhost/projet-web-frontend/api/administrateur/lire_un_administrateur.php", true);
+
+    xhr.setRequestHeader("Content-Type", "application/json");
+    
+    xhr.responseType = 'text';
+
+    console.log('envoi=> '+data);
+    xhr.send(data);  
+};
+
+function popup_modifier_admin(id_admin){
+
+    var param={
+        "ID_Login":id_admin,
+    }
+    var html = '';
+    var data = JSON.stringify(param);
+    
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.addEventListener("readystatechange", function() 
+    {
+        if( this.readyState === 4) 
+        {
+        
+            console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+            if( xhr.status == 200 )
+                {
+                try{
+                
+                var response = JSON.parse(xhr.response);
+                unAdmin= response; 
+
+                // Ici, j'essaye de mettre dans les placeholder les données de l'admin, le seul qui ne marche pas est le logo.
+                document.getElementById("btnModifierAdmin").id = id_admin;
+                document.getElementById("nomAdmin1").value= unAdmin.Nom;
+                document.getElementById("prenomAdmin1").value = unAdmin.Prenom;
+                //document.getElementById("loginAdmin1").value =  unAdmin.Login;
+                //document.getElementById("mdpAdmin1").value = unAdmin.Mot_de_passe;
+                document.getElementById("photoAdmin1").value = unAdmin.Photo_Utilisateur;
+
+                
+              
+                console.log('fin html');
+                }catch(e){
+                    if(e=="SyntaxError: Unexpected end of JSON input"){
+                        html = 'JSON incorrect (vide)';}
+                    else if(e==   "SyntaxError: Unexpected token < in JSON at position 0"){
+                        html = "L'entreprise n'existe pas"
+                        }
+                    else{
+                        html ='erreur ==> '+e+'';
+                    }
+                }
+            }
+            else{
+                    html = '<p>Wrong request. Error: ' + xhr.status + '</p>';
+                }
+        }
+    });
+    
+    xhr.open("POST", "http://localhost/projet-web-frontend/api/administrateur/lire_un_administrateur.php", true);
+
+    xhr.setRequestHeader("Content-Type", "application/json");
+    
+    xhr.responseType = 'text';
+
+    console.log('envoi=> '+data);
+    xhr.send(data);  
+};
 
 
 window.onload = show_administrateur();

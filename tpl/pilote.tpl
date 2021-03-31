@@ -155,6 +155,118 @@
                             </div>
                         </div>
                         
+
+                        <div id="popup-modifier-pilote" class="modal">
+                            <div class="modal-dialog ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <p> Modification d'un pilote </p>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="modifierPiloteForm" class="needs-validation" novalidate>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom01">Nom</label>
+                                                    <input type="text" class="form-control" id="nomPilote1" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom01">Prénom</label>
+                                                    <input type="text" class="form-control" id="prenomPilote1" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom02">Login</label>
+                                                    <input type="text" class="form-control" id="loginPilote1" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="validationCustom03">Mot de passe</label>
+                                                    <input type="text" class="form-control" id="mdpPilote1" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Centre de formation</label>
+                                                    <select class="form-control" id="centrePilote1" required>
+                                                        <option value="Aix-en-Provence">Aix-en-Provence</option>
+                                                        <option value="Angoulême">Angoulême</option>
+                                                        <option value="Arras">Arras</option>
+                                                        <option value="Bordeaux">Bordeaux</option>
+                                                        <option value="Brest">Brest</option>
+                                                        <option value="Caen">Caen</option>
+                                                        <option value="Châteauroux">Châteauroux</option>
+                                                        <option value="Dijon">Dijon</option>
+                                                        <option value="Grenoble">Grenoble</option>
+                                                        <option value="La Rochelle">La Rochelle</option>
+                                                        <option value="Le Mans">Le Mans</option>
+                                                        <option value="Lille">Lille</option>
+                                                        <option value="Lyon">Lyon</option>
+                                                        <option value="Montpellier">Montpellier</option>
+                                                        <option value="Nancy">Nancy</option>
+                                                        <option value="Nanterre">Nanterre</option>
+                                                        <option value="Nantes">Nantes</option>
+                                                        <option value="Nice">Nice</option>
+                                                        <option value="Orléans">Orléans</option>
+                                                        <option value="Pau">Pau</option>
+                                                        <option value="Reims">Reims</option>
+                                                        <option value="Rouen">Rouen</option>
+                                                        <option value="Saint-Nazaire">Saint-Nazaire</option>
+                                                        <option value="Strasbourg">Strasbourg</option>
+                                                        <option value="Toulouse">Toulouse</option>
+                                                    </select>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Promotion</label>
+                                                    <select class="form-control" id="promotionPilote1"required>
+                                                        <option value="CPI A1">CPI A1</option>
+                                                        <option value="CPI A2">CPI A2</option>
+                                                        <option value="CI A1">CI A1</option>
+                                                        <option value="CI A2">CI A2</option>
+                                                        <option value="CI A3">CI A3</option>
+                                                    </select>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-10 mb-3">
+                                                    <label class="form-label" for="customFile">Photo de profil</label>
+                                                    <input type="file" class="form-control" id="photoPilote1" required />
+                                                    <div class="invalid-feedback">
+                                                        Merci de fournir une photo de profil.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" id="btnModifierPilote" onclick="modifier_pilote(this.id)" type="submit">Modifier le pilote</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-floating col-10 ">
                             <div class="row">
                                 <input
@@ -248,39 +360,7 @@
 
             <div class="row">
                 <div class="col-8" style="margin: 0 0 0 0; padding: 0 0 0 5px">
-                    <ul
-                    style="padding: 5px 0"
-                    class="nav nav-pills"
-                    id="pills-tab"
-                    role="tablist"
-                    >
-                        <li class="nav-item">
-                            <a
-                            class="nav-link active"
-                            id="pills-home-tab"
-                            data-toggle="pill"
-                            href="#pills-home"
-                            role="tab"
-                            aria-controls="pills-home"
-                            aria-selected="true"
-                            >
-                                Informations
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                            class="nav-link"
-                            id="pills-profile-tab"
-                            data-toggle="pill"
-                            href="#pills-profile"
-                            role="tab"
-                            aria-controls="pills-profile"
-                            aria-selected="false"
-                            >
-                                Modifier
-                            </a>
-                        </li>
-                    </ul>
+                    
                 </div>
 
                 <div class="page col-4" style="padding: 4px">
@@ -337,59 +417,10 @@
                         <div class="card-header">
                         Informations - Synthèse
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                
-                                <div class="col-lg-4">
-                                    <h6 class="card-title">CESI - ÉCOLE D'INGÉNIEUR </h6>
-                                    <p class="card-text" style="margin-bottom: 0;">93 boulevard de la seine</p>
-
-                                    <p class="card-text">92000 Nanterre</p>
-                                    <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
-                                    <a href="#" class="btn btn-primary" style="margin: 13px 0 13px 0">Aller sur le site</a>
-                                    <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
-
-                                </div>
-                                <div class="col-lg-4" style="border-left: 1px solid rgb(218, 218, 218);">
-                                    <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
-
-                                    <p class="card-text" style="margin-bottom: 0; margin-top: 8px; ">Nombre d'employés : XXXX</p>
-                                    <p class="card-text" style="margin-bottom: 0;">Information</p>
-                                    <p class="card-text" style="margin-bottom: 0;">Information</p>
-                                    <p class="card-text" style="margin-bottom: 0;">Information</p>
-                                    <p class="card-text" style="margin-bottom: 0;">Information</p>
-                                    <p class="card-text" style="margin-bottom: 6px;">Information</p>
-                                    <a href="" >Voir +</a>
-                                    <div style="height: 1px; background-color: rgb(223, 223, 223); margin-top: 2px;"></div>
-
-
-                                </div>
-                                <div class="col-lg-4" style="border-left: 1px solid rgb(218, 218, 218);">
-                                    <img class="image-company " alt="100x100" src="img/cesi-nanterre.png" >
-                                </div>
-                                
-                        
-                            </div>
+                        <div id="afficher_un_pilote">
+ 
                         </div>
                     </div>
-                </div>
-                <!--1ere page-->
-            
-                <div
-                class="tab-pane fade"
-                id="pills-profile"
-                role="tabpanel"
-                aria-labelledby="pills-profile-tab"
-                >
-                    2ème page
-                </div>
-                <div
-                class="tab-pane fade"
-                id="pills-contact"
-                role="tabpanel"
-                aria-labelledby="pills-contact-tab"
-                >
-                    3ème page
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
 
-
+//CREATION ENTREPRISE
 function creation_entreprise(){
     var nomEntreprise = document.getElementById("nomEntreprise").value;
     var secteurActivite = document.getElementById("SecteurActivie").value;
@@ -64,7 +64,7 @@ function creation_entreprise(){
     }
 }
    
-
+//CREATION OFFRE
 function creation_offre(){
     var nomOffre = document.getElementById("nomOffre").value;
     var secteurActivite = document.getElementById("secteurActivite").value;
@@ -134,7 +134,7 @@ function creation_offre(){
     }
 }
 
-
+//CREATION CANDIDATURE
 function creation_candidature(id_offre){
     var LIEN_OFFRE = "https://cesi.fr";
     var CV_etudiant = document.getElementById("cvEtudiant").files[0].name;
@@ -196,7 +196,7 @@ function creation_candidature(id_offre){
 }
 
 
-
+//CREATION ADMIN
 function creation_administrateur(){
     var nomAdmin = document.getElementById("nomAdmin").value;
     var prenomAdmin = document.getElementById("prenomAdmin").value;
@@ -255,7 +255,7 @@ function creation_administrateur(){
         
 }
 
-
+//CREATION PILOTE
 function creation_pilote(){
     var nomPilote = document.getElementById("nomPilote").value;
     var prenomPilote = document.getElementById("prenomPilote").value;
@@ -318,7 +318,7 @@ function creation_pilote(){
     }
 }
 
-
+//CREATION DELEGUE
 function creation_delegue(){
     var nomDelegue = document.getElementById("nomDelegue").value;
     var prenomDelegue = document.getElementById("prenomDelegue").value;
@@ -326,7 +326,25 @@ function creation_delegue(){
     var mdpDelegue = document.getElementById("mdpDelegue").value;
     var centreDelegue = document.getElementById("centreDelegue").value;
     var promotionDelegue = document.getElementById("promotionDelegue").value;
-    var specialiteDelegue = document.getElementById("specialiteDelegue").value;
+    var Creer_une_entreprise = document.getElementById("Creer_une_entreprise").value;
+    var Modifier_une_entreprise = document.getElementById("Modifier_une_entreprise").value;
+    var Evaluer_une_entreprise = document.getElementById("Evaluer_une_entreprise").value;
+    var Supprimer_une_entreprise = document.getElementById("Supprimer_une_entreprise").value;
+    var Consulter_les_stats_des_entreprises = document.getElementById("Consulter_les_stats_des_entreprises").value;
+    var Rechercher_une_offre = document.getElementById("Rechercher_une_offre").value;
+    var Creer_une_offre = document.getElementById("Creer_une_offre").value;
+    var Modifier_une_offre = document.getElementById("Modifier_une_offre").value;
+    var Supprimer_une_offre = document.getElementById("Supprimer_une_offre").value;
+    var Consulter_les_stats_des_offres = document.getElementById("Consulter_les_stats_des_offres").value;
+    var Rechercher_un_compte_pilote = document.getElementById("Rechercher_un_compte_pilote").value;
+    var Creer_un_compte_pilote = document.getElementById("Creer_un_compte_pilote").value;
+    var Creer_un_compte_etudiant = document.getElementById("Creer_un_compte_etudiant").value;
+    var Modifier_un_compte_etudiant = document.getElementById("Modifier_un_compte_etudiant").value;
+    var Supprimer_un_compte_etudiant = document.getElementById("Supprimer_un_compte_etudiant").value;
+    var Consulter_les_stats_des_etudiants = document.getElementById("Consulter_les_stats_des_etudiants").value;
+    var Informer_le_systeme_de_l_avancement_de_la_candidature_step_3 = document.getElementById("Informer_le_systeme_de_l_avancement_de_la_candidature_step_3").value;
+    var Informer_le_systeme_de_l_avancement_de_la_candidature_step_4 = document.getElementById("Informer_le_systeme_de_l_avancement_de_la_candidature_step_4").value;
+
     var photoDelegue = document.getElementById("photoDelegue").files[0].name;
     var idCreateur = ID_Utilisateur_by_cookie;
 
@@ -343,6 +361,24 @@ function creation_delegue(){
             "Role" : "Delegue",
             "Photo_Utilisateur" : "api/img/users/"+photoDelegue,
             "ID_Utilisateur__CREE":idCreateur,
+            "Creer_une_entreprise" : Creer_une_entreprise,
+            "Modifier_une_entreprise" : Modifier_une_entreprise,
+            "Evaluer_une_entreprise": Evaluer_une_entreprise,
+            "Supprimer_une_entreprise": Supprimer_une_entreprise,
+            "Consulter_les_stats_des_entreprises": Consulter_les_stats_des_entreprises,
+            "Rechercher_une_offre": Rechercher_une_offre,
+            "Creer_une_offre": Creer_une_offre,
+            "Modifier_une_offre": Modifier_une_offre,
+            "Supprimer_une_offre": Supprimer_une_offre,
+            "Consulter_les_stats_des_offres": Consulter_les_stats_des_offres,
+            "Rechercher_un_compte_pilote": Rechercher_un_compte_pilote,
+            "Creer_un_compte_pilote": Creer_un_compte_pilote,
+            "Creer_un_compte_etudiant": Creer_un_compte_etudiant,
+            "Modifier_un_compte_etudiant" : Modifier_un_compte_etudiant,
+            "Supprimer_un_compte_etudiant" : Supprimer_un_compte_etudiant,
+            "Consulter_les_stats_des_etudiants" : Consulter_les_stats_des_etudiants,
+            "Informer_le_systeme_de_l_avancement_de_la_candidature_step_3": Informer_le_systeme_de_l_avancement_de_la_candidature_step_3, 
+            "Informer_le_systeme_de_l_avancement_de_la_candidature_step_4": Informer_le_systeme_de_l_avancement_de_la_candidature_step_4,
         }
         var data = JSON.stringify(param);
         var xhr = new XMLHttpRequest();

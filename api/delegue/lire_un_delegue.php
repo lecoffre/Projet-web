@@ -2,12 +2,12 @@
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // On vérifie que la méthode utilisée est correcte
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../config/database.php';
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "Centre_Delegue" => $delegue->Centre_Delegue,
                 "Promotion_delegue" => $delegue->Promotion_delegue,
                 "Specialite" => $delegue->Specialite,
-                "Nom" => $delegue->Prenom,
+                "Nom" => $delegue->Nom,
                 "Prenom" => $delegue->Prenom,
                 "Role" => $delegue->Role,
                 "Photo_Utilisateur" => $delegue->Photo_Utilisateur,

@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-                                if ($authentification->creer_delegue() && $etudiant->creer_etudiant() && $droit->creer_droit()) {
+                                if ($authentification->creer_delegue() || $etudiant->creer_etudiant() || $droit->creer_droit()) {
                                     // Ici la création a fonctionné
                                     // On envoie un code 201
                                     http_response_code(201);

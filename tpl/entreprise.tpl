@@ -51,11 +51,11 @@
                                         <p> Ajout d'une entreprise </p>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="needs-validation" novalidate>
+                                        <form id="creationEntrepriseForm" class="needs-validation" novalidate>
                                             <div class="form-row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="validationCustom01">Nom de l'entreprise</label>
-                                                    <input type="text" class="form-control" id="nomEntreprise" placeholder="Nom de l'entreprise" required>
+                                                    <input type="text" class="form-control" id="nomEntreprise" required>
                                                     <div class="valid-feedback">
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -63,7 +63,7 @@
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="validationCustom02">Secteur d'activité</label>
-                                                    <input type="text" class="form-control" id="SecteurActivie" placeholder="Secteur"  required>
+                                                    <input type="text" class="form-control" id="SecteurActivite" required>
                                                     <div class="valid-feedback">
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -71,7 +71,7 @@
                                                 </div>
                                                 <div class="col-md-12 mb-3">
                                                     <label for="validationCustom03">Compétences recherchées dans les stages</label>
-                                                    <textarea class="form-control" id="CompRecherchees" placeholder="Compétences" required></textarea>
+                                                    <textarea class="form-control" id="CompRecherchees" required></textarea>
                                                     <div class="valid-feedback">
                                                     </div>
                                                     <div class="invalid-feedback">
@@ -79,33 +79,43 @@
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="validationCustom04">Nombre d'étudiants CESI déjà acceptés par l'entreprise</label>
-                                                    <textarea class="form-control" id="nbStagiaireCESI" placeholder="Nombre d'étudiants acceptés par l'entreprise" required></textarea>
-                                                    <div class="valid-feedback">
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                    </div>
+                                                    <input type="number" class="form-control" id="nbStagiaireCESI" required>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="validationCustom04">Noter l'entreprise de 0 à 10</label>
-                                                    <textarea class="form-control" id="noteEntreprise" placeholder="5 s'il n'y a pas encore eu de stage réalisé" required></textarea>
-                                                    <div class="valid-feedback">
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                    </div>
+                                                    <select class="form-control" id="noteEntreprise"required></textarea>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="validationCustom04">Confiance du Pilote de Promotion de 0 à 10</label>
-                                                    <textarea class="form-control" id="notePilote" placeholder="Voir avec votre pilote de promotion si vous êtes un élève" required></textarea>
-                                                    <div class="valid-feedback">
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                    </div>
+                                                    <select class="form-control" id="notePilote" required></textarea>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6 mb-3">
                                                     <label for="validationCustom05">Ville</label>
-                                                    <input type="text" class="form-control" id="localite" placeholder="Ville" required>
+                                                    <input type="text" class="form-control" id="localite" required>
                                                     <div class="invalid-feedback">
                                                     </div>
                                                 </div>
@@ -134,91 +144,101 @@
 
                         <!-- Pop-up pour modifier l'entreprise-->
                         <div id="popup-modifier-entreprise" class="modal">
-                <div class="modal-dialog ">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <p> Modifier l'entreprise </p>
-                        </div>
-                        <div class="modal-body">
-                            <form class="needs-validation" novalidate>
-                                <div class="form-row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="validationCustom01">Nom de l'entreprise</label>
-                                        <input type="text" class="form-control" id="nomEntreprise1" placeholder="" required>
-                                        <div class="valid-feedback">
-                                        </div>
-                                        <div class="invalid-feedback">
-                                        </div>
+                            <div class="modal-dialog ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <p> Modification d'une entreprise </p>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="validationCustom02">Secteur d'activité</label>
-                                        <input type="text" class="form-control" id="SecteurActivie1" placeholder =""  required>
-                                        <div class="valid-feedback">
-                                        </div>
-                                        <div class="invalid-feedback">
-                                        </div>
+                                    <div class="modal-body">
+                                        <form id="ModifierEntrepriseForm" class="needs-validation" novalidate>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom01">Nom de l'entreprise</label>
+                                                    <input type="text" class="form-control" id="nomEntreprise1" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom02">Secteur d'activité</label>
+                                                    <input type="text" class="form-control" id="SecteurActivie1" required>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="validationCustom03">Compétences recherchées dans les stages</label>
+                                                    <textarea class="form-control" id="CompRecherchees1" required></textarea>
+                                                    <div class="valid-feedback">
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Nombre d'étudiants CESI déjà acceptés par l'entreprise</label>
+                                                    <input type="number" class="form-control" id="nbStagiaireCESI1" required>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Noter l'entreprise de 0 à 10</label>
+                                                    <select class="form-control" id="noteEntreprise1"required></textarea>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom04">Confiance du Pilote de Promotion de 0 à 10</label>
+                                                    <select class="form-control" id="notePilote1" required></textarea>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom05">Ville</label>
+                                                    <input type="text" class="form-control" id="localite1" required>
+                                                    <div class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-10 mb-3">
+                                                    <label class="form-label" for="customFile">Logo de l'entreprise</label>
+                                                    <input type="file" class="form-control" id="logoEntreprise1" required />
+                                                    <div class="invalid-feedback">
+                                                        Merci de fournir une photo d'illustration.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
                                     </div>
-                                    <div class="col-md-12 mb-3">
-                                        <label for="validationCustom03">Compétences recherchées dans les stages</label>
-                                        <textarea class="form-control" id="CompRecherchees1" placeholder="" required></textarea>
-                                        <div class="valid-feedback">
-                                        </div>
-                                        <div class="invalid-feedback">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="validationCustom04">Nombre d'étudiants CESI déjà acceptés par l'entreprise</label>
-                                        <textarea class="form-control" id="nbStagiaireCESI1" placeholder="" required></textarea>
-                                        <div class="valid-feedback">
-                                        </div>
-                                        <div class="invalid-feedback">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="validationCustom04">Noter l'entreprise de 0 à 10</label>
-                                        <textarea class="form-control" id="noteEntreprise1" placeholder="" required></textarea>
-                                        <div class="valid-feedback">
-                                        </div>
-                                        <div class="invalid-feedback">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="validationCustom04">Confiance du Pilote de Promotion de 0 à 10</label>
-                                        <textarea class="form-control" id="notePilote1" placeholder="" required></textarea>
-                                        <div class="valid-feedback">
-                                        </div>
-                                        <div class="invalid-feedback">
-                                        </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" id="btnModifierEntreprise" onclick="modifier_entreprise(this.id)" type="submit">Modifier l'entreprise</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
+                                        
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="validationCustom05">Ville</label>
-                                        <input type="text" class="form-control" id="localite1" placeholder="" required>
-                                        <div class="invalid-feedback">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-10 mb-3">
-                                        <label class="form-label" for="customFile">Logo de l'entreprise</label>
-                                        <input type="file" class="form-control" id="logoEntreprise1" required />
-                                        <div class="invalid-feedback">
-                                            Merci de fournir une photo d'illustration.
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </form>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" id="btnModifierEntreprise" onclick="entreprise_modifier()" type="submit">Modifier l'entreprise</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
                         <div class="form-floating col-10 ">
                             <div class="row">
                                 <input
@@ -375,8 +395,7 @@
                 background-color: rgba(39, 37, 31, 0.219);
               "
             ></div>
-<div id="donnee-a-modifier">
-                </div>
+
             <div class="tab-content" id="pills-tabContent" style="padding-bottom: 10px;">
                 <div
                     class="tab-pane fade show active"
@@ -390,7 +409,7 @@
                         <div class="card-header">
                         Informations - Synthèse
                         </div>
-                        <div id="afficher_une_entreprise">
+                        <div id="afficher_une_entreprise"></div>
                         
                     </div>
                 </div>
@@ -427,7 +446,6 @@
     <!-- /.container-fluid -->
     </div>
 <!-- End of Main Content -->
-</div>
+
 <script src="js/card_entreprise.js"></script>  
 <script src="js/creation.js"></script>
-<script src="js/modifier.js"></script>
