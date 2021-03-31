@@ -43,12 +43,12 @@ class DroitToken
     public $Informer_le_systeme_de_l_avancement_de_la_candidature_step_5;
     public $Informer_le_systeme_de_l_avancement_de_la_candidature_step_6;
 
-    
-    
-    
-    
-    
-   /**
+
+
+
+
+
+    /**
      * Constructeur avec $db pour la connexion à la base de données
      *
      * @param $db
@@ -58,9 +58,28 @@ class DroitToken
         $this->connexion = $db;
     }
 
+    /**
+     * Lecture des authentifications
+     *
+     * @return void
+     */
+    public function lire_droit_token()
+    {
+        // On écrit la requête 
+        $sql = "SELECT * FROM " . $this->table;
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On exécute la requête
+        $query->execute();
+
+        // On retourne le résultat
+        return $query;
+    }
 
     /**
-     * Créer droit token
+     * Créer droit delegue
      *
      * @return void
      */
@@ -93,7 +112,7 @@ class DroitToken
         // Protection contre les injections
         $this->Token = htmlspecialchars(strip_tags($this->Token));
         $this->ID_Utilisateur = htmlspecialchars(strip_tags($this->ID_Utilisateur));
-        
+
         $this->Rechercher_une_entreprise = htmlspecialchars(strip_tags($this->Rechercher_une_entreprise));
         $this->Creer_une_entreprise = htmlspecialchars(strip_tags($this->Creer_une_entreprise));
         $this->Modifier_une_entreprise = htmlspecialchars(strip_tags($this->Modifier_une_entreprise));
@@ -101,8 +120,8 @@ class DroitToken
         $this->Supprimer_une_entreprise = htmlspecialchars(strip_tags($this->Supprimer_une_entreprise));
         $this->Consulter_les_stats_des_entreprises = htmlspecialchars(strip_tags($this->Consulter_les_stats_des_entreprises));
 
-        $this->Rechercher_une_offre  = htmlspecialchars(strip_tags($this->Rechercher_une_offre ));
-        $this->Creer_une_offre  = htmlspecialchars(strip_tags($this->Creer_une_offre ));
+        $this->Rechercher_une_offre  = htmlspecialchars(strip_tags($this->Rechercher_une_offre));
+        $this->Creer_une_offre  = htmlspecialchars(strip_tags($this->Creer_une_offre));
         $this->Modifier_une_offre = htmlspecialchars(strip_tags($this->Modifier_une_offre));
         $this->Supprimer_une_offre = htmlspecialchars(strip_tags($this->Supprimer_une_offre));
         $this->Consulter_les_stats_des_offres = htmlspecialchars(strip_tags($this->Consulter_les_stats_des_offres));
@@ -111,17 +130,17 @@ class DroitToken
         $this->Creer_un_compte_pilote = htmlspecialchars(strip_tags($this->Creer_un_compte_pilote));
         $this->Modifier_un_compte_pilote = htmlspecialchars(strip_tags($this->Modifier_un_compte_pilote));
         $this->Supprimer_un_compte_pilote = htmlspecialchars(strip_tags($this->Supprimer_un_compte_pilote));
-        
+
         $this->Rechercher_un_compte_delegue = htmlspecialchars(strip_tags($this->Rechercher_un_compte_delegue));
         $this->Creer_un_compte_delegue = htmlspecialchars(strip_tags($this->Creer_un_compte_delegue));
         $this->Modifier_un_compte_delegue = htmlspecialchars(strip_tags($this->Modifier_un_compte_delegue));
         $this->Supprimer_un_compte_delegue = htmlspecialchars(strip_tags($this->Supprimer_un_compte_delegue));
         $this->Assigner_des_droits_a_un_delegue = htmlspecialchars(strip_tags($this->Assigner_des_droits_a_un_delegue));
 
-        $this->Rechercher_un_compte_etudiant  = htmlspecialchars(strip_tags($this->Rechercher_un_compte_etudiant ));
-        $this->Creer_un_etudiant = htmlspecialchars(strip_tags($this->Creer_un_etudiant));
-        $this->Modifier_un_etudiant = htmlspecialchars(strip_tags($this->Modifier_un_etudiant));
-        $this->Supprimer_un_etudiant = htmlspecialchars(strip_tags($this->Supprimer_un_etudiant));
+        $this->Rechercher_un_compte_etudiant  = htmlspecialchars(strip_tags($this->Rechercher_un_compte_etudiant));
+        $this->Creer_un_compte_etudiant = htmlspecialchars(strip_tags($this->Creer_un_compte_etudiant));
+        $this->Modifier_un_compte_etudiant = htmlspecialchars(strip_tags($this->Modifier_un_compte_etudiant));
+        $this->Supprimer_un_compte_etudiant = htmlspecialchars(strip_tags($this->Supprimer_un_compte_etudiant));
         $this->Consulter_les_stats_des_etudiants = htmlspecialchars(strip_tags($this->Consulter_les_stats_des_etudiants));
 
         $this->Ajouter_une_offre_a_la_wish_list = htmlspecialchars(strip_tags($this->Ajouter_une_offre_a_la_wish_list));
@@ -138,7 +157,7 @@ class DroitToken
         // Ajout des données protégées
         $query->bindParam(":Token", $this->Token);
         $query->bindParam(":ID_Utilisateur", $this->ID_Utilisateur);
-        
+
         $query->bindParam(":Rechercher_une_entreprise", $this->Rechercher_une_entreprise);
         $query->bindParam(":Creer_une_entreprise", $this->Creer_une_entreprise);
         $query->bindParam(":Modifier_une_entreprise", $this->Modifier_une_entreprise);
@@ -158,15 +177,15 @@ class DroitToken
         $query->bindParam(":Supprimer_un_compte_pilote", $this->Supprimer_un_compte_pilote);
 
         $query->bindParam(":Rechercher_un_compte_delegue", $this->Rechercher_un_compte_delegue);
-        $query->bindParam(":Creer_un_delegue", $this->Creer_un_delegue);
+        $query->bindParam(":Creer_un_compte_delegue", $this->Creer_un_compte_delegue);
         $query->bindParam(":Modifier_un_compte_delegue", $this->Modifier_un_compte_delegue);
         $query->bindParam(":Supprimer_un_compte_delegue", $this->Supprimer_un_compte_delegue);
         $query->bindParam(":Assigner_des_droits_a_un_delegue", $this->Assigner_des_droits_a_un_delegue);
 
         $query->bindParam(":Rechercher_un_compte_etudiant", $this->Rechercher_un_compte_etudiant);
-        $query->bindParam(":Creer_un_etudiant", $this->Creer_un_etudiant);
-        $query->bindParam(":Modifier_un_etudiant", $this->Modifier_un_etudiant);
-        $query->bindParam(":Supprimer_un_etudiant", $this->Supprimer_un_etudiant);
+        $query->bindParam(":Creer_un_compte_etudiant", $this->Creer_un_compte_etudiant);
+        $query->bindParam(":Modifier_un_compte_etudiant", $this->Modifier_un_compte_etudiant);
+        $query->bindParam(":Supprimer_un_compte_etudiant", $this->Supprimer_un_compte_etudiant);
         $query->bindParam(":Consulter_les_stats_des_etudiants", $this->Consulter_les_stats_des_etudiants);
 
         $query->bindParam(":Ajouter_une_offre_a_la_wish_list", $this->Ajouter_une_offre_a_la_wish_list);
@@ -188,7 +207,7 @@ class DroitToken
     }
 
     /**
-     * Voir un droit token
+     * Voir une delegue
      *
      * @return void
      */
@@ -226,22 +245,22 @@ class DroitToken
         $this->Modifier_une_offre = $row['Modifier_une_offre'];
         $this->Supprimer_une_offre = $row['Supprimer_une_offre'];
         $this->Consulter_les_stats_des_offres = $row['Consulter_les_stats_des_offres'];
-        
+
         $this->Rechercher_un_compte_pilote = $row['Rechercher_un_compte_pilote'];
         $this->Creer_un_compte_pilote = $row['Creer_un_compte_pilote'];
         $this->Modifier_un_compte_pilote = $row['Modifier_un_compte_pilote'];
         $this->Supprimer_un_compte_pilote = $row['Supprimer_un_compte_pilote'];
 
         $this->Rechercher_un_compte_delegue = $row['Rechercher_un_compte_delegue'];
-        $this->Creer_un_delegue = $row['Creer_un_delegue'];
+        $this->Creer_un_compte_delegue = $row['Creer_un_compte_delegue'];
         $this->Modifier_un_compte_delegue = $row['Modifier_un_compte_delegue'];
         $this->Supprimer_un_compte_delegue = $row['Supprimer_un_compte_delegue'];
         $this->Assigner_des_droits_a_un_delegue = $row['Assigner_des_droits_a_un_delegue'];
 
         $this->Rechercher_un_compte_etudiant = $row['Rechercher_un_compte_etudiant'];
-        $this->Creer_un_etudiant = $row['Creer_un_etudiant'];
-        $this->Modifier_un_etudiant = $row['Modifier_un_etudiant'];
-        $this->Supprimer_un_etudiant = $row['Supprimer_un_etudiant'];
+        $this->Creer_un_compte_etudiant = $row['Creer_un_compte_etudiant'];
+        $this->Modifier_un_compte_etudiant = $row['Modifier_un_compte_etudiant'];
+        $this->Supprimer_un_compte_etudiant = $row['Supprimer_un_compte_etudiant'];
         $this->Consulter_les_stats_des_etudiants = $row['Consulter_les_stats_des_etudiants'];
 
         $this->Ajouter_une_offre_a_la_wish_list = $row['Ajouter_une_offre_a_la_wish_list'];
@@ -256,7 +275,7 @@ class DroitToken
     }
 
     /**
-     * Supprimer un droit token
+     * Supprimer un delegue
      *
      * @return void
      */
@@ -292,7 +311,7 @@ class DroitToken
 
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "UPDATE " . $this->table . " SET Token=:Token, ID_Utilisateur=:ID_Utilisateur,
+        $sql = "UPDATE " . $this->table . " SET Token=:Token,
                                             Rechercher_une_entreprise=:Rechercher_une_entreprise, Creer_une_entreprise=:Creer_une_entreprise, Modifier_une_entreprise=:Modifier_une_entreprise, Evaluer_une_entreprise=:Evaluer_une_entreprise,
                                             Supprimer_une_entreprise=:Supprimer_une_entreprise, Consulter_les_stats_des_entreprises=:Consulter_les_stats_des_entreprises, 
                                             Rechercher_une_offre=:Rechercher_une_offre,Creer_une_offre=:Creer_une_offre, Modifier_une_offre=:Modifier_une_offre, Supprimer_une_offre=:Supprimer_une_offre, Consulter_les_stats_des_offres=:Consulter_les_stats_des_offres, Rechercher_un_compte_pilote=:Rechercher_un_compte_pilote,
@@ -318,7 +337,7 @@ class DroitToken
         // Protection contre les injections
         $this->Token = htmlspecialchars(strip_tags($this->Token));
         $this->ID_Utilisateur = htmlspecialchars(strip_tags($this->ID_Utilisateur));
-        
+
         $this->Rechercher_une_entreprise = htmlspecialchars(strip_tags($this->Rechercher_une_entreprise));
         $this->Creer_une_entreprise = htmlspecialchars(strip_tags($this->Creer_une_entreprise));
         $this->Modifier_une_entreprise = htmlspecialchars(strip_tags($this->Modifier_une_entreprise));
@@ -326,8 +345,8 @@ class DroitToken
         $this->Supprimer_une_entreprise = htmlspecialchars(strip_tags($this->Supprimer_une_entreprise));
         $this->Consulter_les_stats_des_entreprises = htmlspecialchars(strip_tags($this->Consulter_les_stats_des_entreprises));
 
-        $this->Rechercher_une_offre  = htmlspecialchars(strip_tags($this->Rechercher_une_offre ));
-        $this->Creer_une_offre  = htmlspecialchars(strip_tags($this->Creer_une_offre ));
+        $this->Rechercher_une_offre  = htmlspecialchars(strip_tags($this->Rechercher_une_offre));
+        $this->Creer_une_offre  = htmlspecialchars(strip_tags($this->Creer_une_offre));
         $this->Modifier_une_offre = htmlspecialchars(strip_tags($this->Modifier_une_offre));
         $this->Supprimer_une_offre = htmlspecialchars(strip_tags($this->Supprimer_une_offre));
         $this->Consulter_les_stats_des_offres = htmlspecialchars(strip_tags($this->Consulter_les_stats_des_offres));
@@ -336,14 +355,14 @@ class DroitToken
         $this->Creer_un_compte_pilote = htmlspecialchars(strip_tags($this->Creer_un_compte_pilote));
         $this->Modifier_un_compte_pilote = htmlspecialchars(strip_tags($this->Modifier_un_compte_pilote));
         $this->Supprimer_un_compte_pilote = htmlspecialchars(strip_tags($this->Supprimer_un_compte_pilote));
-        
+
         $this->Rechercher_un_compte_delegue = htmlspecialchars(strip_tags($this->Rechercher_un_compte_delegue));
         $this->Creer_un_compte_delegue = htmlspecialchars(strip_tags($this->Creer_un_compte_delegue));
         $this->Modifier_un_compte_delegue = htmlspecialchars(strip_tags($this->Modifier_un_compte_delegue));
         $this->Supprimer_un_compte_delegue = htmlspecialchars(strip_tags($this->Supprimer_un_compte_delegue));
         $this->Assigner_des_droits_a_un_delegue = htmlspecialchars(strip_tags($this->Assigner_des_droits_a_un_delegue));
 
-        $this->Rechercher_un_compte_etudiant  = htmlspecialchars(strip_tags($this->Rechercher_un_compte_etudiant ));
+        $this->Rechercher_un_compte_etudiant  = htmlspecialchars(strip_tags($this->Rechercher_un_compte_etudiant));
         $this->Creer_un_compte_etudiant = htmlspecialchars(strip_tags($this->Creer_un_compte_etudiant));
         $this->Modifier_un_compte_etudiant = htmlspecialchars(strip_tags($this->Modifier_un_compte_etudiant));
         $this->Supprimer_un_compte_etudiant = htmlspecialchars(strip_tags($this->Supprimer_un_compte_etudiant));
@@ -363,7 +382,7 @@ class DroitToken
         // Ajout des données protégées
         $query->bindParam(":Token", $this->Token);
         $query->bindParam(":ID_Utilisateur", $this->ID_Utilisateur);
-        
+
         $query->bindParam(":Rechercher_une_entreprise", $this->Rechercher_une_entreprise);
         $query->bindParam(":Creer_une_entreprise", $this->Creer_une_entreprise);
         $query->bindParam(":Modifier_une_entreprise", $this->Modifier_une_entreprise);

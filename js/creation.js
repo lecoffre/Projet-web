@@ -9,7 +9,7 @@ function creation_entreprise(){
     var confPilote = document.getElementById("notePilote").value;
     var localtite = document.getElementById("localite").value;
     var logo = document.getElementById("logoEntreprise").files[0].name;
-    var idUtilisateur = "1";
+    var idUtilisateur = ID_Utilisateur_by_cookie;
 
     var html = '';
     if(true){
@@ -76,8 +76,7 @@ function creation_offre(){
     var dateOffre = document.getElementById("dateOffre").value;
     var placeDispoOffre = document.getElementById("placeDispoOffre").value;
     var localite = document.getElementById("localite").value;
-    var idEntreprise = document.getElementById("idEntreprise").value;
-    var idUtilisateur = "1";
+    var idUtilisateur = ID_Utilisateur_by_cookie;
 
     var html = '';
     if(true){
@@ -92,10 +91,10 @@ function creation_offre(){
             "Date_de_offre" : dateOffre,
             "Nombre_de_places_disponible" : placeDispoOffre,
             "Localite_offre" : localite,
-            "ID_Entreprise" : idEntreprise,
             "ID_Utilisateur":idUtilisateur,
         }
         var data = JSON.stringify(param);
+        console.log(data);
         var xhr = new XMLHttpRequest();
         xhr.withCredentials = true;
         xhr.addEventListener("readystatechange", function() 
@@ -121,7 +120,7 @@ function creation_offre(){
             }
         });
     
-        xhr.open("POST", "http://localhost/projet-web-frontend/api/entreprise/creer_entreprise.php", true);
+        xhr.open("POST", "http://localhost/projet-web-frontend/api/offre/creer_offre.php", true);
 
         xhr.setRequestHeader("Content-Type", "application/json");
         
@@ -134,6 +133,68 @@ function creation_offre(){
         html="Parametres incorrects ou incomplets";
     }
 }
+
+
+function creation_candidature(id_offre){
+    var LIEN_OFFRE = "https://cesi.fr";
+    var CV_etudiant = document.getElementById("cvEtudiant").files[0].name;
+    var Lettre_de_motivation_etudiant = document.getElementById("lmEtudiant").files[0].name;
+    var Fiche_de_validation = document.getElementById("fvEtudiant").files[0].name;
+    var Convention_de_stage = document.getElementById("csEtudiant").files[0].name;
+    var idUtilisateur = ID_Utilisateur_by_cookie;
+
+    var html = '';
+    if(true){
+        param={
+            "LIEN_OFFRE":LIEN_OFFRE,
+            "CV_etudiant" : "api/files/candidature/"+CV_etudiant,
+            "Lettre_de_motivation_etudiant" : "api/files/candidature/"+Lettre_de_motivation_etudiant,
+            "Fiche_de_validation" : "api/files/candidature/"+Fiche_de_validation,
+            "Convention_de_stage" : "api/files/candidature/"+Convention_de_stage,
+            "ID_Utilisateur":idUtilisateur,
+            "ID_offre": id_offre,
+            "ID_Utilisateur_Pilote":"2",
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 201 )
+                {
+                    try{
+                    if(!window.alert('La candidature pour a bien été ajouté')){document.forms['creationCandidatureForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }                    
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+    
+        xhr.open("POST", "http://localhost/projet-web-frontend/api/candidature/creer_candidature.php", true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+        xhr.send(data);
+    }
+    
+  
+    else{
+        html="Parametres incorrects ou incomplets";
+    }
+}
+
 
 
 function creation_administrateur(){
@@ -203,7 +264,7 @@ function creation_pilote(){
     var centrePilote = document.getElementById("centrePilote").value;
     var promotionPilote = document.getElementById("promotionPilote").value;
     var photoPilote = document.getElementById("photoPilote").files[0].name;
-    var idCreateur = "1";
+    var idCreateur = ID_Utilisateur_by_cookie;
 
     var html = '';
     if(true){
@@ -267,7 +328,7 @@ function creation_delegue(){
     var promotionDelegue = document.getElementById("promotionDelegue").value;
     var specialiteDelegue = document.getElementById("specialiteDelegue").value;
     var photoDelegue = document.getElementById("photoDelegue").files[0].name;
-    var idCreateur = "1";
+    var idCreateur = ID_Utilisateur_by_cookie;
 
     var html = '';
     if(true){
@@ -337,7 +398,7 @@ function creation_etudiant(){
     var promotionEtudiant = document.getElementById("promotionEtudiant").value;
     var specialiteEtudiant = document.getElementById("specialiteEtudiant").value;
     var photoEtudiant = document.getElementById("photoEtudiant").files[0].name;
-    var idCreateur = "1";
+    var idCreateur = ID_Utilisateur_by_cookie;
 
     if(true){
         param={

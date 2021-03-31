@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-30 20:06:34
+/* Smarty version 3.1.39, created on 2021-03-31 15:35:26
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\candidature.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_606368aa4ac011_67585852',
+  'unifunc' => 'content_60647a9e134599_70696349',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '58d837d59a25f2ae17a04870ff1d969a0ba54dea' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\candidature.tpl',
-      1 => 1617047471,
+      1 => 1617197638,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_606368aa4ac011_67585852 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60647a9e134599_70696349 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -55,13 +55,71 @@ function content_606368aa4ac011_67585852 (Smarty_Internal_Template $_smarty_tpl)
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
+                        <!-- Création de candidature -->
+                        <!-- Boutton -->
                         <button
                         type="button"
+                        data-toggle="modal" 
+                        data-target="#popup-candidature"
                         style="border-radius: 5px 0 0 5px"
                         class="btn btn-primary float-left col-2"
                         >
                             <span aria-hidden="true"><i class="fa fa-plus" aria-hidden="true"></i></span>
                         </button>
+                        <!-- Pop-up -->
+                        <div id="popup-candidature" class="modal">
+                            <div class="modal-dialog ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <p> Ajout d'une candidature </p>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="creationCandidatureForm" class="needs-validation" novalidate>
+                                            <div class="form-group">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="validationCustom01">Nom de l'offre</label>
+                                                    <input type="text" class="form-control" id="nomAdmin" required>
+                                                </div>
+                                                <div class="col-md-10 mb-3">
+                                                    <label class="form-label" for="customFile">CV</label>
+                                                    <input type="file" class="form-control" id="cvEtudiant" required />
+                                                    <div class="invalid-feedback">
+                                                        Merci de fournir un CV.
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10 mb-3">
+                                                    <label class="form-label" for="customFile">Lettre de Motivation</label>
+                                                    <input type="file" class="form-control" id="lmEtudiant" required />
+                                                    <div class="invalid-feedback">
+                                                        Merci de fournir une lettre de motivation.
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10 mb-3">
+                                                    <label class="form-label" for="customFile">Fiche de validation</label>
+                                                    <input type="file" class="form-control" id="fvEtudiant" required />
+                                                    <div class="invalid-feedback">
+                                                        Merci de fournir une fiche de validation.
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10 mb-3">
+                                                    <label class="form-label" for="customFile">Convention de Stage</label>
+                                                    <input type="file" class="form-control" id="csEtudiant" required />
+                                                    <div class="invalid-feedback">
+                                                        Merci de fournir une convention de stage.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" id="btnCreationCandidature" onclick="creation_candidature()" type="submit">Créer la candidature</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                         <div class="form-floating col-10 ">
                             <div class="row">

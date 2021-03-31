@@ -1,4 +1,5 @@
 <!-- Footer -->
+</div>
 <div class="row">
     <div class="col-12 multicolor"></div>
 </div>
@@ -127,7 +128,7 @@
                 >
                 Cancel
                 </button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <button class="btn btn-primary" id="logout">Logout</button>
             </div>
         </div>
     </div>
@@ -161,4 +162,13 @@
 <script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
 <script src="js/cookies.js"></script>
 <script src="js/info.js"></script>
+<script>
+    
+    if(Token_by_cookie != "" /* && Token_by_cookie != "undefined" && typeof(Token_by_cookie) === "undefined"*/){
+        document.getElementById("roleNavBar").innerHTML=Role_by_cookie;
+        document.getElementById("loginNavBar").innerHTML=Login_by_cookie;
+    }
+    else {  document.getElementById("roleNavBar").style.visibility = "hidden";
+            document.getElementById("loginNavBar").style.visibility = "hidden";}
+</script>
 <script src="js/session.js"></script>

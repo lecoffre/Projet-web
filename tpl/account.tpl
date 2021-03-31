@@ -1,4 +1,4 @@
- <div id="session" style="visibility: hidden;">
+
     <h1 >Compte</h1>
     <hr>
 
@@ -25,8 +25,7 @@
     </div>
 </div>
     
-    <script src="js/cookies.js"></script>
-    <script src="js/info.js"></script>
+
     <script>
         ck_display_cookies_in_log(); // pour afficher les cookies dans la console
         /*document.getElementById('RemeberMe').innerHTML = cookie_remember;*/
@@ -47,4 +46,3 @@
         document.getElementById('Creer_une_entreprise').innerHTML = Creer_une_entreprise_by_cookie;
         
     </script>
-    <script src="js/session.js"></script>

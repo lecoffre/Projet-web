@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-31 12:55:47
+/* Smarty version 3.1.39, created on 2021-03-31 15:02:32
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\account.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_606455339302d9_68569172',
+  'unifunc' => 'content_606472e8c22057_90039817',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7b72ef28146cf9c3220e174f5737cfe9c2b11e7e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\account.tpl',
-      1 => 1617188100,
+      1 => 1617195687,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_606455339302d9_68569172 (Smarty_Internal_Template $_smarty_tpl) {
-?> <div id="session" style="visibility: hidden;">
+function content_606472e8c22057_90039817 (Smarty_Internal_Template $_smarty_tpl) {
+?>
     <h1 >Compte</h1>
     <hr>
 
@@ -48,12 +48,7 @@ function content_606455339302d9_68569172 (Smarty_Internal_Template $_smarty_tpl)
     </div>
 </div>
     
-    <?php echo '<script'; ?>
- src="js/cookies.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- src="js/info.js"><?php echo '</script'; ?>
->
+
     <?php echo '<script'; ?>
 >
         ck_display_cookies_in_log(); // pour afficher les cookies dans la console
@@ -76,7 +71,5 @@ function content_606455339302d9_68569172 (Smarty_Internal_Template $_smarty_tpl)
         
     <?php echo '</script'; ?>
 >
-    <?php echo '<script'; ?>
- src="js/session.js"><?php echo '</script'; ?>
-><?php }
+<?php }
 }

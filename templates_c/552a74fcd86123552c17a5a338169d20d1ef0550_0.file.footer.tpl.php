@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-31 13:04:54
+/* Smarty version 3.1.39, created on 2021-03-31 15:15:59
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_60645756335073_66723471',
+  'unifunc' => 'content_6064760f1783a6_19784260',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '552a74fcd86123552c17a5a338169d20d1ef0550' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\footer.tpl',
-      1 => 1617188690,
+      1 => 1617196556,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_60645756335073_66723471 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6064760f1783a6_19784260 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Footer -->
+</div>
 <div class="row">
     <div class="col-12 multicolor"></div>
 </div>
@@ -150,7 +151,7 @@ function content_60645756335073_66723471 (Smarty_Internal_Template $_smarty_tpl)
                 >
                 Cancel
                 </button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <button class="btn btn-primary" id="logout">Logout</button>
             </div>
         </div>
     </div>
@@ -207,6 +208,17 @@ function content_60645756335073_66723471 (Smarty_Internal_Template $_smarty_tpl)
 >
 <?php echo '<script'; ?>
  src="js/info.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    
+    if(Token_by_cookie != "" /* && Token_by_cookie != "undefined" && typeof(Token_by_cookie) === "undefined"*/){
+        document.getElementById("roleNavBar").innerHTML=Role_by_cookie;
+        document.getElementById("loginNavBar").innerHTML=Login_by_cookie;
+    }
+    else {  document.getElementById("roleNavBar").style.visibility = "hidden";
+            document.getElementById("loginNavBar").style.visibility = "hidden";}
+<?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  src="js/session.js"><?php echo '</script'; ?>

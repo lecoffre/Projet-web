@@ -6,28 +6,26 @@ header("Access-Control-Allow-Methods: DELETE");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-// On vérifie que la méthode utilisée est correcte
+// On vérifie la méthode
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../config/database.php';
-    include_once '../models/droitdelegue.php';
-
+    include_once '../models/droittoken.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les entreprises 
-    $droitdelegue = new DroitToken($db);
+    // On instancie les delegues
+    $droittoken = new DroitToken($db);
 
     // On récupère l'id du delegue
     $donnees = json_decode(file_get_contents("php://input"));
 
     if (!empty($donnees->ID_Utilisateur)) {
-        $droitdelegue->ID_Utilisateur = $donnees->ID_Utilisateur;
+        $droittoken->ID_Utilisateur = $donnees->ID_Utilisateur;
 
-        if ($droitdelegue->supprimer_droit_token()) {
+        if ($droittoken->supprimer_droit_token()) {
             // Ici la suppression a fonctionné
             // On envoie un code 200
             http_response_code(200);

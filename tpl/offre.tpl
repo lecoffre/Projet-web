@@ -279,15 +279,18 @@
                         <li class="nav-item">
                             <a
                             class="nav-link"
-                            id="pills-contact-tab"
+
+                            id="pills-profile-tab"
                             data-toggle="pill"
-                            href="#pills-contact"
+                            data-target="#popup-candidature"
+                            href="#pills-profile"
                             role="tab"
-                            aria-controls="pills-contact"
+                            aria-controls="pills-profile"
                             aria-selected="false"
                             >
-                                Contacter
+                                Candidature
                             </a>
+                            
                         </li>
                     </ul>
                 </div>
@@ -348,42 +351,15 @@
                     <!--1ere page-->
 
                     <div class="card">
+                        <div class="card">
                         <div class="card-header">
                         Informations - Synthèse
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                
-                                <div class="col-lg-4">
-                                    <h6 class="card-title">CESI - ÉCOLE D'INGÉNIEUR </h6>
-                                    <p class="card-text" style="margin-bottom: 0;">93 boulevard de la seine</p>
-
-                                    <p class="card-text">92000 Nanterre</p>
-                                    <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
-                                    <a href="#" class="btn btn-primary" style="margin: 13px 0 13px 0">Aller sur le site</a>
-                                    <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
-
-                                </div>
-                                <div class="col-lg-4" style="border-left: 1px solid rgb(218, 218, 218);">
-                                    <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
-
-                                    <p class="card-text" style="margin-bottom: 0; margin-top: 8px; ">Nombre d'employés : XXXX</p>
-                                    <p class="card-text" style="margin-bottom: 0;">Information</p>
-                                    <p class="card-text" style="margin-bottom: 0;">Information</p>
-                                    <p class="card-text" style="margin-bottom: 0;">Information</p>
-                                    <p class="card-text" style="margin-bottom: 0;">Information</p>
-                                    <p class="card-text" style="margin-bottom: 6px;">Information</p>
-                                    <a href="" >Voir +</a>
-                                    <div style="height: 1px; background-color: rgb(223, 223, 223); margin-top: 2px;"></div>
-
-
-                                </div>
-                                <div class="col-lg-4" style="border-left: 1px solid rgb(218, 218, 218);">
-                                    <img class="image-company " alt="100x100" src="img/cesi-nanterre.png" >
-                                </div>
-                            </div>
+                        <div id="afficher_une_offre">
+                        
                         </div>
                     </div>
+                    
                 </div>
                 <!--1ere page-->
             
@@ -426,3 +402,4 @@
 <!-- End of Main Content -->
  
 <script src="js/card_offre.js"></script>  
+<script src="js/creation.js"></script>

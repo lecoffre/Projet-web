@@ -102,8 +102,6 @@ window.onload = function() {
             }
         }
         
-    
-
 
 function error_or_not(error){
    
@@ -139,9 +137,6 @@ function error_or_not(error){
 
 
 }
-
-
-
 
 
 function get_api_connexion() {

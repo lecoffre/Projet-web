@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-31 13:06:20
+/* Smarty version 3.1.39, created on 2021-03-31 15:11:59
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_606457ac281050_85908968',
+  'unifunc' => 'content_6064751f6578f3_11694982',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '19a009d01611fda10139f57d5214fd42af5e1ad9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\header.tpl',
-      1 => 1617188761,
+      1 => 1617196174,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_606457ac281050_85908968 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6064751f6578f3_11694982 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Page Wrapper -->
 <div id="wrapper">
     <!-- Sidebar -->
@@ -222,7 +222,7 @@ function content_606457ac281050_85908968 (Smarty_Internal_Template $_smarty_tpl)
                         </div>
                     </div>
                 </form>-->
-                <div class="border-0 nav-title"><a>Administrateur</a></div>
+                <div class="border-0 nav-title"><a id="roleNavBar">Role</a></div>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -440,8 +440,8 @@ function content_606457ac281050_85908968 (Smarty_Internal_Template $_smarty_tpl)
                         aria-expanded="false"
                         >
                             <span
-                                class="username mr-2 d-none d-lg-inline text-gray-600 small"
-                                >Utilisateur</span>
+                                class="username mr-2 d-none d-lg-inline text-gray-600 small" id="loginNavBar"
+                                >Login</span>
                             <img
                                 class="img-profile rounded-circle"
                                 src="img/undraw_profile.svg"
@@ -467,8 +467,6 @@ function content_606457ac281050_85908968 (Smarty_Internal_Template $_smarty_tpl)
                         <div class="dropdown-divider"></div>
                         <a
                             class="dropdown-item"
-                            id="logout"
-                            onclick="logout()"
                             data-toggle="modal"
                             data-target="#logoutModal"
                         >
@@ -481,6 +479,12 @@ function content_606457ac281050_85908968 (Smarty_Internal_Template $_smarty_tpl)
                 </li>
             </ul>
         </nav>
-
+ 
+<div id="message-session" style="visibility: hidden;">
+        <p>session active</p>
+    </div>
+ 
+ 
+<div id="session" style="visibility: hidden;">
 <!-- End of Topbar --><?php }
 }

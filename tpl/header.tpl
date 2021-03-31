@@ -199,7 +199,7 @@
                         </div>
                     </div>
                 </form>-->
-                <div class="border-0 nav-title"><a>Administrateur</a></div>
+                <div class="border-0 nav-title"><a id="roleNavBar">Role</a></div>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -417,8 +417,8 @@
                         aria-expanded="false"
                         >
                             <span
-                                class="username mr-2 d-none d-lg-inline text-gray-600 small"
-                                >Utilisateur</span>
+                                class="username mr-2 d-none d-lg-inline text-gray-600 small" id="loginNavBar"
+                                >Login</span>
                             <img
                                 class="img-profile rounded-circle"
                                 src="img/undraw_profile.svg"
@@ -444,8 +444,6 @@
                         <div class="dropdown-divider"></div>
                         <a
                             class="dropdown-item"
-                            id="logout"
-                            onclick="logout()"
                             data-toggle="modal"
                             data-target="#logoutModal"
                         >
@@ -458,5 +456,11 @@
                 </li>
             </ul>
         </nav>
-
+ 
+<div id="message-session" style="visibility: hidden;">
+        <p>session active</p>
+    </div>
+ 
+ 
+<div id="session" style="visibility: hidden;">
 <!-- End of Topbar -->
