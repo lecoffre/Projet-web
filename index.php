@@ -37,6 +37,10 @@ if(empty($_GET["page"])) {
             $template="tpl/administrateur.tpl";
             $smarty->assign('pagename', 'Administrateurs');
             break;
+        case "Account":
+            $template="tpl/account.tpl";
+            $smarty->assign('pagename', 'Account');
+            break;
         default:
             $smarty->display("file:tpl/404.tpl");
             break;

@@ -417,9 +417,63 @@ class Login
                 }
         }else if( $row['Token'] != null) {
             $this->Token = $row['Token'];
+            
+
+
+
+
+
+            $sql = "SELECT * FROM " . $this->droit_token . " WHERE Token=:Token"; 
+            $query = $this->connexion->prepare($sql);
+            // On attache l'id
+            $query->bindParam(':Token', $row['Token']);
+            // On exécute la requête
+            $query->execute();
+            // On hydrate l'objet
+            $row = $query->fetch(PDO::FETCH_ASSOC);
+            
+            $this->Rechercher_entreprise = $row['Rechercher_une_entreprise']; //1
+            $this->Creer_une_entreprise= $row['Creer_une_entreprise'];
+            $this->Modifier_une_entreprise= $row['Modifier_une_entreprise'];
+            $this->Evaluer_une_entreprise= $row['Evaluer_une_entreprise'];
+            $this->Supprimer_une_entreprise= $row['Supprimer_une_entreprise'];
+            $this->Consulter_les_stats_des_entreprises= $row['Consulter_les_stats_des_entreprises'];
+            $this->Rechercher_une_offre= $row['Rechercher_une_offre'];
+            $this->Creer_une_offre= $row['Creer_une_offre'];
+            $this->Modifier_une_offre= $row['Modifier_une_offre'];
+            $this->Supprimer_une_offre= $row['Supprimer_une_offre']; //10
+            $this->Consulter_les_stats_des_offres= $row['Consulter_les_stats_des_offres'];
+            $this->Rechercher_un_compte_pilote= $row['Rechercher_un_compte_pilote'];
+            $this->Creer_un_compte_pilote= $row['Creer_un_compte_pilote'];
+            $this->Modifier_un_compte_pilote= $row['Modifier_un_compte_pilote'];
+            $this->Supprimer_un_compte_pilote= $row['Supprimer_un_compte_pilote'];
+            $this->Rechercher_un_compte_delegue= $row['Rechercher_un_compte_delegue'];
+            $this->Creer_un_compte_delegue= $row['Creer_un_compte_delegue'];
+            $this->Modifier_un_compte_delegue= $row['Modifier_un_compte_delegue'];
+            $this->Supprimer_un_compte_delegue= $row['Supprimer_un_compte_delegue'];
+            $this->Assigner_des_droits_a_un_delegue= $row['Assigner_des_droits_a_un_delegue']; //20
+            $this->Rechercher_un_compte_etudiant= $row['Rechercher_un_compte_etudiant'];
+            $this->Creer_un_compte_etudiant= $row['Creer_un_compte_etudiant'];
+            $this->Modifier_un_compte_etudiant= $row['Modifier_un_compte_etudiant'];
+            $this->Supprimer_un_compte_etudiant= $row['Supprimer_un_compte_etudiant'];
+            $this->Consulter_les_stats_des_etudiants= $row['Consulter_les_stats_des_etudiants'];
+            $this->Ajouter_une_offre_a_la_wish_list= $row['Ajouter_une_offre_a_la_wish_list'];
+            $this->Retirer_une_offre_a_la_wish_list= $row['Retirer_une_offre_a_la_wish_list'];
+            $this->Postuler_a_une_offre= $row['Postuler_a_une_offre'];
+            $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_1= $row['Informer_le_systeme_de_l_avancement_de_la_candidature_step_1'];
+            $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_2= $row['Informer_le_systeme_de_l_avancement_de_la_candidature_step_2']; //30
+            $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_3= $row['Informer_le_systeme_de_l_avancement_de_la_candidature_step_3'];
+            $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_4= $row['Informer_le_systeme_de_l_avancement_de_la_candidature_step_4'];
+            $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_5= $row['Informer_le_systeme_de_l_avancement_de_la_candidature_step_5'];
+            $this->Informer_le_systeme_de_l_avancement_de_la_candidature_step_6= $row['Informer_le_systeme_de_l_avancement_de_la_candidature_step_6']; //34
+            
+
+            
             }else{ 
             return false;
         }
+
+
     }
 
 

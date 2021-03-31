@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-30 20:05:57
+/* Smarty version 3.1.39, created on 2021-03-31 13:06:20
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_60636885b992d2_12305740',
+  'unifunc' => 'content_606457ac281050_85908968',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '19a009d01611fda10139f57d5214fd42af5e1ad9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\header.tpl',
-      1 => 1617047471,
+      1 => 1617188761,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_60636885b992d2_12305740 (Smarty_Internal_Template $_smarty_tpl) {
+function content_606457ac281050_85908968 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Page Wrapper -->
 <div id="wrapper">
     <!-- Sidebar -->
@@ -452,7 +452,7 @@ function content_60636885b992d2_12305740 (Smarty_Internal_Template $_smarty_tpl)
                             class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                             aria-labelledby="userDropdown"
                         >
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="http://localhost/projet-web-frontend/index.php?page=Account">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profile
                         </a>
@@ -467,7 +467,8 @@ function content_60636885b992d2_12305740 (Smarty_Internal_Template $_smarty_tpl)
                         <div class="dropdown-divider"></div>
                         <a
                             class="dropdown-item"
-                            href="#"
+                            id="logout"
+                            onclick="logout()"
                             data-toggle="modal"
                             data-target="#logoutModal"
                         >

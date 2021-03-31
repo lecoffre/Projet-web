@@ -42,7 +42,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $authentification->Login = $donnees->Login;
         $authentification->Mot_de_passe = $donnees->Mot_de_passe; 
         $authentification->login();
-       
+
+        $droits = [
+            "Rechercher_entreprise" => $authentification->Rechercher_entreprise,
+            "Creer_une_entreprise" => $authentification->Creer_une_entreprise,
+            "Modifier_une_entreprise" => $authentification->Modifier_une_entreprise,
+            "Evaluer_une_entreprise" => $authentification->Evaluer_une_entreprise,
+            "Supprimer_une_entreprise"=> $authentification->Supprimer_une_entreprise,
+            "Consulter_les_stats_des_entreprises"=> $authentification->Consulter_les_stats_des_entreprises,
+            "Rechercher_une_offre"=> $authentification->Rechercher_une_offre,
+            "Creer_une_offre"=> $authentification->Creer_une_offre,
+            "Modifier_une_offre"=> $authentification->Modifier_une_offre,
+            "Supprimer_une_offre"=> $authentification->Supprimer_une_offre, //10
+            "Consulter_les_stats_des_offres"=> $authentification->Consulter_les_stats_des_offres,
+            "Rechercher_un_compte_pilote"=> $authentification->Rechercher_un_compte_pilote,
+            "Creer_un_compte_pilote"=> $authentification->Creer_un_compte_pilote,
+            "Modifier_un_compte_pilote"=> $authentification->Modifier_un_compte_pilote,
+            "Supprimer_un_compte_pilote"=> $authentification->Supprimer_un_compte_pilote,
+            "Rechercher_un_compte_delegue"=> $authentification->Rechercher_un_compte_delegue,
+            "Creer_un_compte_delegue"=> $authentification->Creer_un_compte_delegue,
+            "Modifier_un_compte_delegue"=> $authentification->Modifier_un_compte_delegue,
+            "Supprimer_un_compte_delegue"=> $authentification->Supprimer_un_compte_delegue,
+            "Assigner_des_droits_a_un_delegue"=> $authentification->Assigner_des_droits_a_un_delegue, //20
+            "Rechercher_un_compte_etudiant"=> $authentification->Rechercher_un_compte_etudiant,
+            "Creer_un_compte_etudiant"=> $authentification->Creer_un_compte_etudiant,
+            "Modifier_un_compte_etudiant"=> $authentification->Modifier_un_compte_etudiant,
+            "Supprimer_un_compte_etudiant"=> $authentification->Supprimer_un_compte_etudiant,
+            "Consulter_les_stats_des_etudiants"=> $authentification->Consulter_les_stats_des_etudiants,
+            "Ajouter_une_offre_a_la_wish_list"=> $authentification->Ajouter_une_offre_a_la_wish_list,
+            "Retirer_une_offre_a_la_wish_list"=> $authentification->Retirer_une_offre_a_la_wish_list,
+            "Postuler_a_une_offre"=> $authentification->Postuler_a_une_offre,
+            "Informer_le_systeme_de_l_avancement_de_la_candidature_step_1"=> $authentification->Informer_le_systeme_de_l_avancement_de_la_candidature_step_1,
+            "Informer_le_systeme_de_l_avancement_de_la_candidature_step_2"=> $authentification->Informer_le_systeme_de_l_avancement_de_la_candidature_step_2, //30
+            "Informer_le_systeme_de_l_avancement_de_la_candidature_step_3"=> $authentification->Informer_le_systeme_de_l_avancement_de_la_candidature_step_3,
+            "Informer_le_systeme_de_l_avancement_de_la_candidature_step_4"=> $authentification->Informer_le_systeme_de_l_avancement_de_la_candidature_step_4,
+            "Informer_le_systeme_de_l_avancement_de_la_candidature_step_5"=> $authentification->Informer_le_systeme_de_l_avancement_de_la_candidature_step_5,
+            "Informer_le_systeme_de_l_avancement_de_la_candidature_step_6"=> $authentification->Informer_le_systeme_de_l_avancement_de_la_candidature_step_6, //34
+            
+            
+        ];
+
+
         if ($authentification->Login != null && $authentification->Nom != null && $authentification->ID_Utilisateur != null) { 
            
             $authen = [
@@ -90,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         break;
                 }
                
-            http_response_code(200);
+
 
 
             
@@ -103,7 +143,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }else{
                 $authen['Token'] = $authentification->Token;
                 $authen['Rechercher_entreprise'] = $authentification->Rechercher_entreprise;
-
                 $message = 'Token récupéré avec succès';
             }
             }
@@ -121,9 +160,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             // -------------------------TOKEN-------------------------
 
+            
+            
 
+            $authen = array_merge($authen, $droits);
             $authen['message'] = $message;
             echo json_encode($authen);
+            
             }else{
                 http_response_code(404);
                 echo json_encode(array("message" => "L'ID utilisateur n'existe pas'."));

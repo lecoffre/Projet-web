@@ -159,4 +159,6 @@
 <script src="js/main.js"></script>
 <!--ajout plugin car flemme de le faire-->
 <script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
-
+<script src="js/cookies.js"></script>
+<script src="js/info.js"></script>
+<script src="js/session.js"></script>
