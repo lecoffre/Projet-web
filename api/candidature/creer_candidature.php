@@ -27,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (
         !empty($donnees->CV_etudiant) && !empty($donnees->Lettre_de_motivation_etudiant) && !empty($donnees->Fiche_de_validation) && !empty($donnees->Convention_de_stage) && !empty($donnees->LIEN_OFFRE)
         && !empty($donnees->ID_Utilisateur) && !empty($donnees->ID_offre) && !empty($donnees->ID_Utilisateur_Pilote)
+        && !empty($donnees->Candidature_step_1) && !empty($donnees->Candidature_step_2) && !empty($donnees->Candidature_step_3)
+        && !empty($donnees->Candidature_step_4) && !empty($donnees->Candidature_step_5) && !empty($donnees->Candidature_step_6)
     ) {
 
         // Ici on a reçu les données
@@ -39,6 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $candidature->ID_Utilisateur = $donnees->ID_Utilisateur;
         $candidature->ID_offre = $donnees->ID_offre;
         $candidature->ID_Utilisateur_Pilote = $donnees->ID_Utilisateur_Pilote;
+        $candidature->Candidature_step_1 = $donnees->Candidature_step_1;
+        $candidature->Candidature_step_2 = $donnees->Candidature_step_2;
+        $candidature->Candidature_step_3 = $donnees->Candidature_step_3;
+        $candidature->Candidature_step_4 = $donnees->Candidature_step_4;
+        $candidature->Candidature_step_5 = $donnees->Candidature_step_5;
+        $candidature->Candidature_step_6 = $donnees->Candidature_step_6;
 
         if ($candidature->creer_candidature()) {
             // Ici la création a fonctionné

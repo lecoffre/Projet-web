@@ -18,12 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
     // On instancie les produits
     $offre = new Offre($db);
+    $entreprise = new Offre($db);
 
     // On récupère les informations envoyées
     $donnees = json_decode(file_get_contents("php://input"));
 
 
     if (
+        !empty($donnees->ID_offre) &&
         !empty($donnees->Competences_offre) &&
         !empty($donnees->Titre_offre) &&
         !empty($donnees->Localite_offre) &&
@@ -33,39 +35,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
         !empty($donnees->Base_de_remuneration) &&
         !empty($donnees->Date_de_offre) &&
         !empty($donnees->Nombre_de_places_disponible) &&
-        !empty($donnees->ID_Entreprise) &&
         !empty($donnees->ID_Utilisateur) &&
         !empty($donnees->Secteur)
     ) {
-        // Ici on a reçu les données
-        // On hydrate notre objet
-        $offre->ID_offre = $donnees->ID_offre;
-        $offre->Secteur = $donnees->Secteur;
-        $offre->Titre_offre = $donnees->Titre_offre;
-        $offre->Competences_offre = $donnees->Competences_offre;
-        $offre->Localite_offre = $donnees->Localite_offre;
-        $offre->Entreprise_offre = $donnees->Entreprise_offre;
-        $offre->Type_de_promotion_concernee = $donnees->Type_de_promotion_concernee;
-        $offre->Duree_du_stage = $donnees->Duree_du_stage;
-        $offre->Base_de_remuneration = $donnees->Base_de_remuneration;
-        $offre->Date_de_offre = $donnees->Date_de_offre;
-        $offre->Nombre_de_places_disponible = $donnees->Nombre_de_places_disponible;
-        $offre->ID_Entreprise = $donnees->ID_Entreprise;
-        $offre->ID_Utilisateur = $donnees->ID_Utilisateur;
+        $entreprise->Nom_entreprise = $donnees->Entreprise_offre;
+        echo json_encode(["message"=>"banane1 : " , $entreprise]);
+        $entreprise->rechercher_entreprise();
+        echo json_encode(["message"=>"banane : " , $entreprise]);
 
-        if ($offre->modifier_offre()) {
-            // Ici la création a fonctionné
-            // On envoie un code 200
-            http_response_code(200);
-            echo json_encode(["message" => "La modification a été effectuée"]);
+        if ($entreprise->ID_Entreprise != null) {
+
+            $entre = [
+                "ID_Entreprise" => $entreprise->ID_Entreprise,
+                "Nom_entreprise" => $entreprise->Nom_entreprise,
+                "Secteur_activite" => $entreprise->Secteur_activite,
+                "Competences_recherchees_dans_les_stages" => $entreprise->Competences_recherchees_dans_les_stages,
+                "Nombre_de_stagiaires_CESI_deja_acceptes_en_stage" => $entreprise->Nombre_de_stagiaires_CESI_deja_acceptes_en_stage,
+                "Evaluation_des_stagiaires" => $entreprise->Evaluation_des_stagiaires,
+                "Confiance_du_Pilote_de_promotion" => $entreprise->Confiance_du_Pilote_de_promotion,
+                "Localite_entreprise" => $entreprise->Localite_entreprise,
+                "Logo_Entreprise" => $entreprise->Logo_Entreprise,
+                "ID_Utilisateur" => $entreprise->ID_Utilisateur
+            ];
+            echo json_encode([$entre]);
+        
+
+            // Ici on a reçu les données
+            // On hydrate notre objet
+            $offre->ID_offre = $donnees->ID_offre;
+            $offre->Secteur = $donnees->Secteur;
+            $offre->Titre_offre = $donnees->Titre_offre;
+            $offre->Competences_offre = $donnees->Competences_offre;
+            $offre->Localite_offre = $donnees->Localite_offre;
+            $offre->Entreprise_offre = $donnees->Entreprise_offre;
+            $offre->Type_de_promotion_concernee = $donnees->Type_de_promotion_concernee;
+            $offre->Duree_du_stage = $donnees->Duree_du_stage;
+            $offre->Base_de_remuneration = $donnees->Base_de_remuneration;
+            $offre->Date_de_offre = $donnees->Date_de_offre;
+            $offre->Nombre_de_places_disponible = $donnees->Nombre_de_places_disponible;
+            $offre->ID_Entreprise = $entre['ID_Entreprise'];
+            $offre->ID_Utilisateur = $donnees->ID_Utilisateur;
+
+            if ($offre->modifier_offre()) {
+                // Ici la création a fonctionné
+                // On envoie un code 200
+                http_response_code(200);
+                echo json_encode(["message" => "La modification a été effectuée"]);
+            } else {
+                // Ici la création n'a pas fonctionné
+                // On envoie un code 503
+                http_response_code(503);
+                echo json_encode(["message" => "La modification1 n'a pas été effectuée"]);
+            }
         } else {
-            // Ici la création n'a pas fonctionné
-            // On envoie un code 503
-            http_response_code(503);
-            echo json_encode(["message" => "La modification1 n'a pas été effectuée"]);
+            echo json_encode(["message" => "La modification2 n'a pas été effectué"]);
         }
-    } else {
-        echo json_encode(["message" => "La modification2 n'a pas été effectué"]);
+    }
+    else{
+        echo json_encode(["message" => "La modification3 n'a pas été effectué"]);
     }
 } else {
 
@@ -73,3 +100,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     http_response_code(405);
     echo json_encode(["message" => "La méthode n'est pas autorisée"]);
 }
+

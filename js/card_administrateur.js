@@ -109,7 +109,7 @@ function show_one_admin(id_admin){
                                 data-target="#popup-modifier-administrateur"
                                 class="btn btn-primary" 
                                 onclick="popup_modifier_admin(this.id)" 
-                                id="`+ id_admin + `"
+                                id="`+ unAdmin.ID_Login + `"
                                 style="margin: 13px 0 13px 0"
                                 >Modifier</button>
                                 <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
@@ -159,7 +159,6 @@ function popup_modifier_admin(id_admin){
     }
     var html = '';
     var data = JSON.stringify(param);
-    
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
     xhr.addEventListener("readystatechange", function() 
@@ -176,11 +175,12 @@ function popup_modifier_admin(id_admin){
                 unAdmin= response; 
 
                 // Ici, j'essaye de mettre dans les placeholder les données de l'admin, le seul qui ne marche pas est le logo.
-                document.getElementById("btnModifierAdmin").id = id_admin;
+                document.getElementById("btnModifierAdministrateur").id = id_admin;
+                document.getElementById("btnSupprimerAdministrateur").id = id_admin;
                 document.getElementById("nomAdmin1").value= unAdmin.Nom;
                 document.getElementById("prenomAdmin1").value = unAdmin.Prenom;
-                //document.getElementById("loginAdmin1").value =  unAdmin.Login;
-                //document.getElementById("mdpAdmin1").value = unAdmin.Mot_de_passe;
+                document.getElementById("loginAdmin1").value =  unAdmin.Login;
+                document.getElementById("mdpAdmin1").value = unAdmin.Mot_de_passe;
                 document.getElementById("photoAdmin1").value = unAdmin.Photo_Utilisateur;
 
                 
@@ -212,6 +212,120 @@ function popup_modifier_admin(id_admin){
     console.log('envoi=> '+data);
     xhr.send(data);  
 };
+
+function modifier_administrateur(id_admin){
+    var ID_Login = id_admin;
+    var Nom = document.getElementById("nomAdmin1").value;
+    var Prenom = document.getElementById("prenomAdmin1").value;
+    var Login = document.getElementById("loginAdmin1").value;
+    var Mot_de_passe = document.getElementById("mdpAdmin1").value;
+
+    var logo = document.getElementById("photoAdmin1").files[0].name;
+
+    var html = '';
+    if(true){
+        
+        param={
+            "ID_Login":id_admin,
+            "Nom":Nom,
+            "Prenom" : Prenom,
+            //"Login" : Login,
+            //"Mot_de_passe" : Mot_de_passe,
+            "Role" : "administrateur",
+            "Photo_Utilisateur" : "api/img/users/"+logo
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 200 )
+                {
+                    try{
+                        if(!window.alert(Nom + ' ' + Prenom + ' a bien été modifié')){document.forms['ModifierAdministrateurForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+    
+        xhr.open("PUT", "http://localhost/projet-web-frontend/api/utilisateur/modifier_utilisateur.php", true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+
+        console.log('envoi=> '+data);
+        xhr.send(data);
+    }
+    
+  
+    else{
+    html="Parametres incorrects ou incomplets";
+        }
+        
+    //document.getElementById("resultat-requete").innerHTML = html;
+}
+
+function supprimer_administrateur(id_admin){
+    var Nom = document.getElementById("nomAdmin1").value;
+    if(true){
+        
+        param={
+            "ID_Login":id_admin,
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 200 )
+                {
+                    try{
+                        if(!window.alert(Nom + ' a bien été supprimée')){document.forms['ModifierAdministrateurForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+    
+        xhr.open("DELETE", "http://localhost/projet-web-frontend/api/suppression/suppression_administrateur.php", true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+
+        console.log('envoi=> '+data);
+        xhr.send(data);
+    }
+    
+  
+    else{
+    html="Parametres incorrects ou incomplets";
+        }
+}
 
 
 window.onload = show_administrateur();

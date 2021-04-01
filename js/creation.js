@@ -2,7 +2,7 @@
 //CREATION ENTREPRISE
 function creation_entreprise(){
     var nomEntreprise = document.getElementById("nomEntreprise").value;
-    var secteurActivite = document.getElementById("SecteurActivie").value;
+    var secteurActivite = document.getElementById("SecteurActivite").value;
     var comp = document.getElementById("CompRecherchees").value;
     var nbStagiaire = document.getElementById("nbStagiaireCESI").value;
     var noteEntreprise = document.getElementById("noteEntreprise").value;
@@ -141,6 +141,12 @@ function creation_candidature(id_offre){
     var Lettre_de_motivation_etudiant = document.getElementById("lmEtudiant").files[0].name;
     var Fiche_de_validation = document.getElementById("fvEtudiant").files[0].name;
     var Convention_de_stage = document.getElementById("csEtudiant").files[0].name;
+    var Candidature_step_1 = document.getElementById("Candidature_step_1").value;
+    var Candidature_step_2 = document.getElementById("Candidature_step_2").value;
+    var Candidature_step_3 = document.getElementById("Candidature_step_3").value;
+    var Candidature_step_4 = document.getElementById("Candidature_step_4").value;
+    var Candidature_step_5 = document.getElementById("Candidature_step_5").value;
+    var Candidature_step_6 = document.getElementById("Candidature_step_6").value;
     var idUtilisateur = ID_Utilisateur_by_cookie;
 
     var html = '';
@@ -152,6 +158,12 @@ function creation_candidature(id_offre){
             "Fiche_de_validation" : "api/files/candidature/"+Fiche_de_validation,
             "Convention_de_stage" : "api/files/candidature/"+Convention_de_stage,
             "ID_Utilisateur":idUtilisateur,
+            "Candidature_step_1":Candidature_step_1,
+            "Candidature_step_2":Candidature_step_2,
+            "Candidature_step_3":Candidature_step_3,
+            "Candidature_step_4":Candidature_step_4,
+            "Candidature_step_5":Candidature_step_5,
+            "Candidature_step_6":Candidature_step_6,
             "ID_offre": id_offre,
             "ID_Utilisateur_Pilote":"2",
         }

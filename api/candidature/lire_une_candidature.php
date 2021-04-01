@@ -1,11 +1,11 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // On vérifie que la méthode utilisée est correcte
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../config/database.php';
@@ -41,8 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 "ID_offre" => $candidature->ID_offre,
                 "ID_Utilisateur_Pilote" => $candidature->ID_Utilisateur_Pilote,
                 "Entreprise_offre" => $candidature->Entreprise_offre,
-            ];
-
+                "Candidature_step_1" => $candidature->Candidature_step_1,
+                "Candidature_step_2" => $candidature->Candidature_step_2,
+                "Candidature_step_3" => $candidature->Candidature_step_3,
+                "Candidature_step_4" => $candidature->Candidature_step_4,
+                "Candidature_step_5" => $candidature->Candidature_step_5,
+                "Candidature_step_6" => $candidature->Candidature_step_6,
+            ];  
 
             // On envoie le code réponse 200 OK
             http_response_code(200);

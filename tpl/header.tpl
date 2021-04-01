@@ -458,8 +458,7 @@
         </nav>
  
 <div id="message-session" style="visibility: hidden;">
-        <p>session active</p>
-    </div>
+</div>
  
  
 <div id="session" style="visibility: hidden;">

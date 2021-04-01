@@ -23,15 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     $donnees = json_decode(file_get_contents("php://input"));
 
 
-    if (!empty($donnees->ID_Utilisateur) && !empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->Role) && !empty($donnees->ID_Login)) {
+    if (!empty($donnees->ID_Login) && !empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->Role)) {
         // Ici on a reçu les données
         // On hydrate notre objet
-        $utilisateur->ID_Utilisateur = $donnees->ID_Utilisateur;
+        $utilisateur->ID_Login = $donnees->ID_Login;
         $utilisateur->Nom = $donnees->Nom;
         $utilisateur->Prenom = $donnees->Prenom;
         $utilisateur->Photo_Utilisateur = $donnees->Photo_Utilisateur;
         $utilisateur->Role = $donnees->Role;
-        $utilisateur->ID_Login = $donnees->ID_Login;
+
 
 
         if ($utilisateur->modifier_utilisateur()) {

@@ -159,7 +159,7 @@ function afficher_un_etudiant(id_etudiant){
 };
 
 function popup_modifier_etudiant(id_etudiant){
-
+    
     var param={
         "ID_Login":id_etudiant,
     }
@@ -183,10 +183,11 @@ function popup_modifier_etudiant(id_etudiant){
 
                 // Ici, j'essaye de mettre dans les placeholder les données de l'admin, le seul qui ne marche pas est le logo.
                 document.getElementById("btnModifierEtudiant").id = id_etudiant;
+                document.getElementById("btnSupprimerEtudiant").id = id_etudiant;
                 document.getElementById("nomEtudiant1").value= unEtudiant.Nom;
                 document.getElementById("prenomEtudiant1").value = unEtudiant.Prenom;
-                //document.getElementById("loginEtudiant1").value =  unEtudiant.Login;
-                //document.getElementById("mdpEtudiant1").value = unEtudiant.Mot_de_passe;
+                document.getElementById("loginEtudiant1").value =  unEtudiant.Login;
+                document.getElementById("mdpEtudiant1").value = unEtudiant.Mot_de_passe;
                 document.getElementById("centreEtudiant1").value= unEtudiant.Centre_etudiant;
                 document.getElementById("promotionEtudiant1").value = unEtudiant.Promotion_etudiant;
                 document.getElementById("photoEtudiant1").value = unEtudiant.Photo_Utilisateur;
@@ -220,6 +221,125 @@ function popup_modifier_etudiant(id_etudiant){
     console.log('envoi=> '+data);
     xhr.send(data);  
 };
+
+function modifier_etudiant(id_etudiant){
+    var ID_Login = id_etudiant;
+    var Nom = document.getElementById("nomEtudiant1").value;
+    var Prenom = document.getElementById("prenomEtudiant1").value;
+    var Login = document.getElementById("loginEtudiant1").value;
+    var Mot_de_passe = document.getElementById("mdpEtudiant1").value;
+    var Centre_etudiant = document.getElementById("centreEtudiant1").value;
+    var Promotion_etudiant = document.getElementById("promotionEtudiant1").value;
+
+    var logo = document.getElementById("photoEtudiant1").files[0].name;
+
+
+    var html = '';
+    if(true){
+        
+        param={
+            "ID_Login":id_etudiant,
+            "Nom":Nom,
+            "Prenom" : Prenom,
+            "Login" : Login,
+            "Mot_de_passe" : Mot_de_passe,
+            "Role" : "etudiant",
+            "Centre_etudiant":Centre_etudiant,
+            "Promotion_etudiant": Promotion_etudiant,
+            "Photo_Utilisateur" : "api/img/users/"+logo,
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 200 )
+                {
+                    try{
+                        if(!window.alert(Nom + ' ' + Prenom + ' a bien été modifié')){document.forms['modifierEtudiantForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+    
+        xhr.open("PUT", "http://localhost/projet-web-frontend/api/utilisateur/modifier_utilisateur.php", true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+
+        console.log('envoi=> '+data);
+        xhr.send(data);
+    }
+    
+  
+    else{
+    html="Parametres incorrects ou incomplets";
+        }
+        
+    //document.getElementById("resultat-requete").innerHTML = html;
+}
+
+function supprimer_etudiant(id){
+    var Nom = document.getElementById("nomEtudiant1").value;
+    if(true){
+        
+        param={
+            "ID_Login":id,
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 200 )
+                {
+                    try{
+                        if(!window.alert(Nom + ' a bien été supprimée')){document.forms['modifierEtudiantForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+    
+        xhr.open("DELETE", "http://localhost/projet-web-frontend/api/suppression/suppression_etudiant.php", true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+
+        console.log('envoi=> '+data);
+        xhr.send(data);
+    }
+    
+  
+    else{
+    html="Parametres incorrects ou incomplets";
+        }
+}
 
 
 window.onload = show_etudiant();

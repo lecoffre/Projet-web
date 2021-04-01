@@ -193,6 +193,7 @@ function popup_modifier_entreprise(id_ent){
 
                 // Ici, j'essaye de mettre dans les placeholder les données de l'entreprise, le seul qui ne marche pas est le logo.
                 document.getElementById("btnModifierEntreprise").id = id_ent;
+                document.getElementById("btnSupprimerEntreprise").id = id_ent;
                 document.getElementById("nomEntreprise1").value= uneEntreprise.Nom_entreprise;
                 document.getElementById("SecteurActivie1").value = uneEntreprise.Secteur_activite;
                 document.getElementById("CompRecherchees1").value =  uneEntreprise.Competences_recherchees_dans_les_stages;
@@ -302,6 +303,56 @@ function modifier_entreprise(id_entre){
         }
         
     //document.getElementById("resultat-requete").innerHTML = html;
+}
+
+
+function supprimer_entreprise(id_entre){
+    var nomEntreprise2 = document.getElementById("nomEntreprise1").value;
+    if(true){
+        
+        param={
+            "ID_Entreprise":id_entre,
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 200 )
+                {
+                    try{
+                        if(!window.alert(nomEntreprise2 + ' a bien été supprimée')){document.forms['ModifierEntrepriseForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+    
+        xhr.open("DELETE", "http://localhost/projet-web-frontend/api/entreprise/supprimer_entreprise.php", true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+
+        console.log('envoi=> '+data);
+        xhr.send(data);
+    }
+    
+  
+    else{
+    html="Parametres incorrects ou incomplets";
+        }
 }
 
 window.onload = afficher_company();

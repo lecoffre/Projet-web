@@ -145,17 +145,7 @@
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
-<!--<script src="vendor/chart.js/Chart.min.js"></script>-->
 
-
-<!-- Afficher les vignettes -->
-
-<!--<script src="js/card_offre.js"></script>-->
-
-<!-- Page level custom scripts -->
-<!--<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>-->
 <!--script de la page-->
 <script src="js/main.js"></script>
 <!--ajout plugin car flemme de le faire-->
@@ -163,7 +153,6 @@
 <script src="js/cookies.js"></script>
 <script src="js/info.js"></script>
 <script>
-    
     if(Token_by_cookie != "" /* && Token_by_cookie != "undefined" && typeof(Token_by_cookie) === "undefined"*/){
         document.getElementById("roleNavBar").innerHTML=Role_by_cookie;
         document.getElementById("loginNavBar").innerHTML=Login_by_cookie;
@@ -171,4 +160,5 @@
     else {  document.getElementById("roleNavBar").style.visibility = "hidden";
             document.getElementById("loginNavBar").style.visibility = "hidden";}
 </script>
+
 <script src="js/session.js"></script>

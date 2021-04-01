@@ -259,7 +259,8 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" id="btnModifierPilote" onclick="modifier_pilote(this.id)" type="submit">Modifier le pilote</button>
+                                    <button class="btn btn-primary" id="btnSupprimerPilote" onclick="supprimer_pilote(this.id)" style="background-color: red;" type="submit">Supprimer</button>
+                                        <button class="btn btn-primary" id="btnModifierPilote" onclick="modifier_pilote(this.id)" type="submit">Modifier</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
                                         
                                     </div>

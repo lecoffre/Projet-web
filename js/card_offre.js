@@ -139,6 +139,7 @@ function afficher_une_offre(id_offre){
                                 data-target="#popup-modifier-offre"
                                 class="btn btn-primary popupmodifoffre" 
                                 id="`+ uneOffre.ID_offre + `"
+                                onclick="popup_modifier_offre(this.id)"
                                 style="margin: 13px 0 13px 0"
                                 >Modifier l'offre</button>
                                 <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
@@ -195,6 +196,48 @@ function afficher_une_offre(id_offre){
                                                                 <div class="invalid-feedback">
                                                                     Merci de fournir une convention de stage.
                                                                 </div>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label for="validationCustom04">Candidature_step_1</label>
+                                                                <select class="form-control" id="Candidature_step_1"required>
+                                                                    <option value="ok">ok</option>
+                                                                    <option value="pas ok">pas ok</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label for="validationCustom04">Candidature_step_2</label>
+                                                                <select class="form-control" id="Candidature_step_2"required>
+                                                                    <option value="ok">ok</option>
+                                                                    <option value="pas ok">pas ok</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label for="validationCustom04">Candidature_step_3</label>
+                                                                <select class="form-control" id="Candidature_step_3"required>
+                                                                    <option value="ok">ok</option>
+                                                                    <option value="pas ok">pas ok</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label for="validationCustom04">Candidature_step_4</label>
+                                                                <select class="form-control" id="Candidature_step_4"required>
+                                                                    <option value="ok">ok</option>
+                                                                    <option value="pas ok">pas ok</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label for="validationCustom04">Candidature_step_5</label>
+                                                                <select class="form-control" id="Candidature_step_5"required>
+                                                                    <option value="ok">ok</option>
+                                                                    <option value="pas ok">pas ok</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label for="validationCustom04">Candidature_step_6</label>
+                                                                <select class="form-control" id="Candidature_step_6"required>
+                                                                    <option value="ok">ok</option>
+                                                                    <option value="pas ok">pas ok</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         
@@ -264,7 +307,8 @@ function popup_modifier_offre(id_offre){
                 console.log('debut html');
 
                 // Ici, j'essaye de mettre dans les placeholder les données de l'entreprise, le seul qui ne marche pas est le logo.
-                //document.getElementById("btnModifierOffre").id = id_offre;
+                document.getElementById("btnModifierOffre").id = id_offre;
+                document.getElementById("btnSupprimerOffre").id = id_offre;
                 document.getElementById("nomOffre1").value= uneOffre.Titre_offre;
                 document.getElementById("secteurActivite1").value = uneOffre.Secteur;
                 document.getElementById("compRecherchees1").value =  uneOffre. Competences_offre;
@@ -273,7 +317,7 @@ function popup_modifier_offre(id_offre){
                 document.getElementById("dureeStage1").value = uneOffre.Duree_du_stage;
                 document.getElementById("remuneration1").value = uneOffre.Base_de_remuneration;
                 document.getElementById("dateOffre1").value= uneOffre.Date_de_offre; 
-                document.getElementById("placeDispoOffre1").value= uneOffre.Logo_Entreprise;
+                document.getElementById("placeDispoOffre1").value= uneOffre.Nombre_de_places_disponible;
                 document.getElementById("localite1").value= uneOffre.Localite_offre;
 
                 
@@ -348,7 +392,7 @@ function modifier_offre(id_offre){
                 if( xhr.status == 200 )
                 {
                     try{
-                        if(!window.alert('L\'offre '+ nomOffre + ' a bien été modifié')){document.forms['ModifierOffreForm'].reset();window.location.reload();}
+                        if(!window.alert('L\'offre '+ nomOffre + ' a bien été modifié')){document.forms['modifierOffreForm'].reset();window.location.reload();}
                     }catch(e){
                         if(e=="SyntaxError: Unexpected end of JSON input"){
                             html = 'JSON incorrect (vide)';
@@ -379,7 +423,54 @@ function modifier_offre(id_offre){
     }
 };
 
+function supprimer_offre(id){
+    var nomOffre = document.getElementById("nomOffre1").value;
+    if(true){
+        
+        param={
+            "ID_offre":id,
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 200 )
+                {
+                    try{
+                        if(!window.alert(nomOffre + ' a bien été supprimée')){document.forms['modifierOffreForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+    
+        xhr.open("DELETE", "http://localhost/projet-web-frontend/api/offre/supprimer_offre.php", true);
 
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+
+        console.log('envoi=> '+data);
+        xhr.send(data);
+    }
+    
+  
+    else{
+    html="Parametres incorrects ou incomplets";
+        }
+}
 
 window.onload = afficher_offre();
 

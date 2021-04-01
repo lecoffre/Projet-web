@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-31 19:46:30
+/* Smarty version 3.1.39, created on 2021-04-01 00:38:46
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6064b576549799_81696033',
+  'unifunc' => 'content_6064f9f6c461f6_55473419',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '552a74fcd86123552c17a5a338169d20d1ef0550' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\footer.tpl',
-      1 => 1617212788,
+      1 => 1617230322,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6064b576549799_81696033 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6064f9f6c461f6_55473419 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Footer -->
 </div>
 <div class="row">
@@ -176,25 +176,7 @@ function content_6064b576549799_81696033 (Smarty_Internal_Template $_smarty_tpl)
  src="js/sb-admin-2.min.js"><?php echo '</script'; ?>
 >
 
-<!-- Page level plugins -->
-<!--<?php echo '<script'; ?>
- src="vendor/chart.js/Chart.min.js"><?php echo '</script'; ?>
->-->
 
-
-<!-- Afficher les vignettes -->
-
-<!--<?php echo '<script'; ?>
- src="js/card_offre.js"><?php echo '</script'; ?>
->-->
-
-<!-- Page level custom scripts -->
-<!--<?php echo '<script'; ?>
- src="js/demo/chart-area-demo.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="js/demo/chart-pie-demo.js"><?php echo '</script'; ?>
->-->
 <!--script de la page-->
 <?php echo '<script'; ?>
  src="js/main.js"><?php echo '</script'; ?>
@@ -211,7 +193,6 @@ function content_6064b576549799_81696033 (Smarty_Internal_Template $_smarty_tpl)
 >
 <?php echo '<script'; ?>
 >
-    
     if(Token_by_cookie != "" /* && Token_by_cookie != "undefined" && typeof(Token_by_cookie) === "undefined"*/){
         document.getElementById("roleNavBar").innerHTML=Role_by_cookie;
         document.getElementById("loginNavBar").innerHTML=Login_by_cookie;
@@ -220,6 +201,7 @@ function content_6064b576549799_81696033 (Smarty_Internal_Template $_smarty_tpl)
             document.getElementById("loginNavBar").style.visibility = "hidden";}
 <?php echo '</script'; ?>
 >
+
 <?php echo '<script'; ?>
  src="js/session.js"><?php echo '</script'; ?>
 >

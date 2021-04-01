@@ -272,4 +272,45 @@ class Offre
         $this->Logo_Entreprise = $row['Logo_Entreprise'];
         $this->ID_Utilisateur = $row['ID_Utilisateur'];
     }
+
+
+
+    /**
+     * Voir une entreprise
+     *
+     * @return void
+     */
+    public function rechercher_entreprise()
+    {
+        // On écrit la requête
+
+        $sql = "SELECT * FROM " . $this->table2 . " WHERE Nom_entreprise=:Nom_entreprise LIMIT 0,1";
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On attache l'id
+        $query->bindParam(':Nom_entreprise', $this->Nom_entreprise);
+
+
+        // On exécute la requête
+        $query->execute();
+
+        // on récupère la ligne
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+
+        // On hydrate l'objet
+        $this->ID_Entreprise = $row['ID_Entreprise'];
+        $this->Nom_entreprise = $row['Nom_entreprise'];
+        $this->Secteur_activite = $row['Secteur_activite'];
+        $this->Competences_recherchees_dans_les_stages = $row['Competences_recherchees_dans_les_stages'];
+        $this->Nombre_de_stagiaires_CESI_deja_acceptes_en_stage = $row['Nombre_de_stagiaires_CESI_deja_acceptes_en_stage'];
+        $this->Evaluation_des_stagiaires = $row['Evaluation_des_stagiaires'];
+        $this->Confiance_du_Pilote_de_promotion = $row['Confiance_du_Pilote_de_promotion'];
+        $this->Localite_entreprise = $row['Localite_entreprise'];
+        $this->Logo_Entreprise = $row['Logo_Entreprise'];
+        $this->ID_Utilisateur = $row['ID_Utilisateur'];
+    }
+
+
 }

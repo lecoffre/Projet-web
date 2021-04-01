@@ -110,7 +110,7 @@ function afficher_un_pilote(id_pilote){
                                 data-target="#popup-modifier-pilote"
                                 class="btn btn-primary" 
                                 onclick="popup_modifier_pilote(this.id)" 
-                                id="`+ id_pilote + `"
+                                id="`+ unPilote.ID_Login + `"
                                 style="margin: 13px 0 13px 0"
                                 >Modifier</button>
                                 <div style="height: 1px; background-color: rgb(223, 223, 223);"></div>
@@ -182,16 +182,16 @@ function popup_modifier_pilote(id_pilote){
 
                 // Ici, j'essaye de mettre dans les placeholder les données de l'admin, le seul qui ne marche pas est le logo.
                 document.getElementById("btnModifierPilote").id = id_pilote;
+                document.getElementById("btnSupprimerPilote").id = id_pilote;
                 document.getElementById("nomPilote1").value= unPilote.Nom;
                 document.getElementById("prenomPilote1").value = unPilote.Prenom;
-                //document.getElementById("loginPilote1").value =  unAdmin.Login;
-                //document.getElementById("mdpPilote1").value = unAdmin.Mot_de_passe;
+                document.getElementById("loginPilote1").value =  unPilote.Login;
+                document.getElementById("mdpPilote1").value = unPilote.Mot_de_passe;
                 document.getElementById("centrePilote1").value= unPilote.Centre_pilote;
                 document.getElementById("promotionPilote1").value = unPilote.Promotion_pilote;
                 document.getElementById("photoPilote1").value = unPilote.Photo_Utilisateur;
 
                 
-              
                 console.log('fin html');
                 }catch(e){
                     if(e=="SyntaxError: Unexpected end of JSON input"){
@@ -209,17 +209,135 @@ function popup_modifier_pilote(id_pilote){
                 }
         }
     });
-    
     xhr.open("POST", "http://localhost/projet-web-frontend/api/pilote/lire_un_pilote.php", true);
 
-    xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+                
+                xhr.responseType = 'text';
+            
+                console.log('envoi=> '+data);
+                xhr.send(data); 
+              
     
-    xhr.responseType = 'text';
-
-    console.log('envoi=> '+data);
-    xhr.send(data);  
+ 
 };
 
+function modifier_pilote(id){
+    var ID_Login = id;
+    var Nom = document.getElementById("nomPilote1").value;
+    var Prenom = document.getElementById("prenomPilote1").value;
+    var Login = document.getElementById("loginPilote1").value;
+    var Mot_de_passe = document.getElementById("mdpPilote1").value;
+    var Centre_pilote = document.getElementById("centrePilote1").value;
+    var Promotion_pilote = document.getElementById("promotionPilote1").value;
+    var logo = document.getElementById("photoPilote1").files[0].name;
+
+    var html = '';
+    if(true){
+        
+        param={
+            "ID_Login":id,
+            "Nom":Nom,
+            "Prenom" : Prenom,
+            "Login" : Login,
+            "Mot_de_passe" : Mot_de_passe,
+            "Role" : "pilote",
+            "Centre_pilote":Centre_pilote,
+            "Promotion_pilote": Promotion_pilote,
+            "Photo_Utilisateur" : "api/img/users/"+logo,
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 200 )
+                {
+                    try{
+                        if(!window.alert(Nom + ' ' + Prenom + ' a bien été modifié')){document.forms['modifierPiloteForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+    
+        xhr.open("PUT", "http://localhost/projet-web-frontend/api/utilisateur/modifier_utilisateur.php", true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+
+        console.log('envoi=> '+data);
+        xhr.send(data);
+    }
+    
+  
+    else{
+    html="Parametres incorrects ou incomplets";
+        }
+        
+    //document.getElementById("resultat-requete").innerHTML = html;
+}
+
+function supprimer_pilote(id){
+    var Nom = document.getElementById("nomPilote1").value;
+    if(true){
+        
+        param={
+            "ID_Login":id,
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 200 )
+                {
+                    try{
+                        if(!window.alert(Nom + ' a bien été supprimée')){document.forms['modifierPiloteForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+    
+        xhr.open("DELETE", "http://localhost/projet-web-frontend/api/suppression/suppression_pilote.php", true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+
+        console.log('envoi=> '+data);
+        xhr.send(data);
+    }
+    
+  
+    else{
+    html="Parametres incorrects ou incomplets";
+        }
+}
 
 window.onload = show_pilote();
 

@@ -27,9 +27,17 @@ var candidature;
                      current_candidature = candidature[i];
                   
                     // à modifier selon le contenu souhaité   
-                    html+=  '<tr><td style="border-top: 2px solid  ;">'+ current_candidature.Nom + ' ' + current_candidature.Prenom + 
-                            '</td><td style="border-top:2px solid ;">'+ current_candidature.Entreprise_offre +
-                            '</td></tr>'; 
+                    html+=  `<tr>
+                            <td style="border-top: 2px solid  ;">`+ current_candidature.Nom + ' ' + current_candidature.Prenom + `</td>
+                            <td style="border-top:2px solid ;">`+ current_candidature.Entreprise_offre +`</td>
+                            <td style="border-top:2px solid ;">`+ current_candidature.Candidature_step_1 +`</td>
+                            <td style="border-top:2px solid ;">`+ current_candidature.Candidature_step_2 +`</td>
+                            <td style="border-top:2px solid ;">`+ current_candidature.Candidature_step_3 +`</td>
+                            <td style="border-top:2px solid ;">`+ current_candidature.Candidature_step_4 +`</td>
+                            <td style="border-top:2px solid ;">`+ current_candidature.Candidature_step_5 +`</td>
+                            <td style="border-top:2px solid ;">`+ current_candidature.Candidature_step_6 +`</td>
+                           
+                            </tr>`;
                  }
              }
  

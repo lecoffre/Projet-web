@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-31 19:47:28
+/* Smarty version 3.1.39, created on 2021-03-31 22:21:29
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\offre.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6064b5b0117485_70725183',
+  'unifunc' => 'content_6064d9c9261953_83403824',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '22ca2b1794049e3a3599f22bc48b7979ca25e2c7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\offre.tpl',
-      1 => 1617212843,
+      1 => 1617219573,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6064b5b0117485_70725183 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6064d9c9261953_83403824 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -274,7 +274,8 @@ function content_6064b5b0117485_70725183 (Smarty_Internal_Template $_smarty_tpl)
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" id="btnModifierOffre" onclick="modifier_offre()" type="submit">Modifier l'offre</button>
+                                    <button class="btn btn-primary" id="btnSupprimerOffre" onclick="supprimer_offre(this.id)" style="background-color: red;" type="submit">Supprimer</button>
+                                        <button class="btn btn-primary" id="btnModifierOffre" onclick="modifier_offre(this.id)" type="submit">Modifier</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
                                         
                                     </div>

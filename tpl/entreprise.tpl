@@ -232,7 +232,8 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" id="btnModifierEntreprise" onclick="modifier_entreprise(this.id)" type="submit">Modifier l'entreprise</button>
+                                    <button class="btn btn-primary" id="btnSupprimerEntreprise" onclick="supprimer_entreprise(this.id)" style="background-color: red;" type="submit">Supprimer</button>
+                                        <button class="btn btn-primary" id="btnModifierEntreprise" onclick="modifier_entreprise(this.id)" type="submit">Modifier</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
                                         
                                     </div>

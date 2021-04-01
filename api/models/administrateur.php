@@ -140,7 +140,7 @@ class Administrateur
 
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "UPDATE " . $this->table . " SET  ID_Login=:ID_Login WHERE ID_Utilisateur= :ID_Utilisateur";
+        $sql = "UPDATE " . $this->table . " SET  ID_Login=:ID_Login WHERE ID_Utilisateur=:ID_Utilisateur";
 
 
         // Préparation de la requête

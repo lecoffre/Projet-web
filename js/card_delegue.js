@@ -186,14 +186,32 @@ function popup_modifier_delegue(id_delegue){
 
                 // Ici, j'essaye de mettre dans les placeholder les données de l'admin, le seul qui ne marche pas est le logo.
                 document.getElementById("btnModifierDelegue").id = id_delegue;
+                document.getElementById("btnSupprimerDelegue").id = id_delegue;
                 document.getElementById("nomDelegue1").value= unDelegue.Nom;
                 document.getElementById("prenomDelegue1").value = unDelegue.Prenom;
-                //document.getElementById("loginDelegue1").value =  unDelegue.Login;
-                //document.getElementById("mdpDelegue1").value = unDelegue.Mot_de_passe;
+                document.getElementById("loginDelegue1").value =  unDelegue.Login;
+                document.getElementById("mdpDelegue1").value = unDelegue.Mot_de_passe;
                 document.getElementById("centreDelegue1").value= unDelegue.Centre_Delegue;
                 document.getElementById("promotionDelegue1").value = unDelegue.Promotion_delegue;
                 document.getElementById("photoDelegue1").value = unDelegue.Photo_Utilisateur;
-
+                document.getElementById("Creer_une_entreprise1").value = unDelegue.Creer_une_entreprise;
+                document.getElementById("Modifier_une_entreprise1").value = unDelegue.Modifier_une_entreprise;
+                document.getElementById("Evaluer_une_entreprise").value = unDelegue.Evaluer_une_entreprise;
+                document.getElementById("Supprimer_une_entreprise").value = unDelegue.Supprimer_une_entreprise;
+                document.getElementById("Consulter_les_stats_des_entreprises").value = unDelegue.Consulter_les_stats_des_entreprises;
+                document.getElementById("Rechercher_une_offre").value = unDelegue.Rechercher_une_offre;
+                document.getElementById("Creer_une_offre").value = unDelegue.Creer_une_offre;
+                document.getElementById("Modifier_une_offre").value = unDelegue.Modifier_une_offre;
+                document.getElementById("Supprimer_une_offre").value = unDelegue.Supprimer_une_offre;
+                document.getElementById("Consulter_les_stats_des_offres").value = unDelegue.Consulter_les_stats_des_offres;
+                document.getElementById("Rechercher_un_compte_pilote").value = unDelegue.Rechercher_un_compte_pilote;
+                document.getElementById("Creer_un_compte_pilote").value = unDelegue.Creer_un_compte_pilote;
+                document.getElementById("Creer_un_compte_etudiant").value = unDelegue.Creer_un_compte_etudiant;
+                document.getElementById("Modifier_un_compte_etudiant").value = unDelegue.Modifier_un_compte_etudiant;
+                document.getElementById("Supprimer_un_compte_etudiant").value = unDelegue.Supprimer_un_compte_etudiant;
+                document.getElementById("Consulter_les_stats_des_etudiants").value = unDelegue.Consulter_les_stats_des_etudiants;
+                document.getElementById("Informer_le_systeme_de_l_avancement_de_la_candidature_step_3").value = unDelegue.Informer_le_systeme_de_l_avancement_de_la_candidature_step_3;
+                document.getElementById("Informer_le_systeme_de_l_avancement_de_la_candidature_step_4").value = unDelegue.Informer_le_systeme_de_l_avancement_de_la_candidature_step_4;
                 
               
                 console.log('fin html');
@@ -223,6 +241,126 @@ function popup_modifier_delegue(id_delegue){
     console.log('envoi=> '+data);
     xhr.send(data);  
 };
+
+
+function modifier_delegue(id){
+    var ID_Login = id;
+    var Nom = document.getElementById("nomPilote1").value;
+    var Prenom = document.getElementById("prenomPilote1").value;
+    var Login = document.getElementById("loginPilote1").value;
+    var Mot_de_passe = document.getElementById("mdpPilote1").value;
+    var Centre_pilote = document.getElementById("centrePilote1").value;
+    var Promotion_pilote = document.getElementById("promotionPilote1").value;
+    var logo = document.getElementById("photoPilote1").files[0].name;
+
+    var html = '';
+    if(true){
+        
+        param={
+            "ID_Login":id,
+            "Nom":Nom,
+            "Prenom" : Prenom,
+            "Login" : Login,
+            "Mot_de_passe" : Mot_de_passe,
+            "Role" : "pilote",
+            "Centre_pilote":Centre_pilote,
+            "Promotion_pilote": Promotion_pilote,
+            "Photo_Utilisateur" : "api/img/users/"+logo,
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 200 )
+                {
+                    try{
+                        if(!window.alert(Nom + ' ' + Prenom + ' a bien été modifié')){document.forms['ModifierDelegueForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+    
+        xhr.open("PUT", "http://localhost/projet-web-frontend/api/utilisateur/modifier_utilisateur.php", true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+
+        console.log('envoi=> '+data);
+        xhr.send(data);
+    }
+    
+  
+    else{
+    html="Parametres incorrects ou incomplets";
+        }
+        
+    //document.getElementById("resultat-requete").innerHTML = html;
+}
+
+function supprimer_delegue(id){
+    var Nom = document.getElementById("nomDelegue1").value;
+    if(true){
+        
+        param={
+            "ID_Login":id,
+        }
+        var data = JSON.stringify(param);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function() 
+        {
+            if( this.readyState === 4) 
+            {
+                console.log(xhr.readyState+", requete finie, statut : "+ xhr.status+", reponse: "+ xhr.response);
+                if( xhr.status == 200 )
+                {
+                    try{
+                        
+                        if(!window.alert(Nom + ' a bien été supprimée')){document.forms['ModifierDelegueForm'].reset();window.location.reload();}
+                    }catch(e){
+                        if(e=="SyntaxError: Unexpected end of JSON input"){
+                            html = 'JSON incorrect (vide)';
+                        }else{
+                            html ='erreur ==> '+e+'';
+                        }
+                    }
+                }
+                else{
+                        window.alert('Mauvaise requête. Erreur : '+xhr.statuts);
+                    }
+            }
+        });
+        xhr.open("DELETE", "http://localhost/projet-web-frontend/api/suppression/suppression_delegue.php", true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        
+        xhr.responseType = 'text';
+
+        console.log('envoi=> '+data);
+        xhr.send(data);
+
+    }
+    
+  
+    else{
+    html="Parametres incorrects ou incomplets";
+        }
+}
+
 
 window.onload = show_delegue();
 

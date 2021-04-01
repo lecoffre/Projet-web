@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-31 19:46:21
+/* Smarty version 3.1.39, created on 2021-03-31 21:48:35
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\administrateur.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6064b56dcc6d92_40824596',
+  'unifunc' => 'content_6064d21353c750_74545762',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '385a534639d2350afdb3d5ed63dba6e1d49390cb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\administrateur.tpl',
-      1 => 1617210775,
+      1 => 1617219480,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6064b56dcc6d92_40824596 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6064d21353c750_74545762 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -185,7 +185,8 @@ function content_6064b56dcc6d92_40824596 (Smarty_Internal_Template $_smarty_tpl)
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" id="btnModifierAdministrateur" onclick="modifier_administrateur()" type="submit">Modifier l'administrateur</button>
+                                        <button class="btn btn-primary" id="btnSupprimerAdministrateur" onclick="supprimer_administrateur(this.id)" style="background-color: red;" type="submit">Supprimer</button>
+                                        <button class="btn btn-primary" id="btnModifierAdministrateur" onclick="modifier_administrateur(this.id)" style="background-color: green;" type="submit">Modifier</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
                                         
                                     </div>

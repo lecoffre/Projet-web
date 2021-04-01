@@ -18,6 +18,14 @@ class Candidature
     public $ID_offre;
     public $ID_Utilisateur_Pilote;
 
+    public $Candidature_step_1;
+    public $Candidature_step_2;
+    public $Candidature_step_3;
+    public $Candidature_step_4;
+    public $Candidature_step_5;
+    public $Candidature_step_6;
+
+
     /**
      * Constructeur avec $db pour la connexion à la base de données
      *
@@ -63,7 +71,16 @@ class Candidature
         // Ecriture de la requête SQL en y insérant le nom de la table
         $sql = "INSERT INTO " . $this->table . " SET CV_etudiant= :CV_etudiant, Lettre_de_motivation_etudiant= :Lettre_de_motivation_etudiant,
         Fiche_de_validation= :Fiche_de_validation, Convention_de_stage= :Convention_de_stage, LIEN_OFFRE= :LIEN_OFFRE,
-        ID_Utilisateur= :ID_Utilisateur, ID_offre= :ID_offre, ID_Utilisateur_Pilote= :ID_Utilisateur_Pilote";
+        ID_Utilisateur= :ID_Utilisateur, ID_offre= :ID_offre, ID_Utilisateur_Pilote=:ID_Utilisateur_Pilote, 
+        Candidature_step_1=: Candidature_step_1, Candidature_step_2=: Candidature_step_2
+        , Candidature_step_3=: Candidature_step_3
+        , Candidature_step_4=: Candidature_step_4
+        , Candidature_step_5=: Candidature_step_5
+        , Candidature_step_6=: Candidature_step_6";
+
+
+
+    
 
         // Préparation de la requête
         $query = $this->connexion->prepare($sql);
@@ -78,6 +95,13 @@ class Candidature
         $this->ID_Utilisateur = htmlspecialchars(strip_tags($this->ID_Utilisateur));
         $this->ID_offre = htmlspecialchars(strip_tags($this->ID_offre));
         $this->ID_Utilisateur_Pilote = htmlspecialchars(strip_tags($this->ID_Utilisateur_Pilote));
+        $this->Candidature_step_1 = htmlspecialchars(strip_tags($this->Candidature_step_1));
+        $this->Candidature_step_2 = htmlspecialchars(strip_tags($this->Candidature_step_2));
+        $this->Candidature_step_3 = htmlspecialchars(strip_tags($this->Candidature_step_3));
+        $this->Candidature_step_4 = htmlspecialchars(strip_tags($this->Candidature_step_4));
+        $this->Candidature_step_5 = htmlspecialchars(strip_tags($this->Candidature_step_5));
+        $this->Candidature_step_6 = htmlspecialchars(strip_tags($this->Candidature_step_6));
+
 
         // Ajout des données protégées
         $query->bindParam(":CV_etudiant", $this->CV_etudiant);
@@ -88,6 +112,12 @@ class Candidature
         $query->bindParam(":ID_Utilisateur", $this->ID_Utilisateur);
         $query->bindParam(":ID_offre", $this->ID_offre);
         $query->bindParam(":ID_Utilisateur_Pilote", $this->ID_Utilisateur_Pilote);
+        $query->bindParam(":Candidature_step_1", $this->Candidature_step_1);
+        $query->bindParam(":Candidature_step_2", $this->Candidature_step_2);
+        $query->bindParam(":Candidature_step_3", $this->Candidature_step_3);
+        $query->bindParam(":Candidature_step_4", $this->Candidature_step_4);
+        $query->bindParam(":Candidature_step_5", $this->Candidature_step_5);
+        $query->bindParam(":Candidature_step_6", $this->Candidature_step_6);
 
         // Exécution de la requête
         if ($query->execute()) {
@@ -132,6 +162,12 @@ class Candidature
         $this->ID_offre = $row['ID_offre'];
         $this->ID_Utilisateur_Pilote = $row['ID_Utilisateur_Pilote'];
         $this->Entreprise_offre = $row['Entreprise_offre'];
+        $this->Candidature_step_1 = $row['Candidature_step_1'];
+        $this->Candidature_step_2 = $row['Candidature_step_2'];
+        $this->Candidature_step_3 = $row['Candidature_step_3'];
+        $this->Candidature_step_4 = $row['Candidature_step_4'];
+        $this->Candidature_step_5 = $row['Candidature_step_4'];
+        $this->Candidature_step_6 = $row['Candidature_step_6'];
     }
 
     /**
@@ -189,7 +225,13 @@ class Candidature
         $this->ID_offre = htmlspecialchars(strip_tags($this->ID_offre));
         $this->ID_Utilisateur_Pilote = htmlspecialchars(strip_tags($this->ID_Utilisateur_Pilote));
         $this->ID_Candidature = htmlspecialchars(strip_tags($this->ID_Candidature));
-
+        $this->Candidature_step_1 = htmlspecialchars(strip_tags($this->Candidature_step_1));
+        $this->Candidature_step_2 = htmlspecialchars(strip_tags($this->Candidature_step_2));
+        $this->Candidature_step_3 = htmlspecialchars(strip_tags($this->Candidature_step_3));
+        $this->Candidature_step_4 = htmlspecialchars(strip_tags($this->Candidature_step_4));
+        $this->Candidature_step_5 = htmlspecialchars(strip_tags($this->Candidature_step_5));
+        $this->Candidature_step_6 = htmlspecialchars(strip_tags($this->Candidature_step_6));
+        
         // Ajout des données protégées
         $query->bindParam(":CV_etudiant", $this->CV_etudiant);
         $query->bindParam(":Lettre_de_motivation_etudiant", $this->Lettre_de_motivation_etudiant);
@@ -200,6 +242,12 @@ class Candidature
         $query->bindParam(":ID_offre", $this->ID_offre);
         $query->bindParam(":ID_Utilisateur_Pilote", $this->ID_Utilisateur_Pilote);
         $query->bindParam(":ID_Candidature", $this->ID_Candidature);
+        $query->bindParam(":Candidature_step_1", $this->Candidature_step_1);
+        $query->bindParam(":Candidature_step_2", $this->Candidature_step_2);
+        $query->bindParam(":Candidature_step_3", $this->Candidature_step_3);
+        $query->bindParam(":Candidature_step_4", $this->Candidature_step_4);
+        $query->bindParam(":Candidature_step_5", $this->Candidature_step_5);
+        $query->bindParam(":Candidature_step_6", $this->Candidature_step_6);
 
         // Exécution de la requête
         if ($query->execute()) {

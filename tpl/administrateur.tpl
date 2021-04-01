@@ -162,8 +162,8 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" id="btnSupprimerAdministrateur" onclick="supprimer_administrateur()" type="submit">Supprimer l'administrateur</button>
-                                        <button class="btn btn-primary" id="btnModifierAdministrateur" onclick="modifier_administrateur()" type="submit">Modifier l'administrateur</button>
+                                        <button class="btn btn-primary" id="btnSupprimerAdministrateur" onclick="supprimer_administrateur(this.id)" style="background-color: red;" type="submit">Supprimer</button>
+                                        <button class="btn btn-primary" id="btnModifierAdministrateur" onclick="modifier_administrateur(this.id)" style="background-color: green;" type="submit">Modifier</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
                                         
                                     </div>

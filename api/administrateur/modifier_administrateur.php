@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
 
     if (
-        !empty($donnees->ID_Utilisateur)  && !empty($donnees->ID_Login)
+        !empty($donnees->ID_Login)
     ) {
 
         // Ici on a reçu les données

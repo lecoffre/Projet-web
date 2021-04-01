@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-03-31 20:17:26
+/* Smarty version 3.1.39, created on 2021-04-01 01:00:07
   from 'C:\xampp\htdocs\projet-web-frontend\tpl\delegue.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6064bcb60ca0e0_47664189',
+  'unifunc' => 'content_6064fef79818a2_73528185',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '36e1673ceffe851c68eae7c8ad97f63a05a18101' => 
     array (
       0 => 'C:\\xampp\\htdocs\\projet-web-frontend\\tpl\\delegue.tpl',
-      1 => 1617214639,
+      1 => 1617231583,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6064bcb60ca0e0_47664189 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6064fef79818a2_73528185 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -375,41 +375,41 @@ function content_6064bcb60ca0e0_47664189 (Smarty_Internal_Template $_smarty_tpl)
                                                     >
                                                         <div >
                                                             <input type="checkbox" id="Creer_une_entreprise1" name="Creer_une_entreprise">
-                                                            <label for="Creer_une_entreprise">Creer_une_entreprise</label><br>
+                                                            <label class="check_1" for="Creer_une_entreprise">Creer_une_entreprise</label><br>
                                                             <input type="checkbox" id="Modifier_une_entreprise1" name="Modifier_une_entreprise">
-                                                            <label for="Modifier_une_entreprise">Modifier_une_entreprise</label><br>
+                                                            <label class="check_1" for="Modifier_une_entreprise">Modifier_une_entreprise</label><br>
                                                             <input type="checkbox" id="Evaluer_une_entreprise1" name="Evaluer_une_entreprise">
-                                                            <label for="Evaluer_une_entreprise">Evaluer_une_entreprise</label><br>
+                                                            <label class="check_1" for="Evaluer_une_entreprise">Evaluer_une_entreprise</label><br>
                                                             <input type="checkbox" id="Supprimer_une_entreprise1" name="Supprimer_une_entreprise">
-                                                            <label for="Supprimer_une_entreprise">Supprimer_une_entreprise</label><br>
+                                                            <label class="check_1" for="Supprimer_une_entreprise">Supprimer_une_entreprise</label><br>
                                                             <input type="checkbox" id="Consulter_les_stats_des_entreprises1" name="Consulter_les_stats_des_entreprises">
-                                                            <label for="Consulter_les_stats_des_entreprises">Consulter_les_stats_des_entreprises</label><br>
+                                                            <label class="check_1" for="Consulter_les_stats_des_entreprises">Consulter_les_stats_des_entreprises</label><br>
                                                             <input type="checkbox" id="Rechercher_une_offre1" name="Rechercher_une_offre">
-                                                            <label for="Rechercher_une_offre">Rechercher_une_offre</label><br>
+                                                            <label class="check_1" for="Rechercher_une_offre">Rechercher_une_offre</label><br>
                                                             <input type="checkbox" id="Creer_une_offre1" name="Creer_une_offre">
-                                                            <label for="Creer_une_offre">Creer_une_offre</label><br>
+                                                            <label class="check_1" for="Creer_une_offre">Creer_une_offre</label><br>
                                                             <input type="checkbox" id="Modifier_une_offre1" name="Modifier_une_offre">
-                                                            <label for="Modifier_une_offre">Modifier_une_offre</label><br>
+                                                            <label class="check_1" for="Modifier_une_offre">Modifier_une_offre</label><br>
                                                             <input type="checkbox" id="Supprimer_une_offre1" name="Supprimer_une_offre">
-                                                            <label for="Supprimer_une_offre">Supprimer_une_offre</label><br>
+                                                            <label class="check_1" for="Supprimer_une_offre">Supprimer_une_offre</label><br>
                                                             <input type="checkbox" id="Consulter_les_stats_des_offres1" name="Consulter_les_stats_des_offres">
-                                                            <label for="Consulter_les_stats_des_offres">Consulter_les_stats_des_offres</label><br>
+                                                            <label class="check_1" for="Consulter_les_stats_des_offres">Consulter_les_stats_des_offres</label><br>
                                                             <input type="checkbox" id="Rechercher_un_compte_pilote1" name="Rechercher_un_compte_pilote">
-                                                            <label for="Rechercher_un_compte_pilote">Rechercher_un_compte_pilote</label><br>
+                                                            <label class="check_1" for="Rechercher_un_compte_pilote">Rechercher_un_compte_pilote</label><br>
                                                             <input type="checkbox" id="Creer_un_compte_pilote1" name="Creer_un_compte_pilote">
-                                                            <label for="Creer_un_compte_pilote">Creer_un_compte_pilote</label><br>
+                                                            <label class="check_1" for="Creer_un_compte_pilote">Creer_un_compte_pilote</label><br>
                                                             <input type="checkbox" id="Creer_un_compte_etudiant1" name="Creer_un_compte_etudiant">
-                                                            <label for="Creer_un_compte_etudiant">Creer_un_compte_etudiant</label><br>
+                                                            <label class="check_1" for="Creer_un_compte_etudiant">Creer_un_compte_etudiant</label><br>
                                                             <input type="checkbox" id="Modifier_un_compte_etudiant1" name="Modifier_un_compte_etudiant">
-                                                            <label for="Modifier_un_compte_etudiant">Modifier_un_compte_etudiant</label><br>
+                                                            <label class="check_1" for="Modifier_un_compte_etudiant">Modifier_un_compte_etudiant</label><br>
                                                             <input type="checkbox" id="Supprimer_un_compte_etudiant1" name="Supprimer_un_compte_etudiant">
-                                                            <label for="Supprimer_un_compte_etudiant">Supprimer_un_compte_etudiant</label><br>
+                                                            <label class="check_1" for="Supprimer_un_compte_etudiant">Supprimer_un_compte_etudiant</label><br>
                                                             <input type="checkbox" id="Consulter_les_stats_des_etudiants1" name="Consulter_les_stats_des_etudiants">
-                                                            <label for="Consulter_les_stats_des_etudiants">Consulter_les_stats_des_etudiants</label><br>
+                                                            <label class="check_1" for="Consulter_les_stats_des_etudiants">Consulter_les_stats_des_etudiants</label><br>
                                                             <input type="checkbox" id="Informer_le_systeme_de_l_avancement_de_la_candidature_step_31" name="Informer_le_systeme_de_l_avancement_de_la_candidature_step_3">
-                                                            <label for="Informer_le_systeme_de_l_avancement_de_la_candidature_step_3">Informer_le_systeme_de_l_avancement_de_la_candidature_step_3</label><br>
+                                                            <label class="check_1" for="Informer_le_systeme_de_l_avancement_de_la_candidature_step_3">Informer_le_systeme_de_l_avancement_de_la_candidature_step_3</label><br>
                                                             <input type="checkbox" id="Informer_le_systeme_de_l_avancement_de_la_candidature_step_41" name="Informer_le_systeme_de_l_avancement_de_la_candidature_step_4">
-                                                            <label for="Informer_le_systeme_de_l_avancement_de_la_candidature_step_4">Informer_le_systeme_de_l_avancement_de_la_candidature_step_4</label><br>
+                                                            <label class="check_1" for="Informer_le_systeme_de_l_avancement_de_la_candidature_step_4">Informer_le_systeme_de_l_avancement_de_la_candidature_step_4</label><br>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -428,7 +428,8 @@ function content_6064bcb60ca0e0_47664189 (Smarty_Internal_Template $_smarty_tpl)
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" id="btnModifierDelegue" onclick="modifier_delegue(this.id)" type="submit">Modifier le délégué</button>
+                                    <button class="btn btn-primary" id="btnSupprimerDelegue" onclick="supprimer_delegue(this.id)" style="background-color: red;" type="submit">Supprimer</button>
+                                        <button class="btn btn-primary" id="btnModifierDelegue" onclick="modifier_delegue(this.id)" type="submit">Modifier</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le pop-up</button>
                                         
                                     </div>

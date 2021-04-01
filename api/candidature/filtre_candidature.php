@@ -56,6 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 "ID_Utilisateur_Pilote" => $ID_Utilisateur_Pilote,
                 "ID_Login" => $ID_Login,
                 "Entreprise_offre" => $Entreprise_offre,
+                "Candidature_step_1" => $Candidature_step_1,
+                "Candidature_step_2" => $Candidature_step_2,
+                "Candidature_step_3" => $Candidature_step_3,
+                "Candidature_step_4" => $Candidature_step_4,
+                "Candidature_step_5" => $Candidature_step_5,
+                "Candidature_step_6" => $Candidature_step_6,
             ];
 
             switch (true) {

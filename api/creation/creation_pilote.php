@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 //a partir du dernier element créé nous pouvons créer un nouvel utilisateur pour cela nous devons recuper le dernier ID_Login
 
                 //creation de l'utilisateur
-                if (!empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur) && !empty($donnees->Role)) {
+                if (!empty($donnees->Nom) && !empty($donnees->Prenom) && !empty($donnees->Photo_Utilisateur)) {
                     // Ici on a reçu les données
                     // On hydrate notre objet
 
